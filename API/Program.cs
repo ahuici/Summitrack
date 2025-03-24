@@ -2,6 +2,7 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,140 +12,101 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-// Crear el builder de la aplicación
 var builder = WebApplication.CreateBuilder(args);
 
-// 📌 Configurar DbContext en memoria (para persistencia real, usar SQLite o SQL Server)
-builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("AppDatabase"));
+// Configurar DbContext en memoria
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("SummitTrack"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Logging.AddConsole(); // Esto asegura que los logs aparezcan en la consola
-
+builder.Logging.AddConsole();
 
 var app = builder.Build();
 
-// 📌 Ruta del archivo JSON
-var jsonPath = Path.Combine(Directory.GetCurrentDirectory(), "data", "datos.json");
+// 📌 Definir rutas de los archivos JSON
+var dataDirectory = Path.Combine(Directory.GetCurrentDirectory(), "data");
+var jsonFiles = new[] { "montes_españa.json", "montes_navarra.json", "montes_pirineos.json" };
 
-// 📌 Cargar datos desde JSON al iniciar y eliminarlo después
+// 📌 Cargar datos desde JSON al iniciar y eliminarlos después
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-    if (File.Exists(jsonPath))
+    foreach (var fileName in jsonFiles)
     {
-        var jsonData = await File.ReadAllTextAsync(jsonPath);
-        var data = JsonSerializer.Deserialize<DatabaseData>(jsonData);
+        var filePath = Path.Combine(dataDirectory, fileName);
+        Console.WriteLine($"Leyendo archivo: {filePath}");
 
-        if (data is not null)
+        if (File.Exists(filePath))
         {
-            // Evitar duplicados al cargar datos
-            if (!db.Usuarios.Any()) db.Usuarios.AddRange(data.Usuarios);
-            if (!db.Inmuebles.Any()) db.Inmuebles.AddRange(data.Inmuebles);
-            if (!db.Visitas.Any()) db.Visitas.AddRange(data.Visitas);
+            var jsonData = await File.ReadAllTextAsync(filePath);
+            var data = JsonSerializer.Deserialize<List<Monte>>(jsonData);
 
-            await db.SaveChangesAsync();
-
-            // Eliminar el archivo JSON después de cargarlo
-            File.Delete(jsonPath);
+            if (data != null && data.Any())
+            {
+                db.Montes.AddRange(data);
+                await db.SaveChangesAsync();
+                Console.WriteLine($"Añadidos {data.Count} montes desde {fileName}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontraron datos válidos en {fileName}");
+            }
+        }
+        else
+        {
+            Console.WriteLine($"Archivo no encontrado: {filePath}");
         }
     }
+
 }
 
-// 📌 Guardar datos en JSON antes de cerrar la aplicación
-async Task SaveDataToJson()
+                    /* * * * * * * * * * * * 
+                     *  CRUD BASICO MONTES * 
+                     * * * * * * * * * * * */
+
+// 📌 Obtener todos los montes
+app.MapGet("/montes", async (AppDbContext db) =>
+    await db.Montes.ToListAsync());
+
+// 📌 Obtener un monte por ID
+app.MapGet("/montes/{id}", async (int id, AppDbContext db) =>
 {
-    using var scope = app.Services.CreateScope();
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-    var data = new DatabaseData
-    {
-        Usuarios = await db.Usuarios.ToListAsync(),
-        Inmuebles = await db.Inmuebles.ToListAsync(),
-        Visitas = await db.Visitas.ToListAsync()
-    };
-
-    string json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
-   
-    // 📂 Crear la carpeta Data/ si no existe
-    var directory = Path.GetDirectoryName(jsonPath);
-    if (!Directory.Exists(directory))
-    {
-        Directory.CreateDirectory(directory);
-    }
-
-    await File.WriteAllTextAsync(jsonPath, json);
-}
-
-// 📌 Guardar datos en JSON antes de cerrar la aplicación
-var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
-lifetime.ApplicationStopping.Register(async () =>
-{
-    Console.WriteLine("Guardando datos en JSON antes de salir...");
-    await SaveDataToJson();
-});
-                    /* * * * * * * * * * * *  * 
-                     *  CRUD BASICO INMUEBLES * 
-                     * * * * * * * * * * * *  */
-
-// 📌 Obtener todos los inmuebles
-app.MapGet("/inmuebles", async (AppDbContext db) =>
-    await db.Inmuebles.ToListAsync());
-
-// 📌 Obtener un inmueble por ID
-app.MapGet("/inmuebles/{id}", async (string id, AppDbContext db, ILogger<Program> logger) =>
-{
-    try
-    {
-        string decryptedId = AES.DecryptString(id); // Desencriptar ID recibido como string
-        var inmueble = await db.Inmuebles.FindAsync(int.Parse(decryptedId));
-
-        return inmueble is not null ? Results.Ok(inmueble) : Results.NotFound();
-    }
-    catch
-    {
-        return Results.BadRequest("ID inválido");
-    }
+    var monte = await db.Montes.FindAsync(id);
+    return monte is not null ? Results.Ok(monte) : Results.NotFound();
 });
 
-
-// 📌 Crear un nuevo inmueble
-app.MapPost("/inmuebles", async (Inmueble inmueble, AppDbContext db, ILogger<Program> logger) =>
+// 📌 Crear un nuevo monte
+app.MapPost("/montes", async (Monte monte, AppDbContext db) =>
 {
-    db.Inmuebles.Add(inmueble);
+    db.Montes.Add(monte);
     await db.SaveChangesAsync();
-    return Results.Created($"/inmuebles/{inmueble.Id}", inmueble);
+    return Results.Created($"/montes/{monte.Id}", monte);
 });
 
-
-// 📌 Actualizar un inmueble
-app.MapPut("/inmuebles/{id}", async (string id, Inmueble input, AppDbContext db) =>
+// 📌 Actualizar un monte
+app.MapPut("/montes/{id}", async (int id, Monte input, AppDbContext db) =>
 {
-    id = AES.DecryptString(id);
+    var monte = await db.Montes.FindAsync(id);
+    if (monte is null) return Results.NotFound();
 
-    var inmueble = await db.Inmuebles.FindAsync(int.Parse(id));
-    if (inmueble is null) return Results.NotFound();
-
-    // Actualizar campos
-    inmueble.Nombre = input.Nombre;
-    inmueble.Precio = input.Precio;
-    inmueble.Ubicacion = input.Ubicacion;
-    inmueble.MetrosCuadrados = input.MetrosCuadrados;
-    inmueble.Disponible = input.Disponible;
-    inmueble.FechaConstruccion = input.FechaConstruccion;
+    // Actualizar los campos del monte
+    monte.nombre = input.nombre;
+    monte.provincia = input.provincia;
+    monte.altura = input.altura;
 
     await db.SaveChangesAsync();
-    return Results.Ok(inmueble);
+    return Results.Ok(monte);
 });
 
-// 📌 Eliminar un inmueble
-app.MapDelete("/inmuebles/{id}", async (string id, AppDbContext db) =>
+// 📌 Eliminar un monte
+app.MapDelete("/montes/{id}", async (int id, AppDbContext db) =>
 {
-    id = AES.DecryptString(id);
-    var inmueble = await db.Inmuebles.FindAsync(int.Parse(id));
-    if (inmueble is null) return Results.NotFound();
+    var monte = await db.Montes.FindAsync(id);
+    if (monte is null) return Results.NotFound();
 
-    db.Inmuebles.Remove(inmueble);
+    db.Montes.Remove(monte);
     await db.SaveChangesAsync();
     return Results.NoContent();
 });
+
+
+app.Run();
