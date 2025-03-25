@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Vende</title>
+  <link rel="stylesheet" href="/css/conduce.css">
+</head>
+<body>
+<h1>Vende</h1>
+<table>
+  <tr>
+    <td>Nombre restaurante</td>
+    <td>Nombre plato</td>
+    <td>Editar</td>
+    <td>Eliminar</td>
+  </tr>
+  <tr th:each="vend : ${vende}">
+    <td th:text="${vend.restaurante.nombre}"></td>
+    <td th:text="${vend.plato.nombre}"></td>
+    <td><a th:href="|/vende/add?idRestaurante=${vend.restaurante.id}&idPlato=${vend.plato.id}|">Editar</a></td>
+    <td><a th:href="|/vende/eliminar?idRestaurante=${vend.restaurante.id}&idPlato=${vend.plato.id}|">Eliminar</a></td>
+  </tr>
+</table>
+<a th:href="|/vende/add?|">Añadir</a>
+<a th:href="|/|">Salir</a>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Añadir Autobus</title>
+    <link rel="stylesheet" href="/css/addConduce.css">
+</head>
+<body>
+<form action="#" th:action="@{/vende/add}" th:object="${vende}" method="post">
+
+
+  <p>Restaurante:
+          <select name="idRestaurante" th:attr="disabled=${editar} ? 'disabled' : null">
+              <option th:each="restaurante : ${restaurantes}"
+                      th:text="${restaurante.nombre}"
+                      th:value="${restaurante.id}"/>
+          </select>
+  </p>
+  <p>Platos:
+          <select name="idPlato" th:attr="disabled=${editar} ? 'disabled' : null">
+              <option th:each="plato : ${platos}"
+                      th:text="${plato.nombre}"
+                      th:value="${plato.id}"/>
+          </select>
+  </p>
+    <input type="hidden" th:if="${editar}" th:value="${idRestaurante}" name="idRestaurante"/>
+    <input type="hidden" th:if="${editar}" th:value="${idPlato}" name="idPlato"/>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+<a th:href="|/vende|">Salir</a>
+</body>
+</html>

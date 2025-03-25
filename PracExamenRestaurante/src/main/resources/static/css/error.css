@@ -1,0 +1,65 @@
+/* error.css */
+
+/* Estilo general del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8d7da; /* Color de fondo suave para error */
+    color: #721c24; /* Color de texto oscuro para contraste */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Encabezado de error */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: #a71d2a; /* Color ligeramente más oscuro */
+}
+
+/* Párrafo del mensaje de error */
+p {
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0 1rem;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Opcional: añadir un marco o sombra a la caja */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle, #f8d7da, #f5c6cb, #f1b0b7);
+}
+
+/* Estilo para el enlace */
+a {
+    display: inline-block;
+    margin-top: 2rem; /* Espacio superior */
+    padding: 0.5rem 1rem; /* Relleno interno */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    text-decoration: none; /* Quitar el subrayado */
+    color: #721c24; /* Color del texto del enlace */
+    background-color: #f5c6cb; /* Color de fondo del botón */
+    border: 2px solid #721c24; /* Borde del botón */
+    border-radius: 8px; /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s; /* Transición para efectos */
+}
+
+/* Efecto al pasar el ratón */
+a:hover {
+    background-color: #721c24; /* Fondo más oscuro al pasar el ratón */
+    color: #ffffff; /* Texto blanco */
+    cursor: pointer; /* Mostrar el cursor de enlace */
+}

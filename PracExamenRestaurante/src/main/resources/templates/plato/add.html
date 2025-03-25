@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir Conductor</title>
+    <link rel="stylesheet" href="/css/addConductor.css">
+</head>
+<body>
+  <form action="#" th:action="@{/plato/add}" th:object="${plato}" method="post">
+
+
+     <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->
+
+
+    <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+
+    <p>Precio: <input type="number" th:field="*{precio}"/></p>
+
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+  <a th:href="|/plato|">Salir</a>
+</body>
+</html>

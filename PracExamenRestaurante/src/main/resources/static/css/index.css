@@ -1,0 +1,52 @@
+/* Reset de márgenes para el body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cuerpo del documento */
+body {
+    display: flex;
+    flex-direction: column; /* Para que los elementos estén en una columna */
+    justify-content: center; /* Centrado vertical */
+    align-items: center; /* Centrado horizontal */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #FFFFFF; /* Fondo blanco */
+    text-align: center; /* Centra el texto de los enlaces */
+    font-family: 'Arial', sans-serif; /* Fuente sans-serif */
+}
+
+/* Estilo para el título */
+h1 {
+    color: #333333; /* Título en gris oscuro */
+    font-size: 36px; /* Tamaño grande para el título */
+    margin-bottom: 50px; /* Espaciado entre el título y los enlaces */
+    font-weight: bold; /* Fuente en negrita */
+}
+
+/* Estilo para los enlaces */
+a {
+    display: inline-block;
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white; /* Texto blanco */
+    padding: 20px 40px; /* Relleno de los botones */
+    margin: 20px; /* Espaciado entre botones */
+    text-decoration: none; /* Elimina el subrayado */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 20px; /* Tamaño del texto */
+    font-weight: 600; /* Fuente en negrita */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efecto hover: cambio de fondo y leve animación */
+a:hover {
+    background-color: #388E3C; /* Fondo verde más oscuro */
+    transform: scale(1.05); /* Leve aumento de tamaño */
+}
+
+/* Estilo para los enlaces cuando están deshabilitados */
+a:disabled {
+    background-color: #B0BEC5; /* Color gris para los enlaces deshabilitados */
+    cursor: not-allowed; /* Cursor en forma de prohibido */
+}

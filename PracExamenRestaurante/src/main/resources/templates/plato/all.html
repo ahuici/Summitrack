@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/conductor.css">
+</head>
+<body>
+    <h1>Platos</h1>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Nombre</td>
+            <td>Precio</td>
+            <td>Restaurantes</td>
+            <td>Editar</td>
+            <td>Eliminar</td>
+
+        </tr>
+        <tr th:each="plato : ${platos}">
+            <td th:text="${plato.id}"></td>
+            <td th:text="${plato.nombre}"></td>
+            <td th:text="${plato.precio}"></td>
+            <td>
+                <p th:text="'Restaurantes: ' + ${plato.vende.size()}"></p>
+                <select>
+                    <option selected disabled th:if="${plato.vende.size() > 0}">-- Ver restaurantes --</option>
+                    <option selected disabled th:if="${plato.vende.size() <= 0}">-- No hay restaurantes --</option>
+                    <option th:each="restaurante : ${plato.vende}" th:text="${restaurante.restaurante.nombre}"></option>
+                </select>
+            </td>
+            <td><a th:href="|/plato/add?id=${plato.id}|">Editar</a></td>
+            <td><a th:href="|/plato/eliminar?id=${plato.id}|">Eliminar</a></td>
+        </tr>
+    </table>
+    <a th:href="|/plato/add?|">Añadir</a>
+    <a th:href="|/|">Salir</a>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir Restaurante</title>
+    <link rel="stylesheet" href="/css/addAutobus.css">
+</head>
+<body>
+    <form action="#" th:action="@{/restaurante/add}" th:object="${restaurante}" method="post">
+
+
+        <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
+
+        <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+
+        <p>Capacidad: <input type="number" th:field="*{capacidad}"/></p>
+
+<!--        <select name="idConductor">-->
+<!--            <option th:each="cond : ${conductores}"-->
+<!--                    th:text="${cond.nombre}"-->
+<!--                    th:value="${cond.carnet}"/>-->
+<!--        </select>-->
+
+<!--        <p>Trayecto: <input type="text" name="trayecto"/></p>-->
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+    <a th:href="|/restaurante|">Salir</a>
+</body>
+</html>
