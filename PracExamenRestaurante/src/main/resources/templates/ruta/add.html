@@ -27,6 +27,15 @@
 
         <p>Foto: <input type="file" th:field="*{foto}"/></p>
 
+        <p>Monte:
+            <select th:field="*{monte}">
+                <option value="">-- Selecciona un monte --</option>
+                <option th:each="monte : ${montes}"
+                        th:value="${monte.id}"
+                        th:text="${monte.nombre}"></option>
+            </select>
+        </p>
+
 <!--        <select name="idConductor">-->
 <!--            <option th:each="cond : ${conductores}"-->
 <!--                    th:text="${cond.nombre}"-->

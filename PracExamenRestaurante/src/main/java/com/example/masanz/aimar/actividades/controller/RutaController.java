@@ -47,6 +47,7 @@ public class RutaController {
             model.addAttribute("editar", true);
         }
         model.addAttribute("ruta", ruta);
+        model.addAttribute("montes", monteService.getAll());
         return "ruta/add";
     }
 
@@ -73,6 +74,13 @@ public class RutaController {
             return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/ruta/verMas")
+    public String verMasRuta(@RequestParam(name ="id") Integer id, Model model) {
+        Ruta ruta = rutaService.findByID(id);
+        model.addAttribute("ruta", ruta);
+        return "ruta/verMas";
     }
 
 }
