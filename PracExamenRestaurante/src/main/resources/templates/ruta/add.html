@@ -2,18 +2,30 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Añadir Restaurante</title>
+    <title>Añadir Ruta</title>
     <link rel="stylesheet" href="/css/addAutobus.css">
 </head>
 <body>
-    <form action="#" th:action="@{/restaurante/add}" th:object="${restaurante}" method="post">
+    <form action="#" th:action="@{/ruta/add}" th:object="${ruta}" method="post">
 
 
         <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
 
-        <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+        <p>Distancia: <input type="number" th:field="*{distancia}"/></p>
 
-        <p>Capacidad: <input type="number" th:field="*{capacidad}"/></p>
+        <p>Desnivel: <input type="number" th:field="*{desnivel}"/></p>
+
+        <p>Fecha: <input type="date" th:field="*{fecha}"/></p>
+
+        <p>Tiempo: <input type="number" th:field="*{tiempo}"/></p>
+
+        <p>Tipo: <input type="text" th:field="*{tipo}"/></p>
+
+        <p>Dificultad: <input type="number" th:field="*{dificultad}"/></p>
+
+        <p>Peligrosidad: <input type="number" th:field="*{peligrosidad}"/></p>
+
+        <p>Foto: <input type="file" th:field="*{foto}"/></p>
 
 <!--        <select name="idConductor">-->
 <!--            <option th:each="cond : ${conductores}"-->
@@ -24,6 +36,6 @@
 <!--        <p>Trayecto: <input type="text" name="trayecto"/></p>-->
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
-    <a th:href="|/restaurante|">Salir</a>
+    <a th:href="|/ruta|">Salir</a>
 </body>
 </html>

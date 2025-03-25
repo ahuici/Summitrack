@@ -21,9 +21,6 @@ public class Ruta {
     @Column
     private int peligrosidad;
 
-    @Column
-    private String ubicacion;
-
     @Lob  // Especifica que este campo es un Large Object (BLOB)
     @Column(columnDefinition = "LONGBLOB")
     private byte[] foto;
@@ -46,9 +43,6 @@ public class Ruta {
     @Column
     private LocalDate fecha;
 
-    @Column
-    private Integer altura;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id")
     private Monte monte;
@@ -59,10 +53,9 @@ public class Ruta {
     public Ruta() {
     }
 
-    public Ruta(Integer id, int peligrosidad, String ubicacion, byte[] foto, int desnivel, int distancia, int dificultad, String tipo, int tiempo, LocalDate fecha, Integer altura, Monte monte) {
+    public Ruta(Integer id, int peligrosidad, byte[] foto, int desnivel, int distancia, int dificultad, String tipo, int tiempo, LocalDate fecha, Monte monte) {
         this.id = id;
         this.peligrosidad = peligrosidad;
-        this.ubicacion = ubicacion;
         this.foto = foto;
         this.desnivel = desnivel;
         this.distancia = distancia;
@@ -70,7 +63,6 @@ public class Ruta {
         this.tipo = tipo;
         this.tiempo = tiempo;
         this.fecha = fecha;
-        this.altura = altura;
         this.monte = monte;
         this.completa = new ArrayList<>();
     }
@@ -89,14 +81,6 @@ public class Ruta {
 
     public void setPeligrosidad(int peligrosidad) {
         this.peligrosidad = peligrosidad;
-    }
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
     }
 
     public byte[] getFoto() {
@@ -153,14 +137,6 @@ public class Ruta {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
-    }
-
-    public Integer getAltura() {
-        return altura;
-    }
-
-    public void setAltura(Integer altura) {
-        this.altura = altura;
     }
 
     public Monte getMonte() {
