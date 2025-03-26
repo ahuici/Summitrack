@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Añadir Monte</title>
-    <link rel="stylesheet" href="/css/addConductor.css">
+    <link rel="stylesheet" href="/css/add.css">
 </head>
 <body>
+<header>
+    <a href="/monte">Montes</a>
+    <a href="/ruta">Rutas</a>
+    <a href="/calendario">Calendario</a>
+</header>
+
   <form action="#" th:action="@{/monte/add}" th:object="${monte}" method="post">
 
 
@@ -21,6 +27,8 @@
 
     <button type="submit" class="btn btn-primary">Guardar</button>
   </form>
+<div class="buttons-container">
   <a th:href="|/monte|">Salir</a>
+</div>
 </body>
 </html>

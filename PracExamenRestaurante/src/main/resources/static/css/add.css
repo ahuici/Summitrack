@@ -1,0 +1,168 @@
+/* Reset de márgenes y padding para todo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cuerpo del documento */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F5F5; /* Fondo gris claro */
+    color: #333333; /* Color de texto */
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centrar contenido horizontalmente */
+    align-items: center; /* Centrar contenido verticalmente */
+    min-height: 100vh; /* Asegurarnos que ocupe todo el alto de la pantalla */
+    flex-direction: column;
+}
+
+/* Estilo para la cabecera */
+header {
+    background-color: rgb(76, 175, 80); /* Fondo verde */
+    padding: 20px 0; /* Espacio interno */
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0; /* Asegura que la cabecera toque el borde izquierdo */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 10; /* Asegura que la cabecera esté sobre otros elementos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
+    margin: 0; /* Elimina cualquier margen alrededor de la cabecera */
+}
+
+/* Estilo para los enlaces en la cabecera */
+header a {
+    color: white; /* Enlaces blancos */
+    text-decoration: none;
+    margin: 0 20px; /* Espaciado entre los enlaces */
+    font-size: 20px; /* Tamaño de los enlaces */
+    font-weight: 600; /* Peso medio para los enlaces */
+    padding: 12px 18px; /* Espaciado interno en los enlaces */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco al pasar el ratón */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba */
+}
+
+header a:active {
+    color: #006400; /* Verde oscuro cuando se hace clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+
+/* Estilo para el formulario */
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin-top: 120px; /* Espacio suficiente para no quedar cubierto por la cabecera */
+    margin-bottom: 40px; /* Aseguramos que haya espacio abajo */
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+/* Estilo para los párrafos */
+p {
+    margin-bottom: 15px;
+}
+
+/* Estilo para los inputs y selects */
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    color: #333;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Estilo para el botón */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #388E3C;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Estilo para el enlace "Salir" */
+.buttons-container a {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    padding: 12px;
+    background-color: #4CAF50; /* Fondo verde */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center; /* Centra el texto */
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Margen superior */
+    margin-bottom: 40px; /* Margen inferior más grande */
+}
+
+/* Estilo cuando se pasa el ratón por encima */
+.buttons-container a:hover {
+    background-color: #388E3C; /* Fondo más oscuro al pasar el ratón */
+}
+
+.buttons-container a:active {
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+
+
+/* Estilo para el enlace "Salir" */
+a {
+    text-align: center;
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Diseño responsivo para dispositivos móviles */
+@media (max-width: 768px) {
+    header a {
+        font-size: 16px; /* Reducir tamaño de los enlaces en pantallas pequeñas */
+    }
+    h1 {
+        font-size: 2em; /* Título más pequeño en pantallas pequeñas */
+    }
+}

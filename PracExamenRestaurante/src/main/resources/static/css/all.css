@@ -1,0 +1,167 @@
+/* Reset de márgenes para el body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cuerpo del documento */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F5F5; /* Fondo gris claro */
+    color: #333333; /* Texto en gris oscuro */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Empuja los elementos hacia arriba */
+    height: 100vh;  /* Asegura que el body ocupe toda la altura */
+    text-align: center;
+}
+
+/* Contenedor para la imagen de fondo */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGuJ6Gx9fGfVlePoz6J3HWJc3QwKMl_0t-6A&s'); /* URL de la imagen */
+    background-size: cover; /* La imagen cubre toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Impide que la imagen se repita */
+    z-index: -1; /* Coloca la imagen detrás del contenido */
+    filter: blur(11px); /* Aplica difuminado a la imagen */
+}
+
+/* Estilo para la cabecera */
+header {
+    background-color: rgb(76, 175, 80); /* Fondo verde */
+    padding: 20px 0; /* Espacio interno */
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0; /* Asegura que la cabecera toque el borde izquierdo */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 10; /* Asegura que la cabecera esté sobre otros elementos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
+    margin: 0; /* Elimina cualquier margen alrededor de la cabecera */
+}
+
+/* Estilo para los enlaces en la cabecera */
+header a {
+    color: white; /* Enlaces blancos */
+    text-decoration: none;
+    margin: 0 20px; /* Espaciado entre los enlaces */
+    font-size: 20px; /* Tamaño de los enlaces */
+    font-weight: 600; /* Peso medio para los enlaces */
+    padding: 12px 18px; /* Espaciado interno en los enlaces */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco al pasar el ratón */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba */
+}
+
+header a:active {
+    color: #006400; /* Verde oscuro cuando se hace clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+
+/* Estilo para el título h1 */
+h1 {
+    color: #4CAF50; /* Verde */
+    font-size: 2.5em;  /* Tamaño medio */
+    font-weight: bold;
+    margin-top: 120px; /* Espacio superior para alejarlo de la cabecera */
+    margin-bottom: 10px;  /* Espacio inferior */
+    text-align: center;
+}
+
+/* Estilo para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+/* Estilo para las celdas de la tabla */
+td, th {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Estilo para las cabeceras de la tabla */
+th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+/* Estilo para las filas alternadas de la tabla */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estilo para los select */
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+/* Botones de editar y eliminar */
+a {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 15px; /* Hacemos los botones más pequeños */
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efecto hover para los botones */
+a:hover {
+    background-color: #388E3C;
+    transform: scale(1.05); /* Animación de aumento */
+}
+
+a:active {
+    transform: scale(1); /* Efecto al hacer clic */
+}
+
+/* Agrupar los botones de "Añadir" y "Salir" */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espaciado entre los botones */
+    margin-top: 20px; /* Separar los botones del contenido */
+}
+
+/* Estilo para el contenido principal */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Diseño responsivo para dispositivos móviles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em; /* Título más pequeño en pantallas pequeñas */
+    }
+    header a {
+        font-size: 16px; /* Reducir tamaño de los enlaces en pantallas pequeñas */
+    }
+    .buttons-container {
+        flex-direction: column; /* Los botones se alinean en columna en pantallas pequeñas */
+    }
+}

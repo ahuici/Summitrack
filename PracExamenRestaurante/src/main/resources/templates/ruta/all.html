@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Rutas</title>
-  <link rel="stylesheet" href="/css/autobus.css">
+  <link rel="stylesheet" href="/css/all.css">
 </head>
 <body>
+  <header>
+    <a href="monte">Montes</a>
+    <a href="ruta">Rutas</a>
+    <a href="calendario">Calendario</a>
+  </header>
 <h1>Rutas</h1>
 <table>
   <tr>
@@ -32,7 +37,9 @@
     <td><a th:href="|/ruta/eliminar?id=${ruta.id}|">Eliminar</a></td>
   </tr>
 </table>
-  <a th:href="|/ruta/add?|">Añadir</a>
-  <a th:href="|/|">Salir</a>
+  <div class="buttons-container">
+      <a th:href="|/ruta/add?|">Añadir</a>
+      <a th:href="|/|">Salir</a>
+  </div>
 </body>
 </html>

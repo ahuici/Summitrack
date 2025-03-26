@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Rutas asociadas a un monte</title>
-  <link rel="stylesheet" href="/css/autobus.css">
+  <link rel="stylesheet" href="/css/all.css">
 </head>
 <body>
 <h1>Rutas</h1>
 <table>
+  <header>
+    <a href="/monte">Montes</a>
+    <a href="/ruta">Rutas</a>
+    <a href="/calendario">Calendario</a>
+  </header>
+
   <tr>
     <td>Distancia</td>
     <td>Desnivel</td>
@@ -32,7 +38,9 @@
     <td><a th:href="|/ruta/eliminar?id=${ruta.id}|">Eliminar</a></td>
   </tr>
 </table>
-<a th:href="|/ruta/add?|">Añadir</a>
-<a th:href="|/monte|">Atras</a>
+<div class="buttons-container">
+<a th:href="@{'/ruta/add'}">Añadir</a>
+<a th:href="@{'/monte'}">Atras</a>
+</div>
 </body>
 </html>

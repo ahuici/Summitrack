@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Añadir Ruta</title>
-    <link rel="stylesheet" href="/css/addAutobus.css">
+    <link rel="stylesheet" href="/css/add.css">
 </head>
 <body>
+<header>
+    <a href="/monte">Montes</a>
+    <a href="/ruta">Rutas</a>
+    <a href="/calendario">Calendario</a>
+</header>
+
     <form action="#" th:action="@{/ruta/add}" th:object="${ruta}" method="post" enctype="multipart/form-data">
 
 
@@ -45,6 +51,8 @@
 <!--        <p>Trayecto: <input type="text" name="trayecto"/></p>-->
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+<div class="buttons-container">
     <a th:href="|/ruta|">Salir</a>
+</div>
 </body>
 </html>
