@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Rutas</title>
+  <title>Rutas asociadas a un monte</title>
   <link rel="stylesheet" href="/css/autobus.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
   <tr>
     <td>Distancia</td>
     <td>Desnivel</td>
+    <td>Fecha</td>
     <td>Tiempo</td>
-    <td>Monte</td>
     <td>Ver mas</td>
     <td>Editar</td>
     <td>Eliminar</td>
@@ -20,19 +20,19 @@
   <tr th:each="ruta : ${rutas}">
     <td th:text="${ruta.distancia}"></td>
     <td th:text="${ruta.desnivel}"></td>
-<!--    <td th:text="${ruta.fecha}"></td>-->
+    <td th:text="${ruta.fecha}"></td>
     <td th:text="${ruta.tiempo}"></td>
-<!--    <td th:text="${ruta.tipo}"></td>-->
-<!--    <td th:text="${ruta.peligrosidad}"></td>-->
-<!--    <td th:text="${ruta.dificultad}"></td>-->
-<!--    <td><img th:src="@{/ruta/foto(id=${ruta.id})}" alt="Error al cargar" width="500"></td>-->
-    <td th:text="${ruta.monte.nombre}"></td>
+    <!--    <td th:text="${ruta.tipo}"></td>-->
+    <!--    <td th:text="${ruta.peligrosidad}"></td>-->
+    <!--    <td th:text="${ruta.dificultad}"></td>-->
+    <!--    <td><img th:src="@{/ruta/foto(id=${ruta.id})}" alt="Error al cargar" width="500"></td>-->
+<!--    <td th:text="${ruta.monte.nombre}"></td>-->
     <td><a th:href="|/ruta/verMas?id=${ruta.id}|">Ver mas</a></td>
     <td><a th:href="|/ruta/add?id=${ruta.id}|">Editar</a></td>
     <td><a th:href="|/ruta/eliminar?id=${ruta.id}|">Eliminar</a></td>
   </tr>
 </table>
-  <a th:href="|/ruta/add?|">Añadir</a>
-  <a th:href="|/|">Salir</a>
+<a th:href="|/ruta/add?|">Añadir</a>
+<a th:href="|/monte|">Atras</a>
 </body>
 </html>

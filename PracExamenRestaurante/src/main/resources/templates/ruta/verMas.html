@@ -21,9 +21,9 @@
         <div><strong>Monte:</strong> <span th:text="${ruta.monte != null ? ruta.monte.nombre : 'Sin Monte'}"></span></div>
     </div>
 
-    <div class="mt-6 text-center">
-        <img th:src="@{/ruta/foto(id=${ruta.id})}" alt="Imagen de la ruta" class="rounded-lg shadow-md mx-auto w-80 h-48 object-cover">
-    </div>
+<!--    <div class="mt-6 text-center">-->
+<!--        <img th:src="@{/ruta/foto(id=${ruta.id})}" alt="Imagen de la ruta" class="rounded-lg shadow-md mx-auto w-80 h-48 object-cover">-->
+<!--    </div>-->
 
     <div class="flex justify-between mt-6">
         <a th:href="|/ruta/add?id=${ruta.id}|" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">✏️ Editar</a>

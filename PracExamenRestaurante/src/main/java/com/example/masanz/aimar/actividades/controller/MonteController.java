@@ -1,5 +1,6 @@
 package com.example.masanz.aimar.actividades.controller;
 
+import com.example.masanz.aimar.actividades.model.entity.Ruta;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.service.RutaService;
@@ -49,5 +50,11 @@ public class MonteController {
 
         monteService.delete(monte);
         return "redirect:/monte";
+    }
+
+    @GetMapping("/monte/rutas")
+    public String verRuta(@RequestParam(name ="id") Integer id, Model model) {
+        model.addAttribute("rutas", rutaService.getAllById(id));
+        return "monte/allRutas";
     }
 }

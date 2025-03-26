@@ -21,9 +21,9 @@ public class Ruta {
     @Column
     private int peligrosidad;
 
-    @Lob  // Especifica que este campo es un Large Object (BLOB)
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] foto;
+//    @Lob
+//    @Column(nullable = true)
+//    private byte[] foto;
 
     @Column
     private int desnivel;
@@ -53,10 +53,10 @@ public class Ruta {
     public Ruta() {
     }
 
-    public Ruta(Integer id, int peligrosidad, byte[] foto, int desnivel, int distancia, int dificultad, String tipo, int tiempo, LocalDate fecha, Monte monte) {
+    public Ruta(Integer id, int peligrosidad,  int desnivel, int distancia, int dificultad, String tipo, int tiempo, LocalDate fecha, Monte monte) {
         this.id = id;
         this.peligrosidad = peligrosidad;
-        this.foto = foto;
+//        this.foto = foto;
         this.desnivel = desnivel;
         this.distancia = distancia;
         this.dificultad = dificultad;
@@ -83,13 +83,13 @@ public class Ruta {
         this.peligrosidad = peligrosidad;
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
+//    public byte[] getFoto() {
+//        return foto;
+//    }
+//
+//    public void setFoto(byte[] foto) {
+//        this.foto = foto;
+//    }
 
     public int getDesnivel() {
         return desnivel;

@@ -8,6 +8,7 @@ import com.example.masanz.aimar.actividades.model.service.RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -52,7 +55,7 @@ public class RutaController {
     }
 
     @PostMapping("/ruta/add")
-    public String addRutaPost(@ModelAttribute Ruta ruta, Model model){
+    public String addRutaPost(@ModelAttribute Ruta ruta) {
         rutaService.save(ruta);
         return "redirect:/ruta";
     }
@@ -64,17 +67,21 @@ public class RutaController {
         return "redirect:/ruta";
     }
 
-    @GetMapping("/ruta/foto")
-    public ResponseEntity<byte[]> obtenerFoto(@RequestParam int id) {
-        Ruta ruta = rutaService.findByID(id);
-        if (ruta != null && ruta.getFoto() != null) {
-            byte[] imagen = ruta.getFoto();
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "image/jpeg"); // Cambiar según el formato de la imagen
-            return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-        }
-        return ResponseEntity.notFound().build();
-    }
+
+
+//    @GetMapping("/ruta/foto")
+//    public ResponseEntity<byte[]> getFoto(@RequestParam("id") Integer id) {
+//        Ruta ruta = rutaService.findByID(id);
+//
+//        if (ruta == null || ruta.getFoto() == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//        return ResponseEntity.ok()
+//                .contentType(MediaType.IMAGE_JPEG)
+//                .body(ruta.getFoto());
+//    }
+
 
     @GetMapping("/ruta/verMas")
     public String verMasRuta(@RequestParam(name ="id") Integer id, Model model) {

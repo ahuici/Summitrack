@@ -9,28 +9,21 @@
     <h1>Montes</h1>
     <table>
         <tr>
-            <td>ID</td>
             <td>Nombre</td>
             <td>Altura</td>
             <td>Ubicacion</td>
-            <td>Rutas</td>
+            <td>Num Rutas</td>
+            <td>Ver rutas</td>
             <td>Editar</td>
             <td>Eliminar</td>
 
         </tr>
         <tr th:each="monte : ${montes}">
-            <td th:text="${monte.id}"></td>
             <td th:text="${monte.nombre}"></td>
             <td th:text="${monte.altura}"></td>
             <td th:text="${monte.ubicacion}"></td>
-            <td>
-                <p th:text="'Rutas: ' + ${monte.asciende.size()}"></p>
-                <select>
-                    <option selected disabled th:if="${monte.asciende.size() > 0}">-- Ver rutas --</option>
-                    <option selected disabled th:if="${monte.asciende.size() <= 0}">-- No hay rutas --</option>
-                    <option th:each="Monte : ${monte.asciende}" th:text="${monte.monte.nombre}"></option>
-                </select>
-            </td>
+            <td><p th:text="'Rutas: ' + ${monte.asciende.size()}"></p></td>
+            <td><a th:href="|/monte/rutas?id=${monte.id}|">Ver rutas</a></td>
             <td><a th:href="|/monte/add?id=${monte.id}|">Editar</a></td>
             <td><a th:href="|/monte/eliminar?id=${monte.id}|">Eliminar</a></td>
         </tr>

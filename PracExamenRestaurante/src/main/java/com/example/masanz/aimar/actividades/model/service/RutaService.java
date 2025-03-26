@@ -7,6 +7,8 @@ import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.entity.Ruta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,6 +36,14 @@ public class RutaService {
 
     public void delete(Ruta ruta){
         rutaDAO.delete(ruta);
+    }
+
+    public List<Ruta> getAllById(int id){
+        List<Ruta> rutas = new ArrayList<>();
+        for (Ruta ruta : getAll()){
+            if(ruta.getMonte().getId() == id) rutas.add(ruta);
+        }
+        return rutas;
     }
 
 }
