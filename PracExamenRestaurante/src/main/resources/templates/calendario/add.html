@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir Calendario</title>
+    <link rel="stylesheet" href="/css/add.css">
+</head>
+<body>
+<header>
+    <a href="/monte">Montes</a>
+    <a href="/ruta">Rutas</a>
+    <a href="/calendario">Calendario</a>
+</header>
+
+  <form action="#" th:action="@{/calendario/add}" th:object="${calendario}" method="post">
+
+
+     <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->
+
+
+    <p>Titulo: <input type="text" th:field="*{titulo}"/></p>
+
+    <p>Descripcion: <input type="text" th:field="*{descripcion}"/></p>
+
+    <p>Fecha: <input type="text" th:field="*{fecha}"/></p>
+
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+<div class="buttons-container">
+  <a th:href="|/calendario|">Salir</a>
+</div>
+</body>
+</html>

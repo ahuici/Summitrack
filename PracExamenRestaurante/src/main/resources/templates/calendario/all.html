@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Montes</title>
+    <link rel="stylesheet" href="/css/all.css">
+</head>
+<body>
+<header>
+    <a href="/monte">Montes</a>
+    <a href="/ruta">Rutas</a>
+    <a href="/calendario">Calendario</a>
+</header>
+
+<h1>Montes</h1>
+    <table>
+        <tr>
+            <td>Titulo</td>
+            <td>Descripcion</td>
+            <td>Fecha</td>
+            <td>Editar</td>
+            <td>Eliminar</td>
+
+        </tr>
+        <tr th:each="calendario : ${calendarios}">
+            <td th:text="${calendario.titulo}"></td>
+            <td th:text="${calendario.descripcion}"></td>
+            <td th:text="${calendario.fecha}"></td>
+            <td><a th:href="|/calendario/add?id=${calendario.id}|">Editar</a></td>
+            <td><a th:href="|/calendario/eliminar?id=${calendario.id}|">Eliminar</a></td>
+        </tr>
+    </table>
+    <div class="buttons-container">
+        <a th:href="|/calendario/add?|">Añadir</a>
+        <a th:href="|/|">Salir</a>
+    </div>
+</body>
+</html>
