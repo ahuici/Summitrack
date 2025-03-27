@@ -51,6 +51,7 @@ public class RutaController {
         }
         model.addAttribute("ruta", ruta);
         model.addAttribute("montes", monteService.getAll());
+        model.addAttribute("personas", personaService.getAll());
         return "ruta/add";
     }
 

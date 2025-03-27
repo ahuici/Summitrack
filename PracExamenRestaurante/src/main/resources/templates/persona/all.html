@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Summitrack</title>
+  <link rel="stylesheet" href="/css/all.css">
+</head>
+<body>
+<header>
+  <a href="/monte">Montes</a>
+  <a href="/ruta">Rutas</a>
+  <a href="/personas">Personas</a>
+  <a href="/calendario">Calendario</a>
+  <a href="/mendiklopedia">Mendiklopedia</a>
+  <a href="/top">TOP</a>
+</header>
+
+<h1>Personas</h1>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Apellidos</th>
+    <th>Genero</th>
+    <th>Edad</th>
+    <th class="btnOpciones">Editar</th>
+    <th class="btnOpciones">Eliminar</th>
+  </tr>
+  <tr th:each="persona : ${personas}">
+    <td th:text="${persona.nombre}"></td>
+    <td th:text="${persona.apellidos}"></td>
+    <td th:text="${persona.genero}"></td>
+    <td th:text="${persona.edad}"></td>
+    <td><a th:href="|/personas/add?id={persona.id}|" id="btnEditar">Editar</a></td>
+    <td><a th:href="|/personas/eliminar?id=${persona.id}|" id="btnEliminar">Eliminar</a></td>
+  </tr>
+</table>
+  <div class="buttons-container">
+      <a th:href="|/personas/add?|">Añadir</a>
+      <a th:href="|/|">Salir</a>
+  </div>
+</body>
+</html>

@@ -10,10 +10,12 @@
 <header>
     <a href="/monte">Montes</a>
     <a href="/ruta">Rutas</a>
+    <a href="/personas">Personas</a>
     <a href="/calendario">Calendario</a>
     <a href="/mendiklopedia">Mendiklopedia</a>
     <a href="/top">TOP</a>
 </header>
+
 
     <form action="#" th:action="@{/ruta/add}" th:object="${ruta}" method="post" enctype="multipart/form-data">
 
@@ -45,13 +47,14 @@
             </select>
         </p>
 
-<!--        <select name="idConductor">-->
-<!--            <option th:each="cond : ${conductores}"-->
-<!--                    th:text="${cond.nombre}"-->
-<!--                    th:value="${cond.carnet}"/>-->
-<!--        </select>-->
+        <p>Personas:
+            <select name="personas" id="personas" required multiple size="5">
+                <option th:each="persona : ${personas}"
+                        th:value="${persona.id}"
+                        th:text="${persona.nombre}"></option>
+            </select>
+        </p>
 
-<!--        <p>Trayecto: <input type="text" name="trayecto"/></p>-->
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 <div class="buttons-container">

@@ -6,13 +6,15 @@
   <link rel="stylesheet" href="/css/all.css">
 </head>
 <body>
-  <header>
-    <a href="/monte">Montes</a>
-    <a href="/ruta">Rutas</a>
-    <a href="/calendario">Calendario</a>
-    <a href="/mendiklopedia">Mendiklopedia</a>
-    <a href="/top">TOP</a>
-  </header>
+<header>
+  <a href="/monte">Montes</a>
+  <a href="/ruta">Rutas</a>
+  <a href="/personas">Personas</a>
+  <a href="/calendario">Calendario</a>
+  <a href="/mendiklopedia">Mendiklopedia</a>
+  <a href="/top">TOP</a>
+</header>
+
 <h1>Rutas</h1>
 <table>
   <tr>
@@ -20,6 +22,7 @@
     <th>Desnivel</th>
     <th>Tiempo</th>
     <th>Monte</th>
+    <th>Personas</th>
     <th>Ver mas</th>
     <th class="btnOpciones">Editar</th>
     <th class="btnOpciones">Eliminar</th>
@@ -34,6 +37,7 @@
 <!--    <td th:text="${ruta.dificultad}"></td>-->
 <!--    <td><img th:src="@{/ruta/foto(id=${ruta.id})}" alt="Error al cargar" width="500"></td>-->
     <td th:text="${ruta.monte.nombre}"></td>
+    <td th:text="${ruta.completa.size()}"></td>
     <td><a th:href="|/ruta/verMas?id=${ruta.id}|">Ver mas</a></td>
     <td><a th:href="|/ruta/add?id=${ruta.id}|" id="btnEditar">Editar</a></td>
     <td><a th:href="|/ruta/eliminar?id=${ruta.id}|" id="btnEliminar">Eliminar</a></td>
