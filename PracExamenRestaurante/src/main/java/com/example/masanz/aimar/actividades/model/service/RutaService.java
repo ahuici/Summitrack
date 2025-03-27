@@ -5,9 +5,12 @@ import com.example.masanz.aimar.actividades.model.DAO.IPersonaDAO;
 import com.example.masanz.aimar.actividades.model.DAO.IRutaDAO;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.entity.Ruta;
+import org.apache.tomcat.util.net.jsse.JSSEUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +48,5 @@ public class RutaService {
         }
         return rutas;
     }
-
 }
 
