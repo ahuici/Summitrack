@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Añadir Ruta</title>
+    <title>Summitrack</title>
     <link rel="stylesheet" href="/css/add.css">
+    <link rel="icon" type="image/png" th:href="@{/images/logo.png}">
 </head>
 <body>
 <header>
@@ -17,9 +18,9 @@
 
         <input type="hidden" th:if="${editar}" th:field="*{id}" /> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
 
-        <p>Distancia: <input type="number" th:field="*{distancia}" value="" required/></p>
+        <p>Distancia: <input type="number" th:field="*{distancia}"/></p>
 
-        <p>Desnivel: <input type="number" th:field="*{desnivel}" value="" required/></p>
+        <p>Desnivel: <input type="number" th:field="*{desnivel}"/></p>
 
         <p>Fecha: <input type="date" th:field="*{fecha}" required/></p>
 

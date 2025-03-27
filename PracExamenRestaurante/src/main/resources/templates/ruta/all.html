@@ -14,13 +14,13 @@
 <h1>Rutas</h1>
 <table>
   <tr>
-    <td>Distancia</td>
-    <td>Desnivel</td>
-    <td>Tiempo</td>
-    <td>Monte</td>
-    <td>Ver mas</td>
-    <td>Editar</td>
-    <td>Eliminar</td>
+    <th>Distancia</th>
+    <th>Desnivel</th>
+    <th>Tiempo</th>
+    <th>Monte</th>
+    <th>Ver mas</th>
+    <th class="btnOpciones">Editar</th>
+    <th class="btnOpciones">Eliminar</th>
   </tr>
   <tr th:each="ruta : ${rutas}">
     <td th:text="${ruta.distancia}"></td>
@@ -33,8 +33,8 @@
 <!--    <td><img th:src="@{/ruta/foto(id=${ruta.id})}" alt="Error al cargar" width="500"></td>-->
     <td th:text="${ruta.monte.nombre}"></td>
     <td><a th:href="|/ruta/verMas?id=${ruta.id}|">Ver mas</a></td>
-    <td><a th:href="|/ruta/add?id=${ruta.id}|">Editar</a></td>
-    <td><a th:href="|/ruta/eliminar?id=${ruta.id}|">Eliminar</a></td>
+    <td><a th:href="|/ruta/add?id=${ruta.id}|" id="btnEditar">Editar</a></td>
+    <td><a th:href="|/ruta/eliminar?id=${ruta.id}|" id="btnEliminar">Eliminar</a></td>
   </tr>
 </table>
   <div class="buttons-container">

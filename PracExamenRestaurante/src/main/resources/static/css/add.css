@@ -166,3 +166,36 @@ a:hover {
         font-size: 2em; /* Título más pequeño en pantallas pequeñas */
     }
 }
+
+/* Estilo para el input tipo date */
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    color: #333;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Estilo cuando el input de fecha está en foco */
+input[type="date"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Para que el icono del calendario herede el color del texto */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(40%) sepia(80%) saturate(300%) hue-rotate(90deg);
+    cursor: pointer;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    input[type="date"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

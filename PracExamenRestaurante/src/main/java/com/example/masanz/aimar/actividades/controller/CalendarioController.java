@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.Month;
+import java.time.format.TextStyle;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.*;
+
 @Controller
 public class CalendarioController {
 
@@ -26,7 +34,19 @@ public class CalendarioController {
 
     @GetMapping("/calendario")
     public String getAll(Model model){
-        model.addAttribute("calendarios", calendarioService.getAll());
+        /*Ordenar por fecha*/
+        List<Calendario> calendarios = calendarioService.getAll();
+        calendarios.sort(Comparator.comparing(Calendario::getFecha));
+
+        /* Agrupar por mes */
+        Map<String, List<Calendario>> calendariosPorMes = calendarios.stream()
+                .collect(Collectors.groupingBy(
+                        c -> c.getFecha().getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + c.getFecha().getYear(), // Mes y año juntos
+                        LinkedHashMap::new, // Mantiene el orden de inserción
+                        Collectors.toList()
+                ));
+
+        model.addAttribute("calendariosPorMes", calendariosPorMes);
         return "calendario/all";
     }
 

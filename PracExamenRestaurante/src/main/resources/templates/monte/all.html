@@ -15,14 +15,14 @@
 <h1>Montes</h1>
     <table>
         <tr>
-            <td>Nombre</td>
-            <td>Altura</td>
-            <td>Ubicacion</td>
-            <td>Apuntes</td>
-            <td>Num ascensiones</td>
-            <td>Ver rutas</td>
-            <td>Editar</td>
-            <td>Eliminar</td>
+            <th>Nombre</th>
+            <th>Altura</th>
+            <th>Ubicacion</th>
+            <th>Apuntes</th>
+            <th>Num ascensiones</th>
+            <th>Ver rutas</th>
+            <th class="btnOpciones">Editar</th>
+            <th class="btnOpciones">Eliminar</th>
 
         </tr>
         <tr th:each="monte : ${montes}">
@@ -32,8 +32,8 @@
             <td th:text="${monte.apuntes}"></td>
             <td><p th:text="'Numero: ' + ${monte.asciende.size()}"></p></td>
             <td><a th:href="|/monte/rutas?id=${monte.id}|">Ver rutas</a></td>
-            <td><a th:href="|/monte/add?id=${monte.id}|">Editar</a></td>
-            <td><a th:href="|/monte/eliminar?id=${monte.id}|">Eliminar</a></td>
+            <td><a th:href="|/monte/add?id=${monte.id}|" id="btnEditar">Editar</a></td>
+            <td><a th:href="|/monte/eliminar?id=${monte.id}|" id="btnEliminar">Eliminar</a></td>
         </tr>
     </table>
     <div class="buttons-container">

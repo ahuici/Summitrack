@@ -84,12 +84,13 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
+    border: 2px solid #FFFFFF; /* Línea verde más gruesa para toda la tabla */
 }
 
 /* Estilo para las celdas de la tabla */
 td, th {
     padding: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #FFFFFF; /* Línea verde para los bordes */
     text-align: center;
 }
 
@@ -164,4 +165,85 @@ main {
     .buttons-container {
         flex-direction: column; /* Los botones se alinean en columna en pantallas pequeñas */
     }
+}
+
+/* Estilo para cada sección de mes */
+.month-section {
+    margin-bottom: 15px; /* Espacio entre meses */
+    margin-top: 15px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para los títulos de mes y año */
+.month-section h1 {
+    color: #2E7D32; /* Verde oscuro */
+    font-size: 2.2em;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Estilo para las tablas dentro de cada mes */
+.month-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Estilo para las filas de la tabla (aplicado a todas las tablas) */
+table tr:nth-child(even) {
+    background-color: #e8f5e9; /* Verde claro */
+}
+
+/* Estilo para las filas impares de la tabla (aplicado a todas las tablas) */
+table tr:nth-child(odd) {
+    background-color: #c8e6c9; /* Verde más oscuro */
+}
+
+/* Sombra y fondo para hacer la tabla más destacada */
+table {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*
+.month-section table {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}*/
+
+/* Estilo para los títulos h2 de cada mes */
+.month-section h2 {
+    color: #388E3C; /* Verde oscuro */
+    font-size: 1.8em;  /* Tamaño adecuado */
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: capitalize;  /* Pone la primera letra en mayúscula */
+}
+
+/* Estilo específico para las celdas de las opciones (Editar, Eliminar) */
+.btnOpciones {
+    width: 70px; /* Ajustar al tamaño del contenido */
+    padding: 0; /* Eliminar padding extra */
+    text-align: center; /* Centrado de los botones */
+}
+
+/* Color de fondo para la cabecera de "Editar" */
+#btnEditar {
+    background-color: #2196F3; /* Verde */
+    color: white;
+}
+
+/* Color de fondo para la cabecera de "Eliminar" */
+#btnEliminar {
+    background-color: #F44336; /* Rojo */
+    color: white;
 }

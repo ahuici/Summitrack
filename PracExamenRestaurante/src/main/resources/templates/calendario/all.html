@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Montes</title>
+    <title>Summitrack</title>
     <link rel="stylesheet" href="/css/all.css">
 </head>
 <body>
@@ -12,27 +12,34 @@
     <a href="/calendario">Calendario</a>
 </header>
 
-<h1>Montes</h1>
+<h1>Calendario</h1>
+
+<!-- Iterar sobre los meses -->
+<div th:if="${calendariosPorMes != null}" th:each="entry : ${calendariosPorMes}" class="month-section">
+    <h2 th:text="${entry.key}"></h2> <!-- Muestra el nombre del mes -->
+
     <table>
         <tr>
-            <td>Titulo</td>
-            <td>Descripcion</td>
-            <td>Fecha</td>
-            <td>Editar</td>
-            <td>Eliminar</td>
-
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Dia</th>
+            <th class="btnOpciones">Editar</th>
+            <th class="btnOpciones">Eliminar</th>
         </tr>
-        <tr th:each="calendario : ${calendarios}">
+        <!-- Iterar sobre los eventos de cada mes -->
+        <tr th:each="calendario : ${entry.value}">
             <td th:text="${calendario.titulo}"></td>
             <td th:text="${calendario.descripcion}"></td>
-            <td th:text="${calendario.fecha}"></td>
-            <td><a th:href="|/calendario/add?id=${calendario.id}|">Editar</a></td>
-            <td><a th:href="|/calendario/eliminar?id=${calendario.id}|">Eliminar</a></td>
+            <td th:text="${calendario.fecha.dayOfMonth}"></td>
+            <td><a th:href="|/calendario/add?id=${calendario.id}|" id="btnEditar">Editar</a></td>
+            <td><a th:href="|/calendario/eliminar?id=${calendario.id}|" id="btnEliminar" >Eliminar</a></td>
         </tr>
     </table>
-    <div class="buttons-container">
-        <a th:href="|/calendario/add?|">Añadir</a>
-        <a th:href="|/|">Salir</a>
-    </div>
+</div>
+
+<div class="buttons-container">
+    <a th:href="|/calendario/add?|">Añadir</a>
+    <a th:href="|/|">Salir</a>
+</div>
 </body>
 </html>

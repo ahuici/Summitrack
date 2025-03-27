@@ -14,7 +14,6 @@
 
   <form action="#" th:action="@{/calendario/add}" th:object="${calendario}" method="post">
 
-
      <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->
 
 
@@ -22,7 +21,7 @@
 
     <p>Descripcion: <input type="text" th:field="*{descripcion}"/></p>
 
-    <p>Fecha: <input type="text" th:field="*{fecha}"/></p>
+    <p>Fecha: <input type="date" th:field="*{fecha}"/></p>
 
 
     <button type="submit" class="btn btn-primary">Guardar</button>
