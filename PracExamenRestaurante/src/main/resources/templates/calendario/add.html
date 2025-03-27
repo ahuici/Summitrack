@@ -23,8 +23,16 @@
 
     <p>Fecha: <input type="date" th:field="*{fecha}"/></p>
 
+      <p>Monte:
+          <select th:field="*{monte}" required>
+              <option value="">-- Selecciona un monte --</option>
+              <option th:each="monte : ${montes}"
+                      th:value="${monte.id}"
+                      th:text="${monte.nombre}"></option>
+          </select>
+      </p>
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
+      <button type="submit" class="btn btn-primary">Guardar</button>
   </form>
 <div class="buttons-container">
   <a th:href="|/calendario|">Salir</a>

@@ -58,6 +58,7 @@ public class CalendarioController {
             model.addAttribute("editar", true);
         }
         model.addAttribute("calendario", calendario);
+        model.addAttribute("montes", monteService.getAll());
         return "calendario/add";
     }
 

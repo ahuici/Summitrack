@@ -143,6 +143,14 @@ a:active {
     justify-content: center;
     gap: 10px; /* Espaciado entre los botones */
     margin-top: 20px; /* Separar los botones del contenido */
+    position: fixed; /* Fijar los botones en la parte inferior */
+    bottom: 20px; /* Asegura que estén cerca del borde inferior */
+    left: 50%;
+    transform: translateX(-50%); /* Centra los botones horizontalmente */
+    background-color: #fff; /* Fondo blanco para los botones */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
 }
 
 /* Estilo para el contenido principal */
@@ -211,14 +219,6 @@ table {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/*
-.month-section table {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}*/
-
 /* Estilo para los títulos h2 de cada mes */
 .month-section h2 {
     color: #388E3C; /* Verde oscuro */
@@ -238,7 +238,7 @@ table {
 
 /* Color de fondo para la cabecera de "Editar" */
 #btnEditar {
-    background-color: #2196F3; /* Verde */
+    background-color: #2196F3; /* Azul */
     color: white;
 }
 
@@ -246,4 +246,14 @@ table {
 #btnEliminar {
     background-color: #F44336; /* Rojo */
     color: white;
+}
+
+/* Efecto hover para el botón "Editar" */
+#btnEditar:hover {
+    background-color: #1976D2; /* Azul más oscuro */
+}
+
+/* Efecto hover para el botón "Eliminar" */
+#btnEliminar:hover {
+    background-color: #D32F2F; /* Rojo más oscuro */
 }

@@ -24,15 +24,16 @@ public class Calendario {
 //    @JoinColumn(referencedColumnName = "monte")
 //    private Monte monte;
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = )
-//    private Monte monte;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "id")
+    private Monte monte;
 
-    public Calendario(Integer id, String titulo, String descripcion, String personas, LocalDate fecha) {
+    public Calendario(Integer id, String titulo, String descripcion, String personas, LocalDate fecha, Monte monte) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fecha = fecha;
-//        this.monte = monte;
+        this.monte = monte;
 
     }
 
@@ -79,12 +80,12 @@ public class Calendario {
         this.fecha = fecha;
     }
 
-//    public Monte getMonte() {
-//        return monte;
-//    }
-//
-//    public void setMonte(Monte monte) {
-//        this.monte = monte;
-//    }
+    public Monte getMonte() {
+        return monte;
+    }
+
+    public void setMonte(Monte monte) {
+        this.monte = monte;
+    }
 }
 

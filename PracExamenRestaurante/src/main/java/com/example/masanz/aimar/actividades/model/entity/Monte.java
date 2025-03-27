@@ -28,6 +28,9 @@ public class Monte {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "monte", orphanRemoval = true)
     private List<Ruta> asciende;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "monte", orphanRemoval = true)
+    private List<Calendario> futurasAscensiones;
+
 
 
     public Monte() {
@@ -40,6 +43,7 @@ public class Monte {
         this.altura = altura;
         this.apuntes = apuntes;
         this.asciende = new ArrayList<>();
+        this.futurasAscensiones = new ArrayList<>();
     }
 
     public Integer getId() {
@@ -92,6 +96,14 @@ public class Monte {
 
     public void setApuntes(String apuntes) {
         this.apuntes = apuntes;
+    }
+
+    public List<Calendario> getFuturasAscensiones() {
+        return futurasAscensiones;
+    }
+
+    public void setFuturasAscensiones(List<Calendario> futurasAscensiones) {
+        this.futurasAscensiones = futurasAscensiones;
     }
 }
 
