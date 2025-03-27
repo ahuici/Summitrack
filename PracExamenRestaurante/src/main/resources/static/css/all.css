@@ -1,4 +1,3 @@
-/* Reset de márgenes para el body */
 * {
     margin: 0;
     padding: 0;
@@ -256,4 +255,151 @@ table {
 /* Efecto hover para el botón "Eliminar" */
 #btnEliminar:hover {
     background-color: #D32F2F; /* Rojo más oscuro */
+}
+
+/* Estilo base para los enlaces de opción Mendiklopedia */
+.opcionMendiklopedia {
+    display: inline-block;
+    padding: 20px;
+    margin: 15px;
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white; /* Texto blanco */
+    font-size: 18px;
+    text-decoration: none; /* Eliminar subrayado */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 250px; /* Ancho fijo para las tarjetas */
+    text-align: center; /* Centrar texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto cuando el mouse pasa sobre el enlace (tarjeta) */
+.opcionMendiklopedia:hover {
+    transform: translateY(-5px); /* Desplazar la tarjeta hacia arriba */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Efecto cuando la tarjeta está activa (haciendo clic) */
+.opcionMendiklopedia:active {
+    transform: translateY(0px); /* Se deshace el efecto hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Vuelve la sombra al estado original */
+}
+
+/* Diseño responsivo para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .opcionMendiklopedia {
+        width: 200px; /* Hacer las tarjetas más pequeñas en dispositivos móviles */
+        padding: 15px;
+    }
+}
+
+/* Estilo para las tarjetas de la opción Mendiklopedia */
+.opcionMendiklopedia-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas se acomoden de manera flexible */
+    justify-content: center; /* Centra las tarjetas en el contenedor */
+    gap: 20px; /* Espaciado entre las tarjetas */
+    margin-top: 20px; /* Espacio superior entre el título y las tarjetas */
+}
+
+.opcionMendiklopedia {
+    display: inline-block;
+    padding: 20px;
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white; /* Texto blanco */
+    font-size: 18px;
+    text-decoration: none; /* Eliminar subrayado */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 350px; /* Ancho fijo para las tarjetas */
+    text-align: center; /* Centrar texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilo para las imágenes dentro de las tarjetas */
+.opcionMendiklopedia img {
+    width: 250px; /* La imagen ocupa todo el ancho de la tarjeta */
+    height: 150px; /* La imagen ocupa todo el ancho de la tarjeta */
+    border-radius: 8px; /* Bordes redondeados para la imagen */
+    margin-bottom: 10px; /* Espacio debajo de la imagen */
+}
+
+/* Efecto cuando el mouse pasa sobre el enlace (tarjeta) */
+.opcionMendiklopedia:hover {
+    transform: translateY(-5px); /* Desplazar la tarjeta hacia arriba */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Efecto cuando la tarjeta está activa (haciendo clic) */
+.opcionMendiklopedia:active {
+    transform: translateY(0px); /* Se deshace el efecto hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Vuelve la sombra al estado original */
+}
+
+/* Diseño responsivo para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .opcionMendiklopedia {
+        width: 200px; /* Hacer las tarjetas más pequeñas en dispositivos móviles */
+        padding: 15px;
+    }
+    .opcionMendiklopedia-container {
+        flex-direction: column; /* Las tarjetas se apilan en columna en pantallas pequeñas */
+        gap: 15px; /* Espaciado reducido entre las tarjetas */
+    }
+}
+
+/* Estilo para el enlace "Ir" dentro de cada tarjeta */
+.opcionMendiklopedia a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #388E3C; /* Verde más oscuro */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 50px;
+}
+
+.opcionMendiklopedia a:hover {
+    background-color: #2C6F2F; /* Verde aún más oscuro */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba */
+}
+
+.opcionMendiklopedia a:active {
+    background-color: #006400; /* Verde muy oscuro al hacer clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+
+/* Estilo para el enlace de "Atrás" */
+.atras {
+    position: absolute; /* Posiciona el enlace en relación al contenedor más cercano */
+    top: 20px; /* Espacio de 20px desde la parte superior */
+    left: 20px; /* Espacio de 20px desde la parte izquierda */
+    display: inline-block; /* Hace que el enlace sea un bloque en línea */
+    color: #4CAF50; /* Color verde */
+    font-size: 14px; /* Tamaño pequeño para el texto */
+    font-weight: bold; /* Texto en negrita */
+    text-decoration: none; /* Elimina el subrayado */
+    padding: 8px 12px; /* Añade un pequeño espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f5f5f5; /* Fondo gris claro */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efectos de transición */
+    margin-top: 125px;
+}
+
+/* Efecto hover para el enlace "Atras" */
+.atras:hover {
+    background-color: #e0e0e0; /* Fondo ligeramente más oscuro */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba al pasar el ratón */
+}
+
+/* Efecto activo para el enlace "Atras" */
+.atras:active {
+    transform: translateY(1px); /* Desplazamiento hacia abajo cuando se hace clic */
+}
+
+.ordenar{
+    margin-top: 20px;
 }

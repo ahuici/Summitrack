@@ -3,28 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Montes</title>
+  <title>Summitrack</title>
+  <link href="/css/all.css" rel="stylesheet">
 </head>
 <body>
-<h1>Lista de Montes</h1>
+  <header>
+    <a href="/monte">Montes</a>
+    <a href="/ruta">Rutas</a>
+    <a href="/calendario">Calendario</a>
+    <a href="/mendiklopedia">Mendiklopedia</a>
+    <a href="/top">TOP</a>
+  </header>
+
+  <a href="/mendiklopedia" class="atras">← Atras</a>
+<h1 th:text="${nombreOpcion}"></h1>
+
+  <div class="ordenar">
+    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=nombre&orden=asc'}">Nombre asc</a>
+    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=nombre&orden=desc'}">Nombre desc</a>
+    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=altura&orden=asc'}">Altura asc</a>
+    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=altura&orden=desc'}">Altura desc</a>
+  </div>
 <table>
-  <thead>
   <tr>
     <th>Nombre</th>
     <th>Provincia</th>
     <th>Altura</th>
   </tr>
-  </thead>
-  <tbody>
   <!-- Iterar sobre los montes -->
-  <th:block th:each="monte : ${montes}">
-    <tr>
+    <tr th:each="monte : ${montes}">
       <td th:text="${monte.nombre}"></td>
       <td th:text="${monte.provincia}"></td>
       <td th:text="${monte.altura}"></td>
     </tr>
-  </th:block>
-  </tbody>
 </table>
 </body>
 </html>

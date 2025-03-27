@@ -1,5 +1,6 @@
 [
     { "nombre": "Balaitús", "altura": 3144, "provincia": "Huesca" },
+    { "nombre": "Posets", "altura": 3371, "provincia": "Huesca" },
     { "nombre": "Torre Costerillou", "altura": 3049, "provincia": "Huesca" },
     { "nombre": "Aguja d'Ussel", "altura": 3022, "provincia": "Huesca" },
     { "nombre": "Aguja Cadier", "altura": 3019, "provincia": "Huesca" },
@@ -171,7 +172,7 @@
     { "nombre": "Aguja Cregüeña", "altura": 3043, "provincia": "Huesca" },
     { "nombre": "Aguja Juncadella", "altura": 3021, "provincia": "Huesca" },
     { "nombre": "Pico de Aragüells", "altura": 3037, "provincia": "Huesca" },
-    { "nombre": "Punta d'Astorg", "altura": 3355, "provincia": "Huesca" },
+    { "nombre": "Punta d'Astorg", "altura": 3354, "provincia": "Huesca" },
     { "nombre": "Pico del Medio", "altura": 3346, "provincia": "Huesca" },
     { "nombre": "Pico Coronas", "altura": 3293, "provincia": "Huesca" },
     { "nombre": "Tuca Collado de Coronas", "altura": 3286, "provincia": "Huesca" },
