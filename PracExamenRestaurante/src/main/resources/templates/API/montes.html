@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Montes</title>
+</head>
+<body>
+<h1>Lista de Montes</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Provincia</th>
+    <th>Altura</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Iterar sobre los montes -->
+  <th:block th:each="monte : ${montes}">
+    <tr>
+      <td th:text="${monte.nombre}"></td>
+      <td th:text="${monte.provincia}"></td>
+      <td th:text="${monte.altura}"></td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+</body>
+</html>

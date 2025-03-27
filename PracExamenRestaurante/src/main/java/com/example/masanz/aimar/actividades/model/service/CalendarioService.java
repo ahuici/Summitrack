@@ -45,17 +45,15 @@ public class CalendarioService {
     }
 
     public void eliminarCalendariosPasadas() {
-        System.out.println("Gos");
         List<Calendario> calendarios = getAll();
         List<Calendario> eliminadas = new ArrayList<>();
 
         for (Calendario calendario : calendarios){
-            System.out.println("Rutas " + calendario.getFecha().isBefore(LocalDate.now()));
             if (calendario.getFecha().isBefore(LocalDate.now())) eliminadas.add(calendario);
         }
 
         for (Calendario calendario : eliminadas){
-            System.out.println("Ruta eliminada pasada: " + calendario.getId());
+            System.out.println("Eliminando rutas pasada: " + calendario.getId());
             delete(calendario);
         }
     }
