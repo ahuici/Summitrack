@@ -16,7 +16,6 @@
             <th>Nombre</th>
             <th>Altura</th>
             <th>Ubicacion</th>
-            <th>Apuntes</th>
             <th>Num ascensiones</th>
             <th>Ver rutas</th>
             <th class="btnOpciones">Editar</th>
@@ -27,7 +26,6 @@
             <td th:text="${monte.nombre}"></td>
             <td th:text="${monte.altura}"></td>
             <td th:text="${monte.ubicacion}"></td>
-            <td th:text="${monte.apuntes}"></td>
             <td><p th:text="'Numero: ' + ${monte.asciende.size()}"></p></td>
             <td><a th:href="|/monte/rutas?id=${monte.id}|">Ver rutas</a></td>
             <td><a th:href="|/monte/add?id=${monte.id}|" id="btnEditar">Editar</a></td>

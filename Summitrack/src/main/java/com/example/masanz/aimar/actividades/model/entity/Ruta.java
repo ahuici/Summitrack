@@ -21,9 +21,8 @@ public class Ruta {
     @Column
     private int peligrosidad;
 
-//    @Lob
-//    @Column(nullable = true)
-//    private byte[] foto;
+    @Column(nullable = true)
+    private String foto;
 
     @Column
     private int desnivel;
@@ -43,6 +42,9 @@ public class Ruta {
     @Column
     private LocalDate fecha;
 
+    @Column
+    private String apuntes;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id")
     private Monte monte;
@@ -53,10 +55,10 @@ public class Ruta {
     public Ruta() {
     }
 
-    public Ruta(Integer id, int peligrosidad,  int desnivel, int distancia, int dificultad, String tipo, int tiempo, LocalDate fecha, Monte monte) {
+    public Ruta(Integer id, int peligrosidad, String foto, int desnivel, int distancia, int dificultad, String tipo, int tiempo, LocalDate fecha, Monte monte, String apuntes) {
         this.id = id;
         this.peligrosidad = peligrosidad;
-//        this.foto = foto;
+        this.foto = foto;
         this.desnivel = desnivel;
         this.distancia = distancia;
         this.dificultad = dificultad;
@@ -64,6 +66,7 @@ public class Ruta {
         this.tiempo = tiempo;
         this.fecha = fecha;
         this.monte = monte;
+        this.apuntes = apuntes;
         this.completa = new ArrayList<>();
     }
 
@@ -83,13 +86,13 @@ public class Ruta {
         this.peligrosidad = peligrosidad;
     }
 
-//    public byte[] getFoto() {
-//        return foto;
-//    }
-//
-//    public void setFoto(byte[] foto) {
-//        this.foto = foto;
-//    }
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public int getDesnivel() {
         return desnivel;
@@ -157,6 +160,14 @@ public class Ruta {
 
     public void addCompleta(Completa completa){
         this.completa.add(completa);
+    }
+
+    public String getApuntes() {
+        return apuntes;
+    }
+
+    public void setApuntes(String apuntes) {
+        this.apuntes = apuntes;
     }
 }
 

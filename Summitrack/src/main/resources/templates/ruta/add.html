@@ -19,20 +19,22 @@
 
         <p>Desnivel: <input type="number" th:field="*{desnivel}"/></p>
 
-        <p>Fecha: <input type="date" th:field="*{fecha}" required/></p>
+        <p>Fecha: <input type="date" th:field="*{fecha}" /></p>
 
         <p>Tiempo: <input type="number" th:field="*{tiempo}" required/></p>
 
-        <p>Tipo: <input type="text" th:field="*{tipo}" required/></p>
+        <p>Tipo: <input type="text" th:field="*{tipo}" /></p>
 
         <p>Dificultad: <input type="number" th:field="*{dificultad}" required/></p>
 
         <p>Peligrosidad: <input type="number" th:field="*{peligrosidad}" required/></p>
 
-<!--        <p>Foto: <input type="file" name="foto" required/></p>-->
+        <p>Apuntes: <input type="text" th:field="*{apuntes}"/></p>
+
+        <p>Foto: <input type="file" name="fotoAgregar" accept="image/*" id="fotoAgregar" required/></p>
 
         <p>Monte:
-            <select th:field="*{monte}" required>
+            <select th:field="*{monte}" >
                 <option value="">-- Selecciona un monte --</option>
                 <option th:each="monte : ${montes}"
                         th:value="${monte.id}"
@@ -41,7 +43,7 @@
         </p>
 
         <p>Personas:
-            <select name="personas" id="personas" required multiple size="5">
+            <select name="personas" id="personas"  multiple size="5">
                 <option th:each="persona : ${personas}"
                         th:value="${persona.id}"
                         th:text="${persona.nombre}"></option>

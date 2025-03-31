@@ -20,9 +20,6 @@ public class Monte {
     private String ubicacion;
 
     @Column
-    private String apuntes;
-
-    @Column
     private Integer altura;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "monte", orphanRemoval = true)
@@ -36,12 +33,11 @@ public class Monte {
     public Monte() {
     }
 
-    public Monte(Integer id, String nombre, String ubicacion, Integer altura, String apuntes) {
+    public Monte(Integer id, String nombre, String ubicacion, Integer altura) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.altura = altura;
-        this.apuntes = apuntes;
         this.asciende = new ArrayList<>();
         this.futurasAscensiones = new ArrayList<>();
     }
@@ -88,14 +84,6 @@ public class Monte {
 
     public void addAsciende(Ruta ruta){
         this.asciende.add(ruta);
-    }
-
-    public String getApuntes() {
-        return apuntes;
-    }
-
-    public void setApuntes(String apuntes) {
-        this.apuntes = apuntes;
     }
 
     public List<Calendario> getFuturasAscensiones() {

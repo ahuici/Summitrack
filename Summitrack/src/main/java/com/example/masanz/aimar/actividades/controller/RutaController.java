@@ -6,19 +6,23 @@ import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.service.PersonaService;
 import com.example.masanz.aimar.actividades.model.service.RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 @Controller
@@ -35,6 +39,9 @@ public class RutaController {
 
     @Autowired
     private PersonaService personaService;
+
+    @Value("${upload.directory}")
+    private String uploadDirectory;
 
     @GetMapping("/ruta")
     public String getAll(Model model){
@@ -56,9 +63,40 @@ public class RutaController {
     }
 
     @PostMapping("/ruta/add")
-    public String addRutaPost(@ModelAttribute Ruta ruta) {
-        rutaService.save(ruta);
-        return "redirect:/ruta";
+    public String addRutaPost(@ModelAttribute Ruta ruta,
+                              @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar) {
+        System.out.println("Entrando en el metodo");
+        try {
+            if (fotoAgregar != null && !fotoAgregar.isEmpty()) {
+                String filename = fotoAgregar.getOriginalFilename();
+                Path filePath = Paths.get(uploadDirectory, filename);
+
+                // Verifica si la carpeta existe
+                File dir = new File(uploadDirectory);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                // Guarda el archivo
+                File destFile = new File(filePath.toString());
+                fotoAgregar.transferTo(destFile); // Guarda el archivo en el disco
+
+                // Guarda la ruta del archivo en la entidad
+                ruta.setFoto(filePath.toString());
+
+                rutaService.save(ruta);
+
+                return "redirect:/ruta";  // Redirige a la lista de rutas
+            } else {
+                throw new IllegalArgumentException("No se ha cargado una foto válida.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "error";  // Redirige a una página de error si hay un fallo
+        }
+//        rutaService.save(ruta);
+//
+//        return "redirect:/ruta";
     }
 
     @GetMapping("/ruta/eliminar")
@@ -67,21 +105,6 @@ public class RutaController {
         rutaService.delete(ruta);
         return "redirect:/ruta";
     }
-
-
-
-//    @GetMapping("/ruta/foto")
-//    public ResponseEntity<byte[]> getFoto(@RequestParam("id") Integer id) {
-//        Ruta ruta = rutaService.findByID(id);
-//
-//        if (ruta == null || ruta.getFoto() == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        return ResponseEntity.ok()
-//                .contentType(MediaType.IMAGE_JPEG)
-//                .body(ruta.getFoto());
-//    }
 
 
     @GetMapping("/ruta/verMas")
