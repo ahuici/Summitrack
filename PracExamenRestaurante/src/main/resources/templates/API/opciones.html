@@ -1,23 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Summitrack</title>
   <link href="/css/all.css" rel="stylesheet">
-
+  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 </head>
 <body>
-<header>
-  <a href="/monte">Montes</a>
-  <a href="/ruta">Rutas</a>
-  <a href="/personas">Personas</a>
-  <a href="/calendario">Calendario</a>
-  <a href="/mendiklopedia">Mendiklopedia</a>
-  <a href="/top">TOP</a>
-</header>
 
+  <div th:insert="fragments/header :: header"></div>
 
 <h1>Montes de España</h1>
+<p th:text="${error}" class="error" ></p>
 
   <div class="contenedorMendiklopedia">
 

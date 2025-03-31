@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -30,6 +32,11 @@ public class MendiklopediaController {
                                 @RequestParam(name = "orden", required = false) String orden){
 
         List<MonteAPI> montes = ordenar(campo, orden, mendiklopediaService.getMontesNavarra());
+
+        if (montes == null){
+            model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
+            return "API/opciones";
+        }
         // Añadimos los montes al modelo
         model.addAttribute("montes", montes);
         model.addAttribute("url", "navarra");
@@ -45,6 +52,10 @@ public class MendiklopediaController {
 
         List<MonteAPI> montes = ordenar(campo, orden, mendiklopediaService.getMontesTresmiles());
 
+        if (montes == null){
+            model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
+            return "API/opciones";
+        }
         model.addAttribute("montes", montes);
         model.addAttribute("url", "tresmiles");
         model.addAttribute("nombreOpcion", "Tresmiles del Pirineo");
@@ -57,6 +68,11 @@ public class MendiklopediaController {
                                @RequestParam(name = "campo", required = false) String campo,
                                @RequestParam(name = "orden", required = false) String orden){
         List<MonteAPI> montes = ordenar(campo, orden, mendiklopediaService.getMontes());
+
+        if (montes == null){
+            model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
+            return "API/opciones";
+        }
 
         model.addAttribute("montes", montes);
         model.addAttribute("url", "españa");

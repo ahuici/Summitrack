@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Summitrack</title>
   <link href="/css/all.css" rel="stylesheet">
+  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+
 </head>
 <body>
-  <header>
-    <a href="/monte">Montes</a>
-    <a href="/ruta">Rutas</a>
-    <a href="/personas">Personas</a>
-    <a href="/calendario">Calendario</a>
-    <a href="/mendiklopedia">Mendiklopedia</a>
-    <a href="/top">TOP</a>
-  </header>
+
+  <div th:insert="fragments/header :: header"></div>
 
   <a href="/mendiklopedia" class="atras">← Atras</a>
-<h1 th:text="${nombreOpcion}"></h1>
+  <h1 th:text="${nombreOpcion}"></h1>
 
   <div class="ordenar">
     <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=nombre&orden=asc'}">Nombre asc</a>
