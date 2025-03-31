@@ -71,32 +71,20 @@ public class RutaController {
                 String filename = fotoAgregar.getOriginalFilename();
                 Path filePath = Paths.get(uploadDirectory, filename);
 
-                // Verifica si la carpeta existe
                 File dir = new File(uploadDirectory);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
+                if (!dir.exists()) {dir.mkdirs();}
 
-                // Guarda el archivo
                 File destFile = new File(filePath.toString());
                 fotoAgregar.transferTo(destFile); // Guarda el archivo en el disco
 
-                // Guarda la ruta del archivo en la entidad
-                ruta.setFoto(filePath.toString());
-
-                rutaService.save(ruta);
-
+                ruta.setFoto(filename);
+                rutaService.save(ruta);  // Guarda la ruta con la foto
                 return "redirect:/ruta";  // Redirige a la lista de rutas
-            } else {
-                throw new IllegalArgumentException("No se ha cargado una foto válida.");
-            }
+            } else {throw new IllegalArgumentException("No se ha cargado una foto válida.");}
         } catch (IOException e) {
             e.printStackTrace();
             return "error";  // Redirige a una página de error si hay un fallo
         }
-//        rutaService.save(ruta);
-//
-//        return "redirect:/ruta";
     }
 
     @GetMapping("/ruta/eliminar")

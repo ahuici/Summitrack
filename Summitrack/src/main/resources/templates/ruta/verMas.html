@@ -26,7 +26,7 @@
     </div>
 
     <div class="mt-6 text-center">
-        <img th:src="${ruta.foto}" alt="Imagen de la ruta" class="rounded-lg shadow-md mx-auto w-80 h-48 object-cover">
+        <img th:src="@{'/uploads/' + ${ruta.foto}}" alt="Imagen de la ruta" class="rounded-lg shadow-md mx-auto w-80 h-48 object-cover">
     </div>
 
     <div class="flex justify-between mt-6">
