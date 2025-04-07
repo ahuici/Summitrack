@@ -36,6 +36,7 @@ public class PersonaController {
 
     @PostMapping("/personas/add")
     public String addPersonaPost(@ModelAttribute Persona persona, Model model){
+        System.out.println("Genero: " + persona.getGenero());
         personaService.save(persona);
         return "redirect:/personas";
     }

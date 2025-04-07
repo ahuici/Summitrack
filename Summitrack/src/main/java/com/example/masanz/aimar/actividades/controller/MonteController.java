@@ -57,4 +57,18 @@ public class MonteController {
         model.addAttribute("rutas", rutaService.getAllById(id));
         return "monte/allRutas";
     }
+
+    @GetMapping("/monte/favoritos")
+    public String addFavorito(Model model,
+                              @RequestParam(name = "id", required = false) Integer id){
+
+        Monte monte = monteService.findByID(id);
+
+        if (!monte.isFavorito()) monte.setFavorito(Boolean.TRUE);
+        else monte.setFavorito(Boolean.FALSE);
+
+        monteService.save(monte);
+        model.addAttribute("montes", monteService.getAll());
+        return "redirect:/monte";
+    }
 }

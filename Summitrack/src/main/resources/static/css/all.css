@@ -1,5 +1,4 @@
 * {
-    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -414,26 +413,23 @@ table {
     color: red;
 }
 
+/* TODO CABECERA */
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
-    padding: 12px 18px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-nav {
+/* Estilo para la cabecera */
+header {
+    background-color: rgb(76, 175, 80);
+    padding: 15px 20px; /* Espaciado interno */
     display: flex;
-    gap: 20px; /* Espacio entre los enlaces */
-    margin-right: 15%; /* Mueve los enlaces un poco más hacia la izquierda */
+    align-items: center;
+    justify-content: space-between; /* Logo a la izquierda, enlaces a la derecha */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-
-
-/* Estilo para los enlaces de la cabecera */
+/* Estilo para los enlaces en la cabecera */
 header a {
     color: white; /* Blanco para los enlaces */
     text-decoration: none;
@@ -454,15 +450,27 @@ header a:active {
     transform: translateY(1px); /* Efecto al hacer clic */
 }
 
-header {
-    background-color: rgb(76, 175, 80);
-    padding: 15px 20px; /* Espaciado interno */
+/* Estilo del logo en la cabecera */
+#logoCabecera img {
+    height: 50px; /* Ajusta el tamaño del logo */
     display: flex;
-    align-items: center;
-    justify-content: space-between; /* Logo a la izquierda, enlaces a la derecha */
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
+
+/* Estilos del menú de navegación en la cabecera */
+nav {
+    display: flex;
+    gap: 20px; /* Espacio entre los enlaces */
+    margin-right: 15%; /* Mueve los enlaces un poco más hacia la izquierda */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* TODO */

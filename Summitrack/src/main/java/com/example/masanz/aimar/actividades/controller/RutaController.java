@@ -7,23 +7,22 @@ import com.example.masanz.aimar.actividades.model.service.PersonaService;
 import com.example.masanz.aimar.actividades.model.service.RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
 
 @Controller
 public class RutaController {
@@ -100,6 +99,25 @@ public class RutaController {
         Ruta ruta = rutaService.findByID(id);
         model.addAttribute("ruta", ruta);
         return "ruta/verMas";
+    }
+
+    @GetMapping("/uploads/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+        try {
+            Path directory = Paths.get(uploadDirectory);
+            Path file = directory.resolve(filename);
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return ResponseEntity.ok().body(resource);
+            } else {
+                throw new FileNotFoundException("No se pudo encontrar el archivo: " + filename);
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error al recuperar el archivo", e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

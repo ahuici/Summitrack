@@ -20,11 +20,11 @@
   <p>Apellidos: <input type="text" th:field="*{apellidos}"/></p>
 
   <p>Genero:
-    <select name="personas" id="personas" required>
+    <select name="personas" id="personas" th:field="*{genero}" required>
       <option value="">-- Selecciona un genero --</option>
-      <option th:value="hombre">Hombre</option>
-      <option th:value="mujer">Mujer</option>
-      <option th:value="otro">Otro</option>
+      <option th:value="Hombre">Hombre</option>
+      <option th:value="Mujer">Mujer</option>
+      <option th:value="Otro">Otro</option>
     </select>
   </p>
 

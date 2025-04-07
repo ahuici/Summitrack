@@ -22,6 +22,9 @@ public class Monte {
     @Column
     private Integer altura;
 
+    @Column
+    private Boolean isFavorito = Boolean.FALSE;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "monte", orphanRemoval = true)
     private List<Ruta> asciende;
 
@@ -76,6 +79,14 @@ public class Monte {
 
     public List<Ruta> getAsciende() {
         return asciende;
+    }
+
+    public Boolean isFavorito() {
+        return isFavorito;
+    }
+
+    public void setFavorito(Boolean favorito) {
+        isFavorito = favorito;
     }
 
     public void setAsciende(List<Ruta> asciendes) {

@@ -17,7 +17,7 @@ public class MendiklopediaService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public List<MonteAPI> getMontes() {
+    public List<MonteAPI> getAll() {
         List<MonteAPI> allMontes = conectAPI("montes");
         return conectAPI("montes");  // Devuelve la lista de montes
     }
@@ -44,6 +44,14 @@ public class MendiklopediaService {
         return tresmiles;
     }
 
+//    public List<MonteAPI> getFavoritos(){
+//        List<MonteAPI> favoritos = new ArrayList<>();
+//        for (MonteAPI monte : getAll()){
+//            if (monte.isFavorite()) favoritos.add(monte);
+//        }
+//        return favoritos;
+//    }
+
     private List<MonteAPI> conectAPI(String url){
 
         try {
@@ -62,4 +70,5 @@ public class MendiklopediaService {
             return null;
         }
     }
+
 }

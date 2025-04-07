@@ -1,0 +1,138 @@
+body {
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    margin: 0; /* Asegúrate de que no haya margen por defecto */
+}
+
+.container {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #2d3748;
+    margin-bottom: 20px;
+}
+
+div.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+div.grid div {
+    font-weight: bold;
+}
+
+img {
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 180px;
+    object-fit: cover;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.actions a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.actions a.edit {
+    background-color: #3b82f6;
+}
+
+.actions a.delete {
+    background-color: #ef4444;
+}
+
+.actions a.back {
+    background-color: #6b7280;
+}
+
+.actions a:hover {
+    opacity: 0.8;
+}
+
+/* TODO CABECERA */
+
+/* Estilo para la cabecera */
+header {
+    background-color: rgb(76, 175, 80);
+    padding: 15px 20px; /* Espaciado interno */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo a la izquierda, enlaces a la derecha */
+    position: fixed;
+    top: 0;
+    left: 0; /* Asegura que se alinee correctamente con el borde izquierdo */
+    right: 0; /* Asegura que se alinee correctamente con el borde derecho */
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para los enlaces en la cabecera */
+header a {
+    color: white; /* Blanco para los enlaces */
+    text-decoration: none;
+    font-size: 20px; /* Aumenta el tamaño de los enlaces */
+    font-weight: 600; /* Un poco más de peso para los enlaces */
+    padding: 12px 18px; /* Aumenta el padding para que los enlaces sean más grandes */
+    border-radius: 5px; /* Bordes redondeados para los enlaces */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco en hover */
+    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba al pasar el ratón */
+}
+
+header a:active {
+    color: #006400; /* Verde oscuro cuando se hace clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+
+/* Estilo del logo en la cabecera */
+#logoCabecera img {
+    height: 50px; /* Ajusta el tamaño del logo */
+    display: flex;
+}
+
+/* Estilos del menú de navegación en la cabecera */
+nav {
+    display: flex;
+    gap: 20px; /* Espacio entre los enlaces */
+    margin-right: 15%; /* Mueve los enlaces un poco más hacia la izquierda */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* TODO FIN CABECERA */

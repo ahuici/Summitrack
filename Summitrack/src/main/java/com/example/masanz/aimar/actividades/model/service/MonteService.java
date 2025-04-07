@@ -3,8 +3,11 @@ package com.example.masanz.aimar.actividades.model.service;
 import com.example.masanz.aimar.actividades.model.DAO.IMonteDAO;
 import com.example.masanz.aimar.actividades.model.DAO.IRutaDAO;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
+import com.example.masanz.aimar.actividades.model.entity.MonteAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,6 +35,14 @@ public class MonteService {
 
     public void delete(Monte monte){
         monteDAO.delete(monte);
+    }
+
+    public List<Monte> getFavoritos(){
+        List<Monte> favoritos = new ArrayList<>();
+        for (Monte monte : getAll()){
+            if (monte.isFavorito()) favoritos.add(monte);
+        }
+        return favoritos;
     }
 
 }

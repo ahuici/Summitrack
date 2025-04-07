@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summitrack</title>
+  <link href="/css/all.css" rel="stylesheet">
+  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+
+</head>
+<body>
+
+<div th:insert="fragments/header :: header"></div>
+
+<a href="/mendiklopedia" class="atras">← Atras</a>
+<h1 th:text="${nombreOpcion}"></h1>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Ubicacion</th>
+    <th>Altura</th>
+  </tr>
+  <!-- Iterar sobre los montes -->
+  <tr th:each="monte : ${montes}">
+    <td th:text="${monte.nombre}"></td>
+    <td th:text="${monte.altura}"></td>
+    <td th:text="${monte.ubicacion}"></td>
+<!--    <td><a th:href="|/mendiklopedia/favoritos?id=${monte.id}|" id="btnFavorito">-->
+<!--      <span th:if="${!monte.isFavorito}">🤍</span>-->
+<!--      <span th:if="${monte.isFavorito}">❤️</span></a></td>-->
+  </tr>
+</table>
+</body>
+</html>

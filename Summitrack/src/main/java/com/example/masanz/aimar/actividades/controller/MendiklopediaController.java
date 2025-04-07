@@ -4,10 +4,12 @@ import com.example.masanz.aimar.actividades.model.entity.Calendario;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.entity.MonteAPI;
 import com.example.masanz.aimar.actividades.model.service.MendiklopediaService;
+import com.example.masanz.aimar.actividades.model.service.MonteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
@@ -20,6 +22,10 @@ public class MendiklopediaController {
 
     @Autowired
     private MendiklopediaService mendiklopediaService;
+
+    @Autowired
+    private MonteService monteService;
+
 
     @GetMapping("/mendiklopedia")
     public String getAPI(Model model){
@@ -67,18 +73,24 @@ public class MendiklopediaController {
     public String getAPIEspaña(Model model,
                                @RequestParam(name = "campo", required = false) String campo,
                                @RequestParam(name = "orden", required = false) String orden){
-        List<MonteAPI> montes = ordenar(campo, orden, mendiklopediaService.getMontes());
+        List<MonteAPI> montes = ordenar(campo, orden, mendiklopediaService.getAll());
 
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
             return "API/opciones";
         }
 
-        model.addAttribute("montes", montes);
+        model.addAttribute("montes", mendiklopediaService.getAll());
         model.addAttribute("url", "españa");
         model.addAttribute("nombreOpcion", "Montes de España");
 
         return "API/montes";
+    }
+
+    @GetMapping("/mendiklopedia/favoritos")
+    public String getFavoritos(Model model){
+        model.addAttribute("montes", monteService.getFavoritos());
+        return "API/favoritos";
     }
 
     private List<MonteAPI> ordenar(String campo, String orden, List<MonteAPI> montes){
