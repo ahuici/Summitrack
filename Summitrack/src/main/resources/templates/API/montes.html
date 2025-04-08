@@ -24,13 +24,13 @@
 <table>
   <tr>
     <th>Nombre</th>
-    <th>Provincia</th>
+    <th>Ubicacion</th>
     <th>Altura</th>
   </tr>
   <!-- Iterar sobre los montes -->
     <tr th:each="monte : ${montes}">
       <td th:text="${monte.nombre}"></td>
-      <td th:text="${monte.provincia}"></td>
+      <td th:text="${monte.Ubicacion}"></td>
       <td th:text="${monte.altura}"></td>
     </tr>
 </table>

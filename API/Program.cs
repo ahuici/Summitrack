@@ -90,7 +90,7 @@ app.MapPut("/montes/{id}", async (int id, Monte input, AppDbContext db) =>
 
     // Actualizar los campos del monte
     monte.nombre = input.nombre;
-    monte.provincia = input.provincia;
+    monte.ubicacion = input.ubicacion;
     monte.altura = input.altura;
 
     await db.SaveChangesAsync();

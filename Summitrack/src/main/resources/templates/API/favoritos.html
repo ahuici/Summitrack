@@ -19,15 +19,15 @@
     <th>Nombre</th>
     <th>Ubicacion</th>
     <th>Altura</th>
+    <th>Favorito</th>
   </tr>
   <!-- Iterar sobre los montes -->
   <tr th:each="monte : ${montes}">
     <td th:text="${monte.nombre}"></td>
     <td th:text="${monte.altura}"></td>
     <td th:text="${monte.ubicacion}"></td>
-<!--    <td><a th:href="|/mendiklopedia/favoritos?id=${monte.id}|" id="btnFavorito">-->
-<!--      <span th:if="${!monte.isFavorito}">🤍</span>-->
-<!--      <span th:if="${monte.isFavorito}">❤️</span></a></td>-->
+    <td><a th:href="|/mendiklopedia/favoritoDelete?id=${monte.id}|" id="btnFavorito">
+      <span th:if="${monte.isFavorito}">❤️</span></a></td>
   </tr>
 </table>
 </body>

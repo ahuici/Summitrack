@@ -2,7 +2,6 @@ package com.example.masanz.aimar.actividades.controller;
 
 import com.example.masanz.aimar.actividades.model.entity.Calendario;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
-import com.example.masanz.aimar.actividades.model.entity.MonteAPI;
 import com.example.masanz.aimar.actividades.model.service.MendiklopediaService;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class MendiklopediaController {
                                 @RequestParam(name = "campo", required = false) String campo,
                                 @RequestParam(name = "orden", required = false) String orden){
 
-        List<MonteAPI> montes = ordenar(campo, orden, mendiklopediaService.getMontesNavarra());
+        List<Monte> montes = ordenar(campo, orden, mendiklopediaService.getMontesNavarra());
 
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
@@ -56,7 +55,7 @@ public class MendiklopediaController {
                                   @RequestParam(name = "campo", required = false) String campo,
                                   @RequestParam(name = "orden", required = false) String orden){
 
-        List<MonteAPI> montes = ordenar(campo, orden, mendiklopediaService.getMontesTresmiles());
+        List<Monte> montes = ordenar(campo, orden, mendiklopediaService.getMontesTresmiles());
 
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
@@ -73,14 +72,14 @@ public class MendiklopediaController {
     public String getAPIEspaña(Model model,
                                @RequestParam(name = "campo", required = false) String campo,
                                @RequestParam(name = "orden", required = false) String orden){
-        List<MonteAPI> montes = ordenar(campo, orden, mendiklopediaService.getAll());
+        List<Monte> montes = ordenar(campo, orden, mendiklopediaService.getAll());
 
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
             return "API/opciones";
         }
 
-        model.addAttribute("montes", mendiklopediaService.getAll());
+        model.addAttribute("montes", montes);
         model.addAttribute("url", "españa");
         model.addAttribute("nombreOpcion", "Montes de España");
 
@@ -93,12 +92,25 @@ public class MendiklopediaController {
         return "API/favoritos";
     }
 
-    private List<MonteAPI> ordenar(String campo, String orden, List<MonteAPI> montes){
+    @GetMapping("/mendiklopedia/favoritoDelete")
+    public String deleteFavorito(Model model,
+                              @RequestParam(name = "id", required = false) Integer id){
+
+        Monte monte = monteService.findByID(id);
+        monte.setFavorito(Boolean.FALSE);
+
+        monteService.save(monte);
+        model.addAttribute("montes", monteService.getAll());
+        return "redirect:/mendiklopedia/favoritos";
+    }
+
+
+    private List<Monte> ordenar(String campo, String orden, List<Monte> montes){
         if (campo != null && orden != null){
-            if (campo.equals("nombre") && orden.equals("asc")) montes.sort(Comparator.comparing(MonteAPI::getNombre));
-            else if (campo.equals("nombre")) montes.sort(Comparator.comparing(MonteAPI::getNombre).reversed());
-            else if (campo.equals("altura") && orden.equals("asc")) montes.sort(Comparator.comparing(MonteAPI::getAltura));
-            else montes.sort(Comparator.comparing(MonteAPI::getAltura).reversed());
+            if (campo.equals("nombre") && orden.equals("asc")) montes.sort(Comparator.comparing(Monte::getNombre));
+            else if (campo.equals("nombre")) montes.sort(Comparator.comparing(Monte::getNombre).reversed());
+            else if (campo.equals("altura") && orden.equals("asc")) montes.sort(Comparator.comparing(Monte::getAltura));
+            else montes.sort(Comparator.comparing(Monte::getAltura).reversed());
         }
         return montes;
     }
