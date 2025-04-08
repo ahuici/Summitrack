@@ -1,0 +1,139 @@
+/* TODO CABECERA */
+
+/* Estilo para la cabecera */
+header {
+    background-color: rgb(76, 175, 80);
+    padding: 15px 20px; /* Espaciado interno */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo a la izquierda, enlaces a la derecha */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    left: 0;
+}
+
+/* Estilo para los enlaces en la cabecera */
+header a {
+    color: white; /* Blanco para los enlaces */
+    text-decoration: none;
+    font-size: 20px; /* Aumenta el tamaño de los enlaces */
+    font-weight: 600; /* Un poco más de peso para los enlaces */
+    padding: 12px 18px; /* Aumenta el padding para que los enlaces sean más grandes */
+    border-radius: 5px; /* Bordes redondeados para los enlaces */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco en hover */
+    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba al pasar el ratón */
+}
+
+header a:active {
+    color: #006400; /* Verde oscuro cuando se hace clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+
+/* Estilo del logo en la cabecera */
+#logoCabecera img {
+    height: 50px; /* Ajusta el tamaño del logo */
+    display: flex;
+}
+
+/* Estilos del menú de navegación en la cabecera */
+nav {
+    display: flex;
+    gap: 20px; /* Espacio entre los enlaces */
+    margin-right: 15%; /* Mueve los enlaces un poco más hacia la izquierda */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* TODO FIN CABECERA */
+
+/* TODO COLORES TOP */
+
+/* Fila de oro para la primera posición */
+#distancia tr:nth-of-type(2),
+#desnivel tr:nth-of-type(2),
+#cimas tr:nth-of-type(2) {
+    background-color: gold;
+}
+
+/* Fila de plata para la segunda posición */
+#distancia tr:nth-of-type(3),
+#desnivel tr:nth-of-type(3),
+#cimas tr:nth-of-type(3) {
+    background-color: silver;
+}
+
+/* Fila de bronce para la tercera posición */
+#distancia tr:nth-of-type(4),
+#desnivel tr:nth-of-type(4),
+#cimas tr:nth-of-type(4) {
+    background-color: #cd7f32;
+}
+
+/* TODO FIN COLORES TOP */
+
+/* TODO TABLA */
+#distancia, #desnivel, #cimas {
+    display: inline-block;
+    width: 30%; /* Ajustar el ancho para que ocupen el 30% del contenedor */
+    margin: 0 1%; /* Espaciado entre los bloques */
+    vertical-align: top; /* Asegura que estén alineados arriba */
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 120px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.cabecera {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+#distancia .cabecera {
+    background-color: gold; /* Fila de oro */
+}
+
+#desnivel .cabecera {
+    background-color: silver; /* Fila de plata */
+}
+
+#cimas .cabecera {
+    background-color: #cd7f32; /* Fila de bronce */
+}
+
+#distancia th, #desnivel th, #cimas th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+#distancia h1, #desnivel h1, #cimas h1 {
+    text-align: center;
+    margin-bottom: 15px; /* Opcional: agrega espacio debajo del título */
+}
+
+/* TODO FIN TABLA*/
+

@@ -1,5 +1,6 @@
 package com.example.masanz.aimar.actividades.controller;
 
+import com.example.masanz.aimar.actividades.model.entity.Completa;
 import com.example.masanz.aimar.actividades.model.entity.Ruta;
 import com.example.masanz.aimar.actividades.model.service.CompletaService;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class RutaController {
@@ -63,7 +65,8 @@ public class RutaController {
 
     @PostMapping("/ruta/add")
     public String addRutaPost(@ModelAttribute Ruta ruta,
-                              @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar) {
+                              @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar,
+                              @RequestParam("personas") List<Long> personas) {
         System.out.println("Entrando en el metodo");
         try {
             if (fotoAgregar != null && !fotoAgregar.isEmpty()) {
@@ -78,6 +81,10 @@ public class RutaController {
 
                 ruta.setFoto(filename);
                 rutaService.save(ruta);  // Guarda la ruta con la foto
+                for (Long idPersona : personas){
+                    Completa completa = new Completa(ruta, personaService.findByID(Math.toIntExact(idPersona)));
+                    completaService.save(completa);
+                }
                 return "redirect:/ruta";  // Redirige a la lista de rutas
             } else {throw new IllegalArgumentException("No se ha cargado una foto válida.");}
         } catch (IOException e) {
