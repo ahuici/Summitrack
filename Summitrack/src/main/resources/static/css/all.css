@@ -77,11 +77,16 @@ h1 {
     text-align: center;
 }
 
+.contenedorTabla {
+    margin-bottom: 120px;
+}
+
 /* Estilo para la tabla */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
+    margin-bottom: 50px;
     border: 2px solid #FFFFFF; /* Línea verde más gruesa para toda la tabla */
 }
 

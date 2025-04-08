@@ -11,31 +11,33 @@
     <div th:insert="fragments/header :: header"></div>
 
 <h1>Montes</h1>
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Altura</th>
-            <th>Ubicacion</th>
-            <th>Num ascensiones</th>
-            <th>Ver rutas</th>
-            <th class="btnOpciones">Editar</th>
-            <th class="btnOpciones">Eliminar</th>
-            <th class="btnOpciones">Favorito</th>
+    <div class="contenedorTabla">
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Altura</th>
+                <th>Ubicacion</th>
+                <th>Num ascensiones</th>
+                <th>Ver rutas</th>
+                <th class="btnOpciones">Editar</th>
+                <th class="btnOpciones">Eliminar</th>
+                <th class="btnOpciones">Favorito</th>
 
-        </tr>
-        <tr th:each="monte : ${montes}">
-            <td th:text="${monte.nombre}"></td>
-            <td th:text="${monte.altura}"></td>
-            <td th:text="${monte.ubicacion}"></td>
-            <td><p th:text="'Numero: ' + ${monte.asciende.size()}"></p></td>
-            <td><a th:href="|/monte/rutas?id=${monte.id}|">Ver rutas</a></td>
-            <td><a th:href="|/monte/add?id=${monte.id}|" id="btnEditar">Editar</a></td>
-            <td><a th:href="|/monte/eliminar?id=${monte.id}|" id="btnEliminar">Eliminar</a></td>
-            <td><a th:href="|/monte/favoritos?id=${monte.id}|" id="btnFavorito">
-                    <span th:if="${!monte.isFavorito}">🤍</span>
-                    <span th:if="${monte.isFavorito}">❤️</span></a></td>
-        </tr>
-    </table>
+            </tr>
+            <tr th:each="monte : ${montes}">
+                <td th:text="${monte.nombre}"></td>
+                <td th:text="${monte.altura}"></td>
+                <td th:text="${monte.ubicacion}"></td>
+                <td><p th:text="'Numero: ' + ${monte.asciende.size()}"></p></td>
+                <td><a th:href="|/monte/rutas?id=${monte.id}|">Ver rutas</a></td>
+                <td><a th:href="|/monte/add?id=${monte.id}|" id="btnEditar">Editar</a></td>
+                <td><a th:href="|/monte/eliminar?id=${monte.id}|" id="btnEliminar">Eliminar</a></td>
+                <td><a th:href="|/monte/favoritos?id=${monte.id}|" id="btnFavorito">
+                        <span th:if="${!monte.isFavorito}">🤍</span>
+                        <span th:if="${monte.isFavorito}">❤️</span></a></td>
+            </tr>
+        </table>
+    </div>
     <div class="buttons-container">
         <a th:href="|/monte/add?|">Añadir</a>
         <a th:href="|/|">Salir</a>
