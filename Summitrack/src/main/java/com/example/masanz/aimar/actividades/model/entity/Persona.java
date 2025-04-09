@@ -25,18 +25,22 @@ public class  Persona {
     @Column
     private int edad;
 
+    @Column
+    private boolean salirTop;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "persona", orphanRemoval = true)
     private List<Completa> completa;
 
     public Persona() {
     }
 
-    public Persona(Integer id, String nombre, String apellidos, String genero, int edad) {
+    public Persona(Integer id, String nombre, String apellidos, String genero, int edad, boolean salirTop) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.genero = genero;
         this.edad = edad;
+        this.salirTop = salirTop;
         this.completa = new ArrayList<>();
     }
 
@@ -78,6 +82,14 @@ public class  Persona {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public boolean isSalirTop() {
+        return salirTop;
+    }
+
+    public void setSalirTop(boolean salirTop) {
+        this.salirTop = salirTop;
     }
 
     public List<Completa> getCompleta() {

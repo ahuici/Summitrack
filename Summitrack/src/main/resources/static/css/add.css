@@ -257,3 +257,44 @@ header {
     z-index: 10;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
+
+
+
+/* TODO CHECKBOX */
+input[type="checkbox"] {
+    width: 50px; /* Más ancho para mayor visibilidad */
+    height: 25px;
+    appearance: none;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    vertical-align: middle;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    margin-left: 13px;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: white;
+    top: 1.5px;
+    left: 2px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(25px); /* Desplaza el círculo hacia la derecha */
+}
+
+/* TODO FIN CHECKBOX*/

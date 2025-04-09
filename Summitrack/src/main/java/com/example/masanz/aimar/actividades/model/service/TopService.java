@@ -39,8 +39,10 @@ public class TopService {
 
         for (Completa completa : completas){
             Persona persona = completa.getPersona();
-            Integer distanciaActual = personasDistancia.get(persona);
-            personasDistancia.put(persona, distanciaActual + completa.getRuta().getDistancia());
+            if (personasDistancia.keySet().contains(persona)){
+                Integer distanciaActual = personasDistancia.get(persona);
+                personasDistancia.put(persona, distanciaActual + completa.getRuta().getDistancia());
+            }
         }
 
         List<DistanciaDTO> top = new ArrayList<>();
@@ -60,8 +62,10 @@ public class TopService {
 
         for (Completa completa : completas){
             Persona persona = completa.getPersona();
-            Integer desnivelActual = personasDesnivel.get(persona);
-            personasDesnivel.put(persona, desnivelActual + completa.getRuta().getDesnivel());
+            if (personasDesnivel.keySet().contains(persona)) {
+                Integer desnivelActual = personasDesnivel.get(persona);
+                personasDesnivel.put(persona, desnivelActual + completa.getRuta().getDesnivel());
+            }
         }
 
         List<DesnivelDTO> top = new ArrayList<>();
@@ -81,11 +85,13 @@ public class TopService {
         List<Persona> personas = personaService.getAll();
 
         for (Persona persona : personas){
-            Integer cantCimas = 0;
-            for (Completa completa : completas){
-                if (completa.getPersona().equals(persona)) cantCimas++;
+            if (personasCimas.keySet().contains(persona)){
+                Integer cantCimas = 0;
+                for (Completa completa : completas){
+                    if (completa.getPersona().equals(persona)) cantCimas++;
+                }
+                personasCimas.put(persona,cantCimas);
             }
-            personasCimas.put(persona,cantCimas);
         }
 
         List<CimasDTO> top = new ArrayList<>();
@@ -108,8 +114,10 @@ public class TopService {
         for (RutaDTO rutaDTO : rutas){
             for (Integer personaID : rutaDTO.getPersonas()){
                 Persona persona = personaService.findByID(personaID);
-                Integer distanciaActual = personasDistancia.get(persona);
-                personasDistancia.put(persona, distanciaActual + rutaDTO.getDistancia());
+                if (personasDistancia.keySet().contains(persona)) {
+                    Integer distanciaActual = personasDistancia.get(persona);
+                    personasDistancia.put(persona, distanciaActual + rutaDTO.getDistancia());
+                }
             }
         }
 
@@ -131,8 +139,10 @@ public class TopService {
         for (RutaDTO rutaDTO : rutas){
             for (Integer personaID : rutaDTO.getPersonas()){
                 Persona persona = personaService.findByID(personaID);
-                Integer desnivelActual = personasDesnivel.get(persona);
-                personasDesnivel.put(persona, desnivelActual + rutaDTO.getDesnivel());
+                if (personasDesnivel.keySet().contains(persona)) {
+                    Integer desnivelActual = personasDesnivel.get(persona);
+                    personasDesnivel.put(persona, desnivelActual + rutaDTO.getDesnivel());
+                }
             }
         }
 
@@ -154,8 +164,10 @@ public class TopService {
         for (RutaDTO rutaDTO : rutas){
             for (Integer personaID : rutaDTO.getPersonas()){
                 Persona persona = personaService.findByID(personaID);
-                Integer totalCimas = personasCimas.get(persona);
-                personasCimas.put(persona, totalCimas + 1);
+                if (personasCimas.keySet().contains(persona)) {
+                    Integer totalCimas = personasCimas.get(persona);
+                    personasCimas.put(persona, totalCimas + 1);
+                }
             }
         }
 
@@ -174,7 +186,7 @@ public class TopService {
         List<Persona> personas = personaService.getAll();
         Map<Persona, Integer> asociado = new HashMap<>();
         for (Persona persona : personas){
-            asociado.put(persona,0);
+            if (persona.isSalirTop()) asociado.put(persona,0);
         }
         return asociado;
     }

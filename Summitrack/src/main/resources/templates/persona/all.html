@@ -14,17 +14,19 @@
   <tr>
     <th>Nombre</th>
     <th>Apellidos</th>
-    <th>Genero</th>
     <th>Edad</th>
+    <th>Top global</th>
+    <th>Genero</th>
     <th class="btnOpciones">Editar</th>
     <th class="btnOpciones">Eliminar</th>
   </tr>
   <tr th:each="persona : ${personas}">
     <td th:text="${persona.nombre}"></td>
     <td th:text="${persona.apellidos}"></td>
-    <td th:text="${persona.genero}"></td>
     <td th:text="${persona.edad}"></td>
-    <td><a th:href="|/personas/add?id={persona.id}|" id="btnEditar">Editar</a></td>
+    <td th:text="${persona.salirTop} ? '✅' : '❌'"></td>
+    <td th:text="${persona.genero}"></td>
+    <td><a th:href="|/personas/add?id=${persona.id}|" id="btnEditar">Editar</a></td>
     <td><a th:href="|/personas/eliminar?id=${persona.id}|" id="btnEliminar">Eliminar</a></td>
   </tr>
 </table>

@@ -28,14 +28,14 @@ INSERT INTO monte (id, nombre, altura, ubicacion, is_favorito) VALUES
     (1015, 'Garmo Negro', 3058, 'Huesca', true);
 
 /* PERSONAS SCRIPT*/
-INSERT INTO persona (id, nombre, apellidos, edad, genero) values
-	(2000, 'Aimar', 'Huici', 19, 'Hombre'),
-	(2001, 'Josetxo', 'Nidea', 18, 'Hombre'),
-	(2002, 'Hodei', 'Cia', 18, 'Hombre'),
-	(2003, 'Oskia', 'Senosiain ', 20,'Mujer'),
-	(2004, 'Ibai', 'Legarra ', 20,'Hombre'),
-	(2005, 'Sergio', 'Ajona ', 21,'Mujer'),
-	(2006, 'Daniel', 'Medina ', 22,'Hombre');
+INSERT INTO persona (id, nombre, apellidos, edad, genero, salir_top) values
+	(2000, 'Aimar', 'Huici', 19, 'Hombre', true),
+	(2001, 'Josetxo', 'Nidea', 18, 'Hombre', true),
+	(2002, 'Hodei', 'Cia', 18, 'Hombre', true),
+	(2003, 'Oskia', 'Senosiain ', 20,'Mujer', true),
+	(2004, 'Ibai', 'Legarra ', 20,'Hombre', true),
+	(2005, 'Sergio', 'Ajona ', 21,'Mujer', true),
+	(2006, 'Daniel', 'Medina ', 22,'Hombre', true);
     
 
 /* RUTA SCRIPT */

@@ -19,6 +19,8 @@
 
   <p>Apellidos: <input type="text" th:field="*{apellidos}"/></p>
 
+  <p>Edad: <input type="number" th:field="*{edad}" required/></p>
+
   <p>Genero:
     <select name="personas" id="personas" th:field="*{genero}" required>
       <option value="">-- Selecciona un genero --</option>
@@ -28,7 +30,7 @@
     </select>
   </p>
 
-  <p>Edad: <input type="number" th:field="*{edad}" required/></p>
+  <p>Salir en top global:  <input type="checkbox" th:field="*{salirTop}"/></p><br/>
 
   <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
