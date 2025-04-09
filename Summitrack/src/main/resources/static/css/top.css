@@ -1,30 +1,185 @@
-/* ========== CABECERA ========== */
+/* ========== GENERAL STYLES ========== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #e8f5e9; /* verde claro de fondo */
+    color: #2e4d2c; /* verde oscuro para texto */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+    color: #4CAF50;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: black;
+    text-align: center;
+}
+
+/* ========== CONTAINER STYLES ========== */
+#local, #online {
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 120px;
+}
+
+#local {
+    border: 2px solid #66bb6a; /* verde suave */
+    background-color: #f1f8f4;
+}
+
+#online {
+    border: 2px solid #81c784; /* verde un poco más vibrante */
+    background-color: #f3fdf6;
+}
+
+/* ========== SECTION STYLES ========== */
+.distancia, .desnivel, .cimas {
+    margin: 2rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th{
+    color: white;
+}
+
+td{
+    color: black;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid #c8e6c9;
+    border: 1px solid #FFFFFF;
+    width: 50%;
+}
+
+.cabecera {
+    background-color: #4CAF50; /* verde fuerte */
+    color: white;
+    font-weight: bold;
+}
+
+/* ========== TOP COLORS ========== */
+.distancia tr:nth-of-type(2),
+.desnivel tr:nth-of-type(2),
+.cimas tr:nth-of-type(2) {
+    background-color: #ffff1f; /* Oro */
+}
+
+.distancia tr:nth-of-type(3),
+.desnivel tr:nth-of-type(3),
+.cimas tr:nth-of-type(3) {
+    background-color: silver; /* Plata */
+}
+
+.distancia tr:nth-of-type(4),
+.desnivel tr:nth-of-type(4),
+.cimas tr:nth-of-type(4) {
+    background-color: #d99e63; /* Bronce */
+}
+
+/* ========== INTERCALADO VERDE DESDE 4º EN ADELANTE ========== */
+.distancia tr:nth-of-type(n+5):nth-child(even),
+.desnivel tr:nth-of-type(n+5):nth-child(even),
+.cimas tr:nth-of-type(n+5):nth-child(even) {
+    background-color: #e6f4ea; /* Verde claro */
+}
+
+.distancia tr:nth-of-type(n+5):nth-child(odd),
+.desnivel tr:nth-of-type(n+5):nth-child(odd),
+.cimas tr:nth-of-type(n+5):nth-child(odd) {
+    background-color: #c8e6c9; /* Verde más oscuro */
+}
+
+/* ========== HOVER EFFECTS ========== */
+tr:hover:not(.cabecera) {
+    background-color: #e0f2f1;
+    transition: background-color 0.3s ease;
+}
+
+/* ========== RESPONSIVE ========== */
+@media screen and (max-width: 768px) {
+    #local, #online {
+        padding: 1rem;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* TODO CABECERA */
+/* Estilo para la cabecera */
 header {
-    background-color: rgb(76, 175, 80);
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background-color: rgb(76, 175, 80); /* Fondo verde */
+    padding: 20px 0; /* Espacio interno */
+    text-align: center;
     position: fixed;
     top: 0;
-    width: 100%;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    left: 0;
+    left: 0; /* Asegura que la cabecera toque el borde izquierdo */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 10; /* Asegura que la cabecera esté sobre otros elementos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
+    margin: 0; /* Elimina cualquier margen alrededor de la cabecera */
+}
+
+/* Estilo para los enlaces en la cabecera */
+header a {
+    color: white; /* Enlaces blancos */
+    text-decoration: none;
+    margin: 0 20px; /* Espaciado entre los enlaces */
+    font-size: 20px; /* Tamaño de los enlaces */
+    font-weight: 600; /* Peso medio para los enlaces */
+    padding: 12px 18px; /* Espaciado interno en los enlaces */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco al pasar el ratón */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba */
+}
+
+header a:active {
+    color: #006400; /* Verde oscuro cuando se hace clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
 }
 
 #logoCabecera img {
-    height: 50px;
+    height: 50px; /* Ajusta el tamaño del logo */
     display: flex;
 }
 
-nav {
-    display: flex;
-    gap: 20px;
-    margin-right: 15%;
-}
-
-header a, nav a {
+nav a {
     color: white;
     text-decoration: none;
     font-size: 20px;
@@ -34,115 +189,46 @@ header a, nav a {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-header a:hover, nav a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+nav {
+    display: flex;
+    gap: 20px; /* Espacio entre los enlaces */
+    margin-right: 15%; /* Mueve los enlaces un poco más hacia la izquierda */
 }
 
-header a:active, nav a:active {
-    color: #006400;
-    transform: translateY(1px);
+
+
+/* Estilo para los enlaces de la cabecera */
+header a {
+    color: white; /* Blanco para los enlaces */
+    text-decoration: none;
+    font-size: 20px; /* Aumenta el tamaño de los enlaces */
+    font-weight: 600; /* Un poco más de peso para los enlaces */
+    padding: 12px 18px; /* Aumenta el padding para que los enlaces sean más grandes */
+    border-radius: 5px; /* Bordes redondeados para los enlaces */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
 }
 
-/* ========== TOP COLORS ========== */
-.distancia tr:nth-of-type(2),
-.desnivel tr:nth-of-type(2),
-.cimas tr:nth-of-type(2) {
-    background-color: #ffff1f;
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco en hover */
+    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba al pasar el ratón */
 }
 
-.distancia tr:nth-of-type(3),
-.desnivel tr:nth-of-type(3),
-.cimas tr:nth-of-type(3) {
-    background-color: silver;
+header a:active {
+    color: #006400; /* Verde oscuro cuando se hace clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
 }
 
-.distancia tr:nth-of-type(4),
-.desnivel tr:nth-of-type(4),
-.cimas tr:nth-of-type(4) {
-    background-color: #d99e63;
-}
-
-/* ========== BLOQUES LOCAL & GLOBAL ========== */
-#local, #online {
-    margin-top: 120px;
-    padding: 20px;
-}
-
-#local h1, #online h1 {
-    text-align: center;
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 25px;
-}
-
-.distancia, .desnivel, .cimas {
-    display: inline-block;
-    width: 30%;
-    margin: 0 1%;
-    vertical-align: top;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-/* ========== TABLAS ========== */
-table {
+header {
+    background-color: rgb(76, 175, 80);
+    padding: 15px 20px; /* Espaciado interno */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo a la izquierda, enlaces a la derecha */
+    position: fixed;
+    top: 0;
     width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
-    overflow: hidden;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-table th, table td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-table th {
-    background: rgb(76, 175, 80);
-}
-
-.cabecera {
-    font-weight: bold;
-    color: #333;
-}
-
-.distancia .cabecera {
-    background-color: gold;
-}
-
-.desnivel .cabecera {
-    background-color: silver;
-}
-
-.cimas .cabecera {
-    background-color: #cd7f32;
-}
-
-#local, #online {
-    margin-top: 120px;
-    margin-bottom: 15px;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-/* ========== TITULOS DE SECCIÓN ========== */
-.distancia h2, .desnivel h2, .cimas h2 {
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 24px;
-    color: #222;
-}
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 900px) {
-    .distancia, .desnivel, .cimas {
-        width: 100%;
-        margin: 10px 0;
-    }
-}
+/* TODO CABECERA*/

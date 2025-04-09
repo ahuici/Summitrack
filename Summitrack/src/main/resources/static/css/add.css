@@ -18,42 +18,6 @@ body {
     flex-direction: column;
 }
 
-/* Estilo para la cabecera */
-header {
-    background-color: rgb(76, 175, 80); /* Fondo verde */
-    padding: 20px 0; /* Espacio interno */
-    text-align: center;
-    position: fixed;
-    top: 0;
-    left: 0; /* Asegura que la cabecera toque el borde izquierdo */
-    width: 100%; /* Asegura que ocupe todo el ancho */
-    z-index: 10; /* Asegura que la cabecera esté sobre otros elementos */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
-    margin: 0; /* Elimina cualquier margen alrededor de la cabecera */
-}
-
-/* Estilo para los enlaces en la cabecera */
-header a {
-    color: white; /* Enlaces blancos */
-    text-decoration: none;
-    margin: 0 20px; /* Espaciado entre los enlaces */
-    font-size: 20px; /* Tamaño de los enlaces */
-    font-weight: 600; /* Peso medio para los enlaces */
-    padding: 12px 18px; /* Espaciado interno en los enlaces */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
-}
-
-header a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco al pasar el ratón */
-    transform: translateY(-2px); /* Desplazamiento hacia arriba */
-}
-
-header a:active {
-    color: #006400; /* Verde oscuro cuando se hace clic */
-    transform: translateY(1px); /* Efecto al hacer clic */
-}
-
 /* Estilo para el formulario */
 form {
     background-color: white;
@@ -76,11 +40,6 @@ h1 {
 /* Estilo para los párrafos */
 p {
     margin-bottom: 15px;
-}
-
-#logoCabecera img {
-    height: 50px; /* Ajusta el tamaño del logo */
-    display: flex;
 }
 
 /* Estilo para los inputs y selects */
@@ -205,6 +164,47 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 }
 
+/* TODO CABECERA */
+/* Estilo para la cabecera */
+header {
+    background-color: rgb(76, 175, 80); /* Fondo verde */
+    padding: 20px 0; /* Espacio interno */
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0; /* Asegura que la cabecera toque el borde izquierdo */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 10; /* Asegura que la cabecera esté sobre otros elementos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
+    margin: 0; /* Elimina cualquier margen alrededor de la cabecera */
+}
+
+/* Estilo para los enlaces en la cabecera */
+header a {
+    color: white; /* Enlaces blancos */
+    text-decoration: none;
+    margin: 0 20px; /* Espaciado entre los enlaces */
+    font-size: 20px; /* Tamaño de los enlaces */
+    font-weight: 600; /* Peso medio para los enlaces */
+    padding: 12px 18px; /* Espaciado interno en los enlaces */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco al pasar el ratón */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba */
+}
+
+header a:active {
+    color: #006400; /* Verde oscuro cuando se hace clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+
+#logoCabecera img {
+    height: 50px; /* Ajusta el tamaño del logo */
+    display: flex;
+}
 
 nav a {
     color: white;
@@ -258,7 +258,7 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-
+/* TODO CABECERA*/
 
 /* TODO CHECKBOX */
 input[type="checkbox"] {

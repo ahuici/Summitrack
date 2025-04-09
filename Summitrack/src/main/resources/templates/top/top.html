@@ -18,7 +18,7 @@
       <table>
         <tr class="cabecera">
           <th>Nombre</th>
-          <th>Dist.</th>
+          <th>Distancia</th>
         </tr>
         <tr th:each="distancia : ${distanciasLocal}">
           <td th:text="${distancia.nombre}"></td>
@@ -32,7 +32,7 @@
       <table>
         <tr class="cabecera">
           <th>Nombre</th>
-          <th>Desn.</th>
+          <th>Desnivel</th>
         </tr>
         <tr th:each="desnivel : ${desnivelesLocal}">
           <td th:text="${desnivel.nombre}"></td>
@@ -46,7 +46,7 @@
       <table>
         <tr class="cabecera">
           <th>Nombre</th>
-          <th>Cimas.</th>
+          <th>Cimas</th>
         </tr>
         <tr th:each="cima : ${cimasLocal}">
           <td th:text="${cima.nombre}"></td>
@@ -64,7 +64,7 @@
       <table>
         <tr class="cabecera">
           <th>Nombre</th>
-          <th>Dist.</th>
+          <th>Distancia</th>
         </tr>
         <tr th:each="distancia : ${distanciasGlobal}">
           <td th:text="${distancia.nombre}"></td>
@@ -78,7 +78,7 @@
       <table>
         <tr class="cabecera">
           <th>Nombre</th>
-          <th>Desn.</th>
+          <th>Desnivel</th>
         </tr>
         <tr th:each="desnivel : ${desnivelesGlobal}">
           <td th:text="${desnivel.nombre}"></td>
@@ -92,7 +92,7 @@
       <table>
         <tr class="cabecera">
           <th>Nombre</th>
-          <th>Cimas.</th>
+          <th>Cimas</th>
         </tr>
         <tr th:each="cima : ${cimasGlobal}">
           <td th:text="${cima.nombre}"></td>
