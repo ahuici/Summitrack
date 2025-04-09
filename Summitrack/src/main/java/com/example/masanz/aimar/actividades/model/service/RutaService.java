@@ -62,20 +62,12 @@ public class RutaService {
     }
 
     public void delete(Ruta ruta){
-        //TODO RESTAR LA DISTANCIA EN FIREBASE
         rutaDAO.delete(ruta);
-        try {
-            List<QueryDocumentSnapshot> lista = firebase.getFirestore().collection("summitrack").get().get().getDocuments();
-            for (QueryDocumentSnapshot document : lista) {
-                RutaDTO temporal = document.toObject(RutaDTO.class);
-                if (temporal.getIdMySQL().equals(ruta.getId())) {
-                    firebase.getFirestore().collection("summitrack").document(String.valueOf(temporal.getId())).delete();
-                }
+
+        for (RutaDTO rutaDTO : firebase.getAllRuta()){
+            if (rutaDTO.getIdMySQL().equals(ruta.getId())) {
+                firebase.getFirestore().collection("summitrack").document(String.valueOf(rutaDTO.getId())).delete();
             }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
         }
     }
 

@@ -1,7 +1,10 @@
 package com.example.masanz.aimar.actividades.model.service;
 
+import com.example.masanz.aimar.actividades.model.entity.Ruta;
+import com.example.masanz.aimar.actividades.model.entity.RutaDTO;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
@@ -11,6 +14,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class FirebaseService {
@@ -33,5 +39,21 @@ public class FirebaseService {
 
     public Firestore getFirestore() {
         return FirestoreClient.getFirestore();
+    }
+
+    public List<RutaDTO> getAllRuta(){
+        List<RutaDTO> rutas = new ArrayList<>();
+        try {
+            List<QueryDocumentSnapshot> lista = getFirestore().collection("summitrack").get().get().getDocuments();
+            for (QueryDocumentSnapshot document : lista) {
+                RutaDTO temporal = document.toObject(RutaDTO.class);
+                rutas.add(temporal);
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+        return rutas;
     }
 }

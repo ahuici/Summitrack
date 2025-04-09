@@ -7,6 +7,7 @@ import com.example.masanz.aimar.actividades.model.DAO.IRutaDAO;
 import com.example.masanz.aimar.actividades.model.entity.*;
 import com.google.cloud.firestore.DocumentReference;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import org.aspectj.weaver.patterns.PerObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +20,13 @@ public class TopService {
     private IMonteDAO monteDAO;
 
     @Autowired
-    private IPersonaDAO personaDAO;
+    private PersonaService personaService;
 
     @Autowired
-    private IRutaDAO rutaDAO;
+    private RutaService rutaService;
 
     @Autowired
-    private ICompletaDAO completaDAO;
+    private CompletaService completaService;
 
     @Autowired
     private FirebaseService firebase;
@@ -34,7 +35,7 @@ public class TopService {
 
     public List<DistanciaDTO> getTopDistanciaLocal(){
         Map<Persona, Integer> personasDistancia = getPersonas();
-        List<Completa> completas = completaDAO.findAll();
+        List<Completa> completas = completaService.getAll();
 
         for (Completa completa : completas){
             Persona persona = completa.getPersona();
@@ -55,7 +56,7 @@ public class TopService {
 
     public List<DesnivelDTO> getTopDesnivelLocal(){
         Map<Persona, Integer> personasDesnivel = getPersonas();
-        List<Completa> completas = completaDAO.findAll();
+        List<Completa> completas = completaService.getAll();
 
         for (Completa completa : completas){
             Persona persona = completa.getPersona();
@@ -76,8 +77,8 @@ public class TopService {
 
     public List<CimasDTO> getTopCimasLocal(){
         Map<Persona, Integer> personasCimas = getPersonas();
-        List<Completa> completas = completaDAO.findAll();
-        List<Persona> personas = personaDAO.findAll();
+        List<Completa> completas = completaService.getAll();
+        List<Persona> personas = personaService.getAll();
 
         for (Persona persona : personas){
             Integer cantCimas = 0;
@@ -101,16 +102,15 @@ public class TopService {
     /* TOP GLOBAL*/
 
     public List<DistanciaDTO> getTopDistanciaGlobal(){
-        DocumentReference docRef = firebase.getFirestore().collection("summitrack").document();
-
-        //TODO SACAR DE FIREBASE TODAS LAS DISTANCIAS Y PASARLAS
+        List<RutaDTO> rutas = firebase.getAllRuta();
         Map<Persona, Integer> personasDistancia = getPersonas();
-        List<Completa> completas = completaDAO.findAll();
 
-        for (Completa completa : completas){
-            Persona persona = completa.getPersona();
-            Integer distanciaActual = personasDistancia.get(persona);
-            personasDistancia.put(persona, distanciaActual + completa.getRuta().getDistancia());
+        for (RutaDTO rutaDTO : rutas){
+            for (Integer personaID : rutaDTO.getPersonas()){
+                Persona persona = personaService.findByID(personaID);
+                Integer distanciaActual = personasDistancia.get(persona);
+                personasDistancia.put(persona, distanciaActual + rutaDTO.getDistancia());
+            }
         }
 
         List<DistanciaDTO> top = new ArrayList<>();
@@ -125,13 +125,15 @@ public class TopService {
     }
 
     public List<DesnivelDTO> getTopDesnivelGlobal(){
+        List<RutaDTO> rutas = firebase.getAllRuta();
         Map<Persona, Integer> personasDesnivel = getPersonas();
-        List<Completa> completas = completaDAO.findAll();
 
-        for (Completa completa : completas){
-            Persona persona = completa.getPersona();
-            Integer desnivelActual = personasDesnivel.get(persona);
-            personasDesnivel.put(persona, desnivelActual + completa.getRuta().getDesnivel());
+        for (RutaDTO rutaDTO : rutas){
+            for (Integer personaID : rutaDTO.getPersonas()){
+                Persona persona = personaService.findByID(personaID);
+                Integer desnivelActual = personasDesnivel.get(persona);
+                personasDesnivel.put(persona, desnivelActual + rutaDTO.getDesnivel());
+            }
         }
 
         List<DesnivelDTO> top = new ArrayList<>();
@@ -146,16 +148,15 @@ public class TopService {
     }
 
     public List<CimasDTO> getTopCimasGlobal(){
+        List<RutaDTO> rutas = firebase.getAllRuta();
         Map<Persona, Integer> personasCimas = getPersonas();
-        List<Completa> completas = completaDAO.findAll();
-        List<Persona> personas = personaDAO.findAll();
 
-        for (Persona persona : personas){
-            Integer cantCimas = 0;
-            for (Completa completa : completas){
-                if (completa.getPersona().equals(persona)) cantCimas++;
+        for (RutaDTO rutaDTO : rutas){
+            for (Integer personaID : rutaDTO.getPersonas()){
+                Persona persona = personaService.findByID(personaID);
+                Integer totalCimas = personasCimas.get(persona);
+                personasCimas.put(persona, totalCimas + 1);
             }
-            personasCimas.put(persona,cantCimas);
         }
 
         List<CimasDTO> top = new ArrayList<>();
@@ -170,7 +171,7 @@ public class TopService {
     }
 
     public Map<Persona, Integer> getPersonas(){
-        List<Persona> personas = personaDAO.findAll();
+        List<Persona> personas = personaService.getAll();
         Map<Persona, Integer> asociado = new HashMap<>();
         for (Persona persona : personas){
             asociado.put(persona,0);

@@ -43,9 +43,9 @@ public class TopController {
         model.addAttribute("cimasLocal", topService.getTopCimasLocal());
 
 
-        model.addAttribute("distanciasLocal", topService.getTopDistanciaGlobal());
-        model.addAttribute("desnivelesLocal", topService.getTopDesnivelGlobal());
-        model.addAttribute("cimasLocal", topService.getTopCimasGlobal());
+        model.addAttribute("distanciasGlobal", topService.getTopDistanciaGlobal());
+        model.addAttribute("desnivelesGlobal", topService.getTopDesnivelGlobal());
+        model.addAttribute("cimasGlobal", topService.getTopCimasGlobal());
         return "top/local";
     }
 }
