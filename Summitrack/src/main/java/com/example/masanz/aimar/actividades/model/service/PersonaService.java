@@ -7,6 +7,8 @@ import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.entity.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,5 +38,12 @@ public class PersonaService {
         personaDAO.delete(persona);
     }
 
+    public List<Persona> IDconverter(List<Integer> personasID) {
+        List<Persona> personas = new ArrayList<>();
+        for (Persona persona : getAll()){
+            if (personasID.contains(persona.getId())) personas.add(persona);
+        }
+        return personas;
+    }
 }
 

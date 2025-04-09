@@ -38,9 +38,14 @@ public class TopController {
 
     @GetMapping("/top")
     public String getAll(Model model){
-        model.addAttribute("distancias", topService.getTopDistancia());
-        model.addAttribute("desniveles", topService.getTopDesnivel());
-        model.addAttribute("cimas", topService.getTopCimas());
+        model.addAttribute("distanciasLocal", topService.getTopDistanciaLocal());
+        model.addAttribute("desnivelesLocal", topService.getTopDesnivelLocal());
+        model.addAttribute("cimasLocal", topService.getTopCimasLocal());
+
+
+        model.addAttribute("distanciasLocal", topService.getTopDistanciaGlobal());
+        model.addAttribute("desnivelesLocal", topService.getTopDesnivelGlobal());
+        model.addAttribute("cimasLocal", topService.getTopCimasGlobal());
         return "top/local";
     }
 }

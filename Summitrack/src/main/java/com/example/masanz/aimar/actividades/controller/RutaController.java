@@ -66,7 +66,7 @@ public class RutaController {
     @PostMapping("/ruta/add")
     public String addRutaPost(@ModelAttribute Ruta ruta,
                               @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar,
-                              @RequestParam("personas") List<Long> personas) {
+                              @RequestParam("personas") List<Integer> personas) {
         System.out.println("Entrando en el metodo");
         try {
             if (fotoAgregar != null && !fotoAgregar.isEmpty()) {
@@ -78,13 +78,10 @@ public class RutaController {
 
                 File destFile = new File(filePath.toString());
                 fotoAgregar.transferTo(destFile); // Guarda el archivo en el disco
-
                 ruta.setFoto(filename);
-                rutaService.save(ruta);  // Guarda la ruta con la foto
-                for (Long idPersona : personas){
-                    Completa completa = new Completa(ruta, personaService.findByID(Math.toIntExact(idPersona)));
-                    completaService.save(completa);
-                }
+
+
+                rutaService.save(ruta, personas);
                 return "redirect:/ruta";  // Redirige a la lista de rutas
             } else {throw new IllegalArgumentException("No se ha cargado una foto válida.");}
         } catch (IOException e) {

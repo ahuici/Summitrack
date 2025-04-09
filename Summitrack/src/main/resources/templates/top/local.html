@@ -10,46 +10,96 @@
 
   <div th:insert="fragments/header :: header"></div>
 
-  <div id="distancia">
-    <h1>DISTANCIA</h1>
-    <table>
-      <tr class="cabecera">
-        <th>Nombre</th>
-        <th>Dist.</th>
-      </tr>
-      <tr th:each="distancia : ${distancias}">
-        <td th:text="${distancia.nombre}"></td>
-        <td th:text="${distancia.distancia}"></td>
-      </tr>
-    </table>
+  <div id="local">
+    <h1>LOCAL</h1>
+
+    <div class="distancia">
+      <h2>DISTANCIA</h2>
+      <table>
+        <tr class="cabecera">
+          <th>Nombre</th>
+          <th>Dist.</th>
+        </tr>
+        <tr th:each="distancia : ${distanciasLocal}">
+          <td th:text="${distancia.nombre}"></td>
+          <td th:text="${distancia.distancia}"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="desnivel">
+      <H2>DESNIVEL</H2>
+      <table>
+        <tr class="cabecera">
+          <th>Nombre</th>
+          <th>Desn.</th>
+        </tr>
+        <tr th:each="desnivel : ${desnivelesLocal}">
+          <td th:text="${desnivel.nombre}"></td>
+          <td th:text="${desnivel.desnivel}"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="cimas">
+      <h2>CIMAS</h2>
+      <table>
+        <tr class="cabecera">
+          <th>Nombre</th>
+          <th>Cimas.</th>
+        </tr>
+        <tr th:each="cima : ${cimasLocal}">
+          <td th:text="${cima.nombre}"></td>
+          <td th:text="${cima.cimas}"></td>
+        </tr>
+      </table>
+    </div>
   </div>
 
-  <div id="desnivel">
-    <H1>DESNIVEL</H1>
-    <table>
-      <tr class="cabecera">
-        <th>Nombre</th>
-        <th>Desn.</th>
-      </tr>
-      <tr th:each="desnivel : ${desniveles}">
-        <td th:text="${desnivel.nombre}"></td>
-        <td th:text="${desnivel.desnivel}"></td>
-      </tr>
-    </table>
-  </div>
+  <div id="online">
+    <h1>GLOBAL</h1>
 
-  <div id="cimas">
-    <h1>CIMAS</h1>
-    <table>
-      <tr class="cabecera">
-        <th>Nombre</th>
-        <th>Cimas.</th>
-      </tr>
-      <tr th:each="cima : ${cimas}">
-        <td th:text="${cima.nombre}"></td>
-        <td th:text="${cima.cimas}"></td>
-      </tr>
-    </table>
+    <div class="distancia">
+      <h2>DISTANCIA</h2>
+      <table>
+        <tr class="cabecera">
+          <th>Nombre</th>
+          <th>Dist.</th>
+        </tr>
+        <tr th:each="distancia : ${distanciasGlobal}">
+          <td th:text="${distancia.nombre}"></td>
+          <td th:text="${distancia.distancia}"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="desnivel">
+      <H2>DESNIVEL</H2>
+      <table>
+        <tr class="cabecera">
+          <th>Nombre</th>
+          <th>Desn.</th>
+        </tr>
+        <tr th:each="desnivel : ${desnivelesGlobal}">
+          <td th:text="${desnivel.nombre}"></td>
+          <td th:text="${desnivel.desnivel}"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="cimas">
+      <h2>CIMAS</h2>
+      <table>
+        <tr class="cabecera">
+          <th>Nombre</th>
+          <th>Cimas.</th>
+        </tr>
+        <tr th:each="cima : ${cimasGlobal}">
+          <td th:text="${cima.nombre}"></td>
+          <td th:text="${cima.cimas}"></td>
+        </tr>
+      </table>
+    </div>
   </div>
 
 </body>

@@ -2,9 +2,9 @@
 USE summitrack;
 
 /*LIMPIAR DATOS RESTANTES*/
-delete from ruta where 1 = 1;
 delete from completa where 1 = 1;
 delete from calendario where 1 = 1;
+delete from ruta where 1 = 1;
 delete from monte where 1 = 1;
 delete from persona where 1 = 1;
 
@@ -56,5 +56,15 @@ INSERT INTO calendario (id, descripcion, fecha, titulo, monte_id) values
 	(2003, 'Buenos atardeceres', "2025-12-23", "Atardeceres", 1003),
 	(2004, '', "2025-06-01", "Entrenamiento series", 1006),
 	(2005, 'Vamos a ir en cuadrilla', "2025-10-14", "Quedada cuadrilla", 1005);
+    
+/* COMPLETA SCRIPT */
+INSERT INTO completa (id_persona, id_ruta, persona_id,ruta_id) values
+	(2000, 2000, 2000, 2000),
+	(2001, 2001, 2001, 2001),
+	(2002, 2002, 2002, 2002),
+	(2003, 2003, 2003, 2003),
+	(2004, 2004, 2004, 2004),
+	(2005, 2005, 2005, 2005);
+
 
     
