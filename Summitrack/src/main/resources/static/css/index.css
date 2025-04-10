@@ -1,3 +1,24 @@
+/* Asegurar que el contenido principal esté centrado verticalmente */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Estilo para el cuerpo (body) sin la imagen */
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100vh;  /* Asegura que el body ocupe toda la altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espacios entre la cabecera y el contenido principal */
+    color: #333333;
+    background-color: #F5F5F5; /* Fondo blanco para el contenido */
+}
+
 /* Estilo global para el contenedor de la imagen de fondo */
 .background-container {
     position: fixed;
@@ -13,16 +34,37 @@
     filter: blur(11px);
 }
 
-/* Estilo para el cuerpo (body) sin la imagen */
+/* Estilo para el título */
+main h1 {
+    font-size: 5em;  /* Mayor tamaño del texto */
+    text-align: center;
+    margin-top: 150px; /* Espacio superior para que el título esté centrado en la pantalla */
+    font-weight: bold;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(76, 175, 80, 0.8); /* Sombra más fuerte y resplandor */
+    color: rgb(76, 175, 80); /* Verde medio para el título */
+}
+
+/* Estilo general para enlaces (en caso de tener más elementos en la página) */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Diseño responsivo para dispositivos móviles */
+@media (max-width: 768px) {
+    main h1 {
+        font-size: 3em; /* Título más pequeño en pantallas pequeñas */
+    }
+    header a {
+        font-size: 16px; /* Reducir tamaño de los enlaces en pantallas pequeñas */
+    }
+}
+
+/* todo CABECERA */
+
 body {
     margin: 0;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    height: 100vh;  /* Asegura que el body ocupe toda la altura */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Espacios entre la cabecera y el contenido principal */
-    color: #333333;
-    background-color: #F5F5F5; /* Fondo blanco para el contenido */
 }
 
 /* Estilo para la cabecera con enlaces */
@@ -80,38 +122,4 @@ header a:active {
     color: #006400; /* Verde oscuro cuando se hace clic */
     transform: translateY(1px); /* Efecto al hacer clic */
 }
-
-/* Estilo para el título */
-main h1 {
-    font-size: 5em;  /* Mayor tamaño del texto */
-    text-align: center;
-    margin-top: 150px; /* Espacio superior para que el título esté centrado en la pantalla */
-    font-weight: bold;
-    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(76, 175, 80, 0.8); /* Sombra más fuerte y resplandor */
-    color: rgb(76, 175, 80); /* Verde medio para el título */
-}
-
-/* Asegurar que el contenido principal esté centrado verticalmente */
-main {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Estilo general para enlaces (en caso de tener más elementos en la página) */
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Diseño responsivo para dispositivos móviles */
-@media (max-width: 768px) {
-    main h1 {
-        font-size: 3em; /* Título más pequeño en pantallas pequeñas */
-    }
-    header a {
-        font-size: 16px; /* Reducir tamaño de los enlaces en pantallas pequeñas */
-    }
-}
+/* todo FIN CABECERA */
