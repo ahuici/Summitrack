@@ -38,11 +38,14 @@ public class MapaController {
     }
 
     @GetMapping("/mapa/guardar")
-    public String guardarMonte(@RequestParam(required = false) Double lat, @RequestParam(required = false) Double lon, Model model) {
+    public String guardarMonte(@RequestParam(required = false) Double lat,
+                               @RequestParam(required = false) Double lon,
+                               @RequestParam(required = false) boolean checkbox,
+                               Model model) {
         Monte monte = new Monte();
-//        monte.setLatitud(lat);
-//        monte.setLongitud(lon);
-        monte.setUbicacion(sacarNombrePorCordenadas(lat, lon));
+        monte.setLatitud(lat);
+        monte.setLongitud(lon);
+        if (!checkbox) monte.setUbicacion(sacarNombrePorCordenadas(lat, lon));
         model.addAttribute("monte", monte);
         return "mapa/mapaAdd";
     }
@@ -56,9 +59,6 @@ public class MapaController {
 
     @GetMapping("/mapa/salir")
     public String salirAgregar(@ModelAttribute Monte monte, Model model){
-//        String nombre = sacarNombrePorCordenadas(monte.getLat(), monte.getLon());
-//        monte.setUbicacion(nombre);
-
         monteService.save(monte);
         model.addAttribute("isExitoso", false);
         return "mapa/cerrar";
@@ -67,15 +67,12 @@ public class MapaController {
     private String sacarNombrePorCordenadas(Double latitud, Double longitud){
         String nombre = "Sin especificar";
         try {
-            // Crear un cliente HTTP
             HttpClient client = HttpClient.newHttpClient();
-
-            // Crear la petición HTTP
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://nominatim.openstreetmap.org/reverse?lat=" + latitud + "&lon=" + longitud + "&format=json"))
+                    .header("User-Agent", "SummitrackApp/1.0 (aimarhuici@gmail.com)") 
                     .build();
 
-            // Enviar la solicitud y obtener la respuesta
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             // Sacar nombre del JSON
@@ -84,12 +81,8 @@ public class MapaController {
             JsonNode addressNode = rootNode.path("name");
             nombre = addressNode.asText();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("ERROR: SacarNombrePorCordenadas (MapaController) --> "); e.printStackTrace();
         }
         return nombre;
     }
-
-    /* SACAR NOMBRE DE LUGARES CON CORDENADAS*/
-    // https://nominatim.openstreetmap.org/reverse?lat={{lat}}&lon={{lon}}&format=json
-    // El atributo es name   --> "name": "Fuerte de San Cristóbal / Alfontso XII.aren gotorlekua",
 }

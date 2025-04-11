@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <title>Summitrack</title>
   <link rel="stylesheet" href="/css/mapa.css">
   <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
@@ -9,56 +9,68 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 <body>
-  <div th:insert="fragments/header :: header"></div>
+<div th:insert="fragments/header :: header"></div>
 
-  <div id="map">
-    <script>
-      var map = L.map('map').setView([42.854865, -1.663550], 13);
+<div id="map">
+  <script>
+    var map = L.map('map').setView([42.854865, -1.663550], 13);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-      var marker;
+    var marker;
 
-      map.on('click', function(e) {
-          // Coloca un marcador en el lugar donde el usuario haga click
-          if (marker) {
-              map.removeLayer(marker);
-          }
-          marker = L.marker(e.latlng).addTo(map);
+    map.on('click', function(e) {
+        // Coloca un marcador en el lugar donde el usuario haga click
+        if (marker) {
+            map.removeLayer(marker);
+        }
+        marker = L.marker(e.latlng).addTo(map);
+    });
 
-      map.on('dblclick', function(e) {
-        var lat = e.latlng.lat;
-        var lon = e.latlng.lng;
-        console.log('Doble clic en Latitud:', lat, 'Longitud:', lon);
+    map.on('dblclick', function(e) {
+      var lat = e.latlng.lat;
+      var lon = e.latlng.lng;
+      console.log('Doble clic en Latitud:', lat, 'Longitud:', lon);
 
-        var url = '/mapa/guardar?lat=' + lat + '&lon=' + lon;
+      // Obtener el estado del checkbox
+      var checkbox = document.querySelector('input[type="checkbox"]');
+      var isChecked = checkbox.checked;
 
-        // Dimensiones de la ventana emergente
-        var width = 900;
-        var height = 600;
+      // Construir la URL incluyendo el estado del checkbox
+      var url = '/mapa/guardar?lat=' + lat + '&lon=' + lon + '&checkbox=' + isChecked;
 
-        // Obtener las dimensiones de la ventana actual
-        var screenWidth = window.innerWidth;
-        var screenHeight = window.innerHeight;
+      // Dimensiones de la ventana emergente
+      var width = 900;
+      var height = 600;
 
-        // Calcular las coordenadas de la ventana emergente para que esté centrada
-        var left = (screenWidth - width) / 2;
-        var top = (screenHeight - height) / 2;
+      // Obtener las dimensiones de la ventana actual
+      var screenWidth = window.innerWidth;
+      var screenHeight = window.innerHeight;
 
-        // Abrir la ventana emergente centrada
-        window.open(url, 'popup', `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`);
-      });
-      });
-    </script>
-  </div>
+      // Calcular las coordenadas de la ventana emergente para que esté centrada
+      var left = (screenWidth - width) / 2;
+      var top = (screenHeight - height) / 2;
 
-  <div id="explicacion">
-    <p><b>Un click: </b> Seleccionar punto del mapa &nbsp;</p>
-    <p><b>Dos clicks: </b> Agregar monte &nbsp;</p>
-    <p><b>Puntos en el mapa: </b> Montes agregados anteriormente</p>
-  </div>
+      // Abrir la ventana emergente centrada
+      window.open(url, 'popup', `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`);
+    });
+  </script>
+</div>
+
+<div id="explicacion">
+  <p><b>Un click: </b> Seleccionar punto del mapa &nbsp;</p>
+  <p><b>Dos clicks: </b> Agregar monte &nbsp;</p>
+  <p><b>Puntos en el mapa: </b> Montes agregados anteriormente</p>
+  <p>
+    <b>Deshabilitar búsqueda de ubicación:</b>
+    <input type="checkbox" id="ubicacionCheckbox">
+    <span class="tooltip-container">
+      <span class="tooltip-icon" title="Si activas esta opción, el mapa no intentará sacar el nombre de la ubicacion seleccionada. Si lo activas la creacion del monte sera mas rapido.">?</span>
+    </span>
+  </p>
+</div>
 
 </body>
 </html>

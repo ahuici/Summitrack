@@ -10,6 +10,7 @@
 
 <form action="#" th:action="@{/mapa/guardar}" th:object="${monte}" method="post">
 
+  <h1>SUMMITRACK</h1>
 
   <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->
 
@@ -20,6 +21,9 @@
 
   <p>Ubicacion: <input type="text" th:field="*{ubicacion}"/></p>
 
+  <p><input type="text" th:field="*{latitud}" hidden="hidden"/></p>
+
+  <p><input type="text" th:field="*{longitud}" hidden="hidden"/></p>
 
   <button type="submit" class="btn btn-primary">Guardar</button>
 </form>

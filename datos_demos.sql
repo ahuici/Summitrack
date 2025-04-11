@@ -2,30 +2,31 @@
 USE summitrack;
 
 /*LIMPIAR DATOS RESTANTES*/
-delete from completa where 1 = 1;
-delete from calendario where 1 = 1;
-delete from ruta where 1 = 1;
-delete from monte where 1 = 1;
-delete from persona where 1 = 1;
+-- delete from completa where 1 = 1 ;
+-- delete from calendario where 1 = 1;
+-- delete from ruta where 1 = 1;
+-- delete from monte where 1 = 1;
+-- delete from persona where 1 = 1;
 
 /* MONTES SCRIPT */
-INSERT INTO monte (id, nombre, altura, ubicacion, is_favorito) VALUES
-    (1000, 'Balaitús', 3144, 'Huesca', true),
-    (1001, 'Posets', 3371, 'Huesca', false),
-    (1002, 'Torre Costerillou', 3049, 'Huesca', false),
-    (1003, 'Aguja d\'Ussel', 3022, 'Huesca', false),
-    (1004, 'Aguja Cadier', 3019, 'Huesca', false),
-    (1005, 'Frondella N.', 3063, 'Huesca', false),
-    (1006, 'Frondella', 3066, 'Huesca', false),
-    (1007, 'Frondella Central', 3049, 'Huesca', false),
-    (1008, 'Gran Facha', 3003, 'Huesca', true),
-    (1009, 'Infierno Occidental', 3073, 'Huesca', false),
-    (1010, 'Infierno Central', 3083, 'Huesca', true),
-    (1011, 'Infierno Oriental', 3078, 'Huesca', false),
-    (1012, 'Aguja de Arnales', 3034, 'Huesca', false),
-    (1013, 'Arnales', 3004, 'Huesca', false),
-    (1014, 'Aguja Pondiellos', 3014, 'Huesca', false),
-    (1015, 'Garmo Negro', 3058, 'Huesca', true);
+INSERT INTO monte (id, nombre, altura, ubicacion, is_favorito, latitud, longitud) VALUES
+    (1000, 'Balaitús', 3144, 'Huesca', true, 42.7322, -0.1244),
+    (1001, 'Posets', 3371, 'Huesca', false, 42.7342, -0.5461),
+    (1002, 'Torre Costerillou', 3049, 'Huesca', false, 42.6546, -0.4621),
+    (1003, 'Aguja d Ussel', 3022, 'Huesca', false, 42.7156, -0.2367),
+    (1004, 'Aguja Cadier', 3019, 'Huesca', false, 42.7239, -0.2539),
+    (1005, 'Frondella N.', 3063, 'Huesca', false, 42.7324, -0.3041),
+    (1006, 'Frondella', 3066, 'Huesca', false, 42.7348, -0.3145),
+    (1007, 'Frondella Central', 3049, 'Huesca', false, 42.7315, -0.3112),
+    (1008, 'Gran Facha', 3003, 'Huesca', true, 42.7042, -0.3367),
+    (1009, 'Infierno Occidental', 3073, 'Huesca', false, 42.6855, -0.3221),
+    (1010, 'Infierno Central', 3083, 'Huesca', true, 42.6938, -0.3193),
+    (1011, 'Infierno Oriental', 3078, 'Huesca', false, 42.7002, -0.3079),
+    (1012, 'Aguja de Arnales', 3034, 'Huesca', false, 42.7101, -0.2186),
+    (1013, 'Arnales', 3004, 'Huesca', false, 42.7114, -0.2134),
+    (1014, 'Aguja Pondiellos', 3014, 'Huesca', false, 42.7118, -0.2432),
+    (1015, 'Garmo Negro', 3058, 'Huesca', true, 42.7569, -0.2406);
+
 
 /* PERSONAS SCRIPT*/
 INSERT INTO persona (id, nombre, apellidos, edad, genero, salir_top) values

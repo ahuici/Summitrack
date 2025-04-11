@@ -23,6 +23,12 @@ public class Monte {
     private Integer altura;
 
     @Column
+    private Double latitud;
+
+    @Column
+    private Double longitud;
+
+    @Column
     private Boolean isFavorito = Boolean.FALSE;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "monte", orphanRemoval = true)
@@ -36,11 +42,13 @@ public class Monte {
     public Monte() {
     }
 
-    public Monte(Integer id, String nombre, String ubicacion, Integer altura) {
+    public Monte(Integer id, String nombre, String ubicacion, Integer altura, Double latitud, Double longitud) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.altura = altura;
+        this.latitud = latitud;
+        this.longitud = longitud;
         this.asciende = new ArrayList<>();
         this.futurasAscensiones = new ArrayList<>();
     }
@@ -87,6 +95,26 @@ public class Monte {
 
     public void setFavorito(Boolean favorito) {
         isFavorito = favorito;
+    }
+
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
+    }
+
+    public Boolean getFavorito() {
+        return isFavorito;
     }
 
     public void setAsciende(List<Ruta> asciendes) {

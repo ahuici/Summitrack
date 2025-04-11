@@ -67,7 +67,7 @@ header a:active {
 #map {
     position: relative;
     top: 120px;
-    height: calc(70vh - 120px); /* ajusta según la altura real del header */
+    height: calc(85vh - 120px); /* ajusta según la altura real del header */
     width: 90%;
     margin: 0 auto; /* centra el mapa */
     padding: 20px; /* espacio interno en lugar de margen */
@@ -86,8 +86,9 @@ header a:active {
 #explicacion {
     display: flex; /* Activa el modelo de flexbox */
     justify-content: space-between; /* Distribuye el contenido en la misma línea con espacio entre ellos */
-    width: 87%; /* Ocupa el mismo ancho que el mapa */
-    margin: 130px auto; /* Se centra debajo del mapa con un margen superior */
+    width: 87%;
+    margin: 20px auto;
+    margin-top: 140px;
     padding: 20px;
     top: 50px;
     background-color: white; /* Fondo blanco para que coincida con el mapa */
@@ -109,3 +110,82 @@ header a:active {
 }
 
 /* TODO FIN LEYENDA */
+
+/* TODO CHECKBOX */
+input[type="checkbox"] {
+    width: 50px; /* Más ancho para mayor visibilidad */
+    height: 25px;
+    appearance: none;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    vertical-align: middle;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    margin-left: 13px;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: white;
+    top: 1.5px;
+    left: 2px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(25px); /* Desplaza el círculo hacia la derecha */
+}
+
+/* TODO FIN CHECKBOX*/
+
+/* TODO Interrogante ayuda */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip-icon {
+    background-color: #007BFF;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2em 0.5em;
+    font-weight: bold;
+    font-size: 0.9em;
+    cursor: help;
+    user-select: none;
+  }
+
+  .tooltip-box {
+    display: none;
+    position: absolute;
+    bottom: 125%; /* Cambiado para que se muestre arriba */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    white-space: normal;
+    width: 180px;
+    font-size: 0.85em;
+    z-index: 1000;
+  }
+
+  .tooltip-container:hover .tooltip-box {
+    display: block;
+
+/* TODO Fin interrogante ayuda*/
