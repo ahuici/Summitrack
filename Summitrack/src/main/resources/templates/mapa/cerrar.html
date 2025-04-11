@@ -5,12 +5,14 @@
   <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 </head>
 <body style="margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center;">
-  <h2 style="font-size: 24px; color: #4CAF50;">Monte guardado correctamente</h2>
+  <h2 style="font-size: 24px; color: #4CAF50;" th:if="${isExitoso}">Monte guardado correctamente. Cerrando ventana...</h2>
+  <h2 style="font-size: 24px; color: red;" th:unless="${isExitoso}">Ha habido un error. Cerrando ventana...</h2>
+
   <script type="text/javascript">
     // Cierra la ventana emergente después de un breve retraso
     setTimeout(function() {
         window.close();  // Cierra la ventana emergente
-    }, 500);  // Espera 2 segundos antes de cerrar
+    }, 750);  // Espera 2 segundos antes de cerrar
   </script>
 </body>
 </html>

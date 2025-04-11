@@ -28,15 +28,28 @@
           }
           marker = L.marker(e.latlng).addTo(map);
 
-          // Evento de doble clic
-          map.on('dblclick', function(e) {
-              var lat = e.latlng.lat;
-              var lon = e.latlng.lng;
-              console.log('Doble clic en Latitud:', lat, 'Longitud:', lon);
+      map.on('dblclick', function(e) {
+        var lat = e.latlng.lat;
+        var lon = e.latlng.lng;
+        console.log('Doble clic en Latitud:', lat, 'Longitud:', lon);
 
-              var url = '/mapa/guardar?lat=' + lat + '&lon=' + lon;
-              window.open(url, 'popup', 'width=900,height=600,scrollbars=yes,resizable=yes');
-          });
+        var url = '/mapa/guardar?lat=' + lat + '&lon=' + lon;
+
+        // Dimensiones de la ventana emergente
+        var width = 900;
+        var height = 600;
+
+        // Obtener las dimensiones de la ventana actual
+        var screenWidth = window.innerWidth;
+        var screenHeight = window.innerHeight;
+
+        // Calcular las coordenadas de la ventana emergente para que esté centrada
+        var left = (screenWidth - width) / 2;
+        var top = (screenHeight - height) / 2;
+
+        // Abrir la ventana emergente centrada
+        window.open(url, 'popup', `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`);
+      });
       });
     </script>
   </div>

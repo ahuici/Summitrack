@@ -8,9 +8,6 @@
 </head>
 <body>
 
-<div th:insert="fragments/header :: header"></div>
-
-
 <form action="#" th:action="@{/mapa/guardar}" th:object="${monte}" method="post">
 
 
@@ -27,7 +24,7 @@
   <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 <div class="buttons-container">
-  <a th:href="|/mapa|">Salir</a>
+  <a th:href="|/mapa/salir|">Salir</a>
 </div>
 </body>
 </html>

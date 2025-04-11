@@ -49,7 +49,14 @@ public class MapaController {
     @PostMapping("/mapa/guardar")
     public String addMontePost(@ModelAttribute Monte monte, Model model){
         monteService.save(monte);
+        model.addAttribute("isExitoso", true);
+        return "mapa/cerrar";
+    }
 
+    @GetMapping("/mapa/salir")
+    public String salirAgregar(@ModelAttribute Monte monte, Model model){
+        monteService.save(monte);
+        model.addAttribute("isExitoso", false);
         return "mapa/cerrar";
     }
 }
