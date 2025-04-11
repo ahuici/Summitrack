@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+  <title>Summitrack</title>
+  <link rel="stylesheet" href="/css/mapa.css">
+  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+  <div th:insert="fragments/header :: header"></div>
+
+  <div id="map">
+    <script>
+      var map = L.map('map').setView([42.854865, -1.663550], 13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      var marker;
+
+      map.on('click', function(e) {
+          // Coloca un marcador en el lugar donde el usuario haga click
+          if (marker) {
+              map.removeLayer(marker);
+          }
+          marker = L.marker(e.latlng).addTo(map);
+
+          // Evento de doble clic
+          map.on('dblclick', function(e) {
+              var lat = e.latlng.lat;
+              var lon = e.latlng.lng;
+              console.log('Doble clic en Latitud:', lat, 'Longitud:', lon);
+
+              var url = '/mapa/guardar?lat=' + lat + '&lon=' + lon;
+              window.open(url, 'popup', 'width=900,height=600,scrollbars=yes,resizable=yes');
+          });
+      });
+    </script>
+  </div>
+
+  <div id="explicacion">
+    <p><b>Un click: </b> Seleccionar punto del mapa &nbsp;</p>
+    <p><b>Dos clicks: </b> Agregar monte &nbsp;</p>
+    <p><b>Puntos en el mapa: </b> Montes agregados anteriormente</p>
+  </div>
+
+</body>
+</html>

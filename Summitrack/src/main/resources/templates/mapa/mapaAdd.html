@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Añadir Monte</title>
+  <link rel="stylesheet" href="/css/add.css">
+  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+</head>
+<body>
+
+<div th:insert="fragments/header :: header"></div>
+
+
+<form action="#" th:action="@{/mapa/guardar}" th:object="${monte}" method="post">
+
+
+  <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->
+
+
+  <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+
+  <p>Altura: <input type="number" th:field="*{altura}"/></p>
+
+  <p>Ubicacion: <input type="text" th:field="*{ubicacion}"/></p>
+
+
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+<div class="buttons-container">
+  <a th:href="|/mapa|">Salir</a>
+</div>
+</body>
+</html>

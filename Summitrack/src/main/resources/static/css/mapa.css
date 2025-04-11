@@ -1,0 +1,111 @@
+/* todo CABECERA */
+
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Estilo para la cabecera con enlaces */
+header {
+    background-color: rgb(76, 175, 80);
+    padding: 15px 20px; /* Espaciado interno */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo a la izquierda, enlaces a la derecha */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#logoCabecera img {
+    height: 50px; /* Ajusta el tamaño del logo */
+    display: flex;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav {
+    display: flex;
+    gap: 20px; /* Espacio entre los enlaces */
+    margin-right: 20%; /* Mueve los enlaces un poco más hacia la izquierda */
+}
+
+/* Estilo para los enlaces de la cabecera */
+header a {
+    color: white; /* Blanco para los enlaces */
+    text-decoration: none;
+    font-size: 20px; /* Aumenta el tamaño de los enlaces */
+    font-weight: 600; /* Un poco más de peso para los enlaces */
+    padding: 12px 18px; /* Aumenta el padding para que los enlaces sean más grandes */
+    border-radius: 5px; /* Bordes redondeados para los enlaces */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco en hover */
+    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba al pasar el ratón */
+}
+
+header a:active {
+    color: #006400; /* Verde oscuro cuando se hace clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+/* todo FIN CABECERA */
+
+/* TODO MAPA*/
+
+#map {
+    position: relative;
+    top: 120px;
+    height: calc(70vh - 120px); /* ajusta según la altura real del header */
+    width: 90%;
+    margin: 0 auto; /* centra el mapa */
+    padding: 20px; /* espacio interno en lugar de margen */
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
+
+    border: 3px solid #4CAF50; /* Marco de color verde */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+    background-color: white; /* Fondo blanco */
+}
+
+/* TODO FIN MAPA*/
+
+/* TODO LEYENDA */
+
+#explicacion {
+    display: flex; /* Activa el modelo de flexbox */
+    justify-content: space-between; /* Distribuye el contenido en la misma línea con espacio entre ellos */
+    width: 87%; /* Ocupa el mismo ancho que el mapa */
+    margin: 130px auto; /* Se centra debajo del mapa con un margen superior */
+    padding: 20px;
+    top: 50px;
+    background-color: white; /* Fondo blanco para que coincida con el mapa */
+    border: 3px solid #4CAF50; /* Mismo color de borde que el mapa */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para el contenedor */
+    font-family: 'Arial', sans-serif; /* Tipografía similar al mapa */
+}
+
+#explicacion p {
+    font-size: 16px;
+    color: #333; /* Color del texto */
+    line-height: 1.5;
+    margin: 0; /* Elimina márgenes predeterminados */
+}
+
+#explicacion b {
+    color: #4CAF50; /* El texto en negrita tendrá el color verde */
+}
+
+/* TODO FIN LEYENDA */
