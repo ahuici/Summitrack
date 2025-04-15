@@ -12,12 +12,32 @@
 <div th:insert="fragments/header :: header"></div>
 
 <div id="map">
-  <script>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    var montes = /*[[${montes}]]*/ [];
+    console.log(montes);
+    /*]]>*/
+
     var map = L.map('map').setView([42.854865, -1.663550], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+    // Icono de monte
+    var monteIcon = L.icon({
+      iconUrl: '/images/pinMonte.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+
+    // Añadir marcador del monte
+    montes.forEach(function(monte) {
+    L.marker([monte.latitud, monte.longitud], { icon: monteIcon })
+      .addTo(map)
+      .bindPopup(monte.nombre);
+    });
 
     var marker;
 
@@ -43,7 +63,7 @@
 
       // Dimensiones de la ventana emergente
       var width = 900;
-      var height = 600;
+      var height = 750;
 
       // Obtener las dimensiones de la ventana actual
       var screenWidth = window.innerWidth;

@@ -1,9 +1,8 @@
 package com.example.masanz.aimar.actividades.controller;
 
 import com.example.masanz.aimar.actividades.model.entity.Monte;
-import com.example.masanz.aimar.actividades.model.entity.Ubicacion;
+import com.example.masanz.aimar.actividades.model.entity.MapaDTO;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
-import com.example.masanz.aimar.actividades.model.service.UbicacionService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +18,23 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class MapaController {
 
     @Autowired
-    private UbicacionService ubicacionService;
-
-    @Autowired
     private MonteService monteService;
 
     @GetMapping("/mapa")
     public String mostrarMapa(Model model) {
-        List<Ubicacion> ubicaciones = ubicacionService.getAll();
-        model.addAttribute("ubicaciones", ubicaciones);
+        List<Monte> montesSinDTO = monteService.getAll();
+        List<MapaDTO> montesConDTO = new ArrayList<>();
+        for (Monte monte : montesSinDTO){
+            montesConDTO.add(new MapaDTO(monte.getNombre(), monte.getLatitud(), monte.getLongitud()));
+        }
+        model.addAttribute("montes", montesConDTO);
         return "mapa/mapa";
     }
 
@@ -70,7 +71,7 @@ public class MapaController {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://nominatim.openstreetmap.org/reverse?lat=" + latitud + "&lon=" + longitud + "&format=json"))
-                    .header("User-Agent", "SummitrackApp/1.0 (aimarhuici@gmail.com)") 
+                    .header("User-Agent", "SummitrackApp/1.0 (aimarhuici@gmail.com)")
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

@@ -2,30 +2,30 @@
 USE summitrack;
 
 /*LIMPIAR DATOS RESTANTES*/
--- delete from completa where 1 = 1 ;
--- delete from calendario where 1 = 1;
--- delete from ruta where 1 = 1;
--- delete from monte where 1 = 1;
--- delete from persona where 1 = 1;
+delete from completa where 1 = 1;
+delete from calendario where 1 = 1;
+delete from ruta where 1 = 1;
+delete from monte where 1 = 1;
+delete from persona where 1 = 1;
 
 /* MONTES SCRIPT */
 INSERT INTO monte (id, nombre, altura, ubicacion, is_favorito, latitud, longitud) VALUES
-    (1000, 'Balaitús', 3144, 'Huesca', true, 42.7322, -0.1244),
-    (1001, 'Posets', 3371, 'Huesca', false, 42.7342, -0.5461),
-    (1002, 'Torre Costerillou', 3049, 'Huesca', false, 42.6546, -0.4621),
-    (1003, 'Aguja d Ussel', 3022, 'Huesca', false, 42.7156, -0.2367),
-    (1004, 'Aguja Cadier', 3019, 'Huesca', false, 42.7239, -0.2539),
-    (1005, 'Frondella N.', 3063, 'Huesca', false, 42.7324, -0.3041),
-    (1006, 'Frondella', 3066, 'Huesca', false, 42.7348, -0.3145),
-    (1007, 'Frondella Central', 3049, 'Huesca', false, 42.7315, -0.3112),
-    (1008, 'Gran Facha', 3003, 'Huesca', true, 42.7042, -0.3367),
-    (1009, 'Infierno Occidental', 3073, 'Huesca', false, 42.6855, -0.3221),
-    (1010, 'Infierno Central', 3083, 'Huesca', true, 42.6938, -0.3193),
-    (1011, 'Infierno Oriental', 3078, 'Huesca', false, 42.7002, -0.3079),
-    (1012, 'Aguja de Arnales', 3034, 'Huesca', false, 42.7101, -0.2186),
-    (1013, 'Arnales', 3004, 'Huesca', false, 42.7114, -0.2134),
-    (1014, 'Aguja Pondiellos', 3014, 'Huesca', false, 42.7118, -0.2432),
-    (1015, 'Garmo Negro', 3058, 'Huesca', true, 42.7569, -0.2406);
+    (1000, 'Balaitús', 3144, 'Huesca', true, 42.838923, -0.290149),
+    (1001, 'Posets', 3371, 'Huesca', false, 42.654481, 0.4352),
+    (1002, 'Beriain', 1493, 'Navarra', true, 42.88835792445149, -1.980419181148572),
+    (1003, 'Mesa de los tres reyes', 2444,  'Navarra', false, 42.91849196296539, -0.7232656132765253),
+    (1004, 'Aneto', 3404, 'Huesca', true, 42.631089575915475, 0.6566890306862706),
+    (1005, 'Midi d Ossau', 2807, 'Laruns', false, 42.84367510107132, -0.4381398184311536),
+    (1006, 'Taillon', 3150, 'Huesca', false, 42.693902050133275, -0.05205623943728622),
+    (1007, 'Tebarray', 2886, 'Huesca', false, 42.79377382574507, -0.27059830084952324),
+    (1008, 'Gran Facha', 3003, 'Huesca', true, 42.808459823646416, -0.23770177194996325),
+    (1009, 'Castillo de Acher', 2384, 'Huesca', false, 42.82310133037144, -0.6683649899718592),
+    (1010, 'Infierno Central', 3083, 'Huesca', true, 42.78330540569626, -0.2636752906949856),
+    (1011, 'Infierno Oriental', 3078, 'Huesca', false, 42.781518982598605, -0.2593512056550617),
+    (1012, 'Ezkaba', 895, 'Navarra', true, 42.854856968299, -1.6635532960050363),
+    (1013, 'Cilidro Marbore', 3328, 'Huesca', false, 42.6848369458257, 0.02323034375590083),
+    (1014, 'Monte Perdido', 3355, 'Huesca', false, 42.675769046720056, 0.03367480501661623),
+    (1015, 'Garmo Negro', 3058, 'Huesca', true, 42.77170331363778, -0.2641879060623257);
 
 
 /* PERSONAS SCRIPT*/
