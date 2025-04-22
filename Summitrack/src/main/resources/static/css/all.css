@@ -319,7 +319,7 @@ table {
     font-size: 18px;
     text-decoration: none; /* Eliminar subrayado */
     border-radius: 10px; /* Bordes redondeados */
-    width: 350px; /* Ancho fijo para las tarjetas */
+    width: 300px; /* Ancho fijo para las tarjetas */
     text-align: center; /* Centrar texto */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.3s ease, box-shadow 0.3s ease;

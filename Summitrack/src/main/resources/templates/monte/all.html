@@ -19,17 +19,19 @@
                 <th>Ubicacion</th>
                 <th>Num ascensiones</th>
                 <th>Ver rutas</th>
+                <th>Ver tiempo</th>
                 <th class="btnOpciones">Editar</th>
                 <th class="btnOpciones">Eliminar</th>
                 <th class="btnOpciones">Favorito</th>
 
             </tr>
-            <tr th:each="monte : ${montes}">
+            <tr th:each="monte : ${montes}" th:onclick="'window.location=\'/monte/monte?id=' + ${monte.id} + '\';'"  style="cursor: pointer;">
                 <td th:text="${monte.nombre}"></td>
                 <td th:text="${monte.altura}"></td>
                 <td th:text="${monte.ubicacion}"></td>
                 <td><p th:text="'Numero: ' + ${monte.asciende.size()}"></p></td>
                 <td><a th:href="|/monte/rutas?id=${monte.id}|">Ver rutas</a></td>
+                <td><a th:href="|/monte/tiempo?id=${monte.id}|">Ver tiempo</a></td>
                 <td><a th:href="|/monte/add?id=${monte.id}|" id="btnEditar">Editar</a></td>
                 <td><a th:href="|/monte/eliminar?id=${monte.id}|" id="btnEliminar">Eliminar</a></td>
                 <td><a th:href="|/monte/favoritos?id=${monte.id}|" id="btnFavorito">

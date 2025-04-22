@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Summitrack</title>
+    <link rel="stylesheet" href="/css/individualMonte.css">
+    <link rel="icon" type="image/png" href="/images/IconoSummitrack.png">
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+
+<div class="container">
+    <h1 th:text="${monte.nombre}" id="nombreMonte">Nombre del Monte</h1>
+    <!-- Sección del monte -->
+    <section class="monte-info">
+        <p><strong>Ubicación:</strong> <span th:text="${monte.ubicacion}">Ubicación</span></p>
+        <p><strong>Altura:</strong> <span th:text="${monte.altura}">0000</span> m</p>
+        <p><strong>Coordenadas:</strong> <span th:text="${monte.latitud}">00.0000</span>, <span th:text="${monte.longitud}">00.0000</span></p>
+    </section>
+
+    <!-- Sección del pronóstico del tiempo -->
+    <section class="tiempo">
+        <h2>Pronóstico del Tiempo</h2>
+        <!-- Tabla para mostrar el pronóstico -->
+        <table>
+            <thead>
+            <tr>
+                <th>Dia</th>
+                <th>Hora</th>
+                <th>Temperatura (°C)</th>
+                <th>Viento (km/h)</th>
+                <th>Prob. Lluvia (%)</th>
+                <th>Nieve Acumulada (cm)</th>
+                <th>Nieve Nueva (cm)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Recorremos los datos del tiempo, el formato es para las horas 0, 6, 12 y 18 -->
+            <tr th:each="t : ${tiempo}">
+                <td th:text="${t.dia} + '/' + ${t.mes}">Dia</td>
+                <td th:text="${t.hora} + 'h'">Hora</td>
+                <td th:text="${t.temperatura}">0</td>
+                <td th:text="${t.viento}">0</td>
+                <td th:text="${t.probLluvia}">0</td>
+                <td th:text="${t.nieveAcumulada}">0</td>
+                <td th:text="${t.precipitacionNieve}">0</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>
