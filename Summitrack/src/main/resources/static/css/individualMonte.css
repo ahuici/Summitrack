@@ -248,3 +248,18 @@ table tr:nth-child(n+21):nth-child(-n+24) td {
     border: 1px solid #A5D6A7;
     background-color: #c8e6c9; /* Verde más intenso (Color B) */
 }
+
+#comoLlegar {
+    color: #388E3C;
+    size: 8px;
+}
+
+#comoLlegar a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Mantiene el color del texto del contenedor (sin cambio de color de enlace) */
+}
+
+#comoLlegar a:hover {
+    color: inherit; /* Mantiene el mismo color en hover */
+    text-decoration: none; /* Asegura que no haya subrayado en hover */
+}

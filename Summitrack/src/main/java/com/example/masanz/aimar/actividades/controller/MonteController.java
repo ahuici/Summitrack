@@ -5,12 +5,11 @@ import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.service.RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -100,4 +99,22 @@ public class MonteController {
         return "monte/individual";
     }
 
+    @GetMapping("/monte/monte/comoLlegar")
+    public String verComoLlegar(Model model,
+                                     @RequestParam(name = "id") Integer id){
+        Monte monte = monteService.findByID(id);
+        model.addAttribute("monte",monte);
+
+        return "monte/comoLlegar";
+    }
+    @PostMapping("/guardar-ubicacion")
+    public String obtenerUbicacion(@RequestBody Map<String, Object> ubicacion) {
+        double latitud = (double) ubicacion.get("latitud");
+        double longitud = (double) ubicacion.get("longitud");
+
+        // Lógica para procesar la ubicación si es necesario
+        System.out.println("{\"latitud\": " + latitud + ", \"longitud\": " + longitud + "}");
+
+        return "";
+    }
 }

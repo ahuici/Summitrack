@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener Ubicación</title>
+</head>
+<body>
+
+<h1>Obtener tu ubicación actual</h1>
+<button onclick="getLocation()">Obtener ubicación</button>
+
+<!-- Muestra la ubicación -->
+<p id="ubicacion">Tu ubicación será mostrada aquí.</p>
+
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            // Si la geolocalización está disponible
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            // Si la geolocalización no está soportada
+            document.getElementById("ubicacion").innerHTML = "Geolocalización no es soportada por tu navegador.";
+        }
+    }
+
+    function showPosition(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+
+    fetch('/guardar-ubicacion', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            latitud: lat,
+            longitud: lon
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+        document.getElementById("ubicacion").innerHTML = "Tu ubicación es: Latitud: " + lat + ", Longitud: " + lon;
+    }
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                alert("El usuario denegó la solicitud de geolocalización. No se puede calcular la ruta, redirigiendo.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("La información de ubicación no está disponible. No se puede calcular la , redirigiendo.");
+                break;
+            case error.TIMEOUT:
+                alert("Se alcanzó el tiempo máximo de espera para obtener la ubicación. No se puede calcular la ruta, redirigiendo.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("Se produjo un error desconocido. No se puede calcular la ruta, redirigiendo.");
+                break;
+        }
+        setTimeout(function() {
+            window.location.href = "/monte";  // Cambia la URL a la página de destino
+        }, 500); // 5 segundos de espera antes de redirigir
+    }
+
+
+    window.addEventListener('load', getLocation);
+</script>
+
+</body>
+</html>
