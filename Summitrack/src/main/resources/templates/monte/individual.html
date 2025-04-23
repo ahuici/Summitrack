@@ -18,7 +18,7 @@
     <section class="monte-info">
         <p>
             <strong>Ubicación:</strong> <span th:text="${monte.ubicacion}">Ubicación</span>
-            &nbsp;&nbsp; <b><a th:href="@{/monte/monte/comoLlegar(id=${monte.id})}" id="comoLlegar">¿Como llegar?</a></b>
+            &nbsp;&nbsp; <b><a th:href="@{/monte/monte/sacarUbicacion(id=${monte.id})}" id="comoLlegar">¿Como llegar?</a></b>
         </p>
         <p><strong>Altura:</strong> <span th:text="${monte.altura}">0000</span> m</p>
         <p><strong>Coordenadas:</strong> <span th:text="${monte.latitud}">00.0000</span>, <span th:text="${monte.longitud}">00.0000</span></p>

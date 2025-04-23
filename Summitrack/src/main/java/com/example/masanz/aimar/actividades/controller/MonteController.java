@@ -1,5 +1,6 @@
 package com.example.masanz.aimar.actividades.controller;
 
+import com.example.masanz.aimar.actividades.model.entity.MapaDTO;
 import com.example.masanz.aimar.actividades.model.entity.TiempoDTO;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
@@ -99,22 +100,34 @@ public class MonteController {
         return "monte/individual";
     }
 
-    @GetMapping("/monte/monte/comoLlegar")
-    public String verComoLlegar(Model model,
+    @GetMapping("/monte/monte/sacarUbicacion")
+    public String sacarUbicacion(Model model,
                                      @RequestParam(name = "id") Integer id){
         Monte monte = monteService.findByID(id);
         model.addAttribute("monte",monte);
+        model.addAttribute("id",id);
 
-        return "monte/comoLlegar";
+        return "monte/sacarUbicacion";
     }
+
     @PostMapping("/guardar-ubicacion")
     public String obtenerUbicacion(@RequestBody Map<String, Object> ubicacion) {
         double latitud = (double) ubicacion.get("latitud");
         double longitud = (double) ubicacion.get("longitud");
 
-        // Lógica para procesar la ubicación si es necesario
-        System.out.println("{\"latitud\": " + latitud + ", \"longitud\": " + longitud + "}");
-
         return "";
+    }
+
+    @GetMapping("/monte/monte/comoLlegar")
+    public String verComoLlegar(Model model,
+                                @RequestParam(name = "id") Integer id,
+                                @RequestParam(name = "latitud") double latitud,
+                                @RequestParam(name = "longitud") double longitud){
+        Monte monte = monteService.findByID(id);
+        model.addAttribute("inicio",new MapaDTO(monte.getId(), monte.getNombre(), monte.getLatitud(), monte.getLongitud()));
+        model.addAttribute("final",new MapaDTO(0,"Inicio",latitud, longitud));
+        model.addAttribute("id",id);
+
+        return "monte/comoLlegar";
     }
 }

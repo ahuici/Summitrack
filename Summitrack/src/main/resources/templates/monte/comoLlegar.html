@@ -1,72 +1,73 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obtener Ubicación</title>
+  <meta charset="UTF-8">
+  <title>Summitrack</title>
+  <link rel="stylesheet" href="/css/mapa.css">
+  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 <body>
+<div th:insert="fragments/header :: header"></div>
 
-<h1>Obtener tu ubicación actual</h1>
-<button onclick="getLocation()">Obtener ubicación</button>
+<div id="map">
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    var inicio = /*[[${inicio}]]*/ null;  // El monte destino
+    var final = /*[[${final}]]*/ null;    // El punto de inicio (ubicación actual)
+    /*]]>*/
 
-<!-- Muestra la ubicación -->
-<p id="ubicacion">Tu ubicación será mostrada aquí.</p>
+    var map = L.map('map').setView([inicio.latitud, inicio.longitud], 11); // centrado más ajustado al destino
 
-<script>
-    function getLocation() {
-        if (navigator.geolocation) {
-            // Si la geolocalización está disponible
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            // Si la geolocalización no está soportada
-            document.getElementById("ubicacion").innerHTML = "Geolocalización no es soportada por tu navegador.";
-        }
-    }
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-    function showPosition(position) {
-    var lat = position.coords.latitude;
-    var lon = position.coords.longitude;
+    var iconoMonte = L.icon({
+        iconUrl: '/images/pinMonte.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+    });
 
-    fetch('/guardar-ubicacion', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            latitud: lat,
-            longitud: lon
-        })
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-        document.getElementById("ubicacion").innerHTML = "Tu ubicación es: Latitud: " + lat + ", Longitud: " + lon;
-    }
+    var iconoInicio = L.icon({
+        iconUrl: '/images/pinInicio.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+    });
 
-    function showError(error) {
-        switch(error.code) {
-            case error.PERMISSION_DENIED:
-                alert("El usuario denegó la solicitud de geolocalización. No se puede calcular la ruta, redirigiendo.");
-                break;
-            case error.POSITION_UNAVAILABLE:
-                alert("La información de ubicación no está disponible. No se puede calcular la , redirigiendo.");
-                break;
-            case error.TIMEOUT:
-                alert("Se alcanzó el tiempo máximo de espera para obtener la ubicación. No se puede calcular la ruta, redirigiendo.");
-                break;
-            case error.UNKNOWN_ERROR:
-                alert("Se produjo un error desconocido. No se puede calcular la ruta, redirigiendo.");
-                break;
-        }
-        setTimeout(function() {
-            window.location.href = "/monte";  // Cambia la URL a la página de destino
-        }, 500); // 5 segundos de espera antes de redirigir
-    }
+    L.marker([final.latitud, final.longitud], { icon: iconoInicio })
+        .addTo(map)
+        .bindPopup(final.nombre);
 
+    L.marker([inicio.latitud, inicio.longitud], { icon: iconoMonte })
+        .addTo(map)
+        .bindPopup(inicio.nombre);
 
-    window.addEventListener('load', getLocation);
-</script>
+    var ruta = L.polyline([
+        [final.latitud, final.longitud],
+        [inicio.latitud, inicio.longitud]
+    ], {
+        color: 'green',
+        weight: 5,
+        opacity: 0.7
+    }).addTo(map);
+
+    map.fitBounds(ruta.getBounds());
+  </script>
+</div>
+
+<div id="explicacion">
+  <p> &nbsp;</p>
+  <p><b>Punto A: </b> Ubicacion actual &nbsp;</p>
+  <p><b>Punto B: </b> Destino final &nbsp;</p>
+  <p><b>Linea verde: </b> Ruta sugerida para llegar al monte &nbsp;</p>
+  <p> &nbsp;</p>
+</div>
 
 </body>
 </html>
