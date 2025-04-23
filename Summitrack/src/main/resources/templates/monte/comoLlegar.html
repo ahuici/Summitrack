@@ -5,68 +5,92 @@
   <title>Summitrack</title>
   <link rel="stylesheet" href="/css/mapa.css">
   <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+
+  <!-- Cargar Leaflet primero -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <!-- Luego cargar Leaflet Routing Machine -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"/>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.min.js"></script>
+
+  <!-- Cargar GraphHopper -->
+  <script src="https://unpkg.com/leaflet-routing-machine-graphhopper@latest/dist/leaflet-routing-machine-graphhopper.js"></script>
+
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
 
-<div id="map">
-  <script th:inline="javascript">
-    /*<![CDATA[*/
-    var inicio = /*[[${inicio}]]*/ null;  // El monte destino
-    var final = /*[[${final}]]*/ null;    // El punto de inicio (ubicación actual)
-    /*]]>*/
+<div id="map"></div>
 
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  var inicio = {
+    latitud: [[${inicio.latitud}]],
+    longitud: [[${inicio.longitud}]],
+    nombre: [[${inicio.nombre}]]
+  };  // El monte destino
+
+  var final = {
+    latitud: [[${final.latitud}]],
+    longitud: [[${final.longitud}]],
+    nombre: [[${final.nombre}]]
+  };
+
+  if (inicio.latitud && inicio.longitud && final.latitud && final.longitud) {
     var map = L.map('map').setView([inicio.latitud, inicio.longitud], 11); // centrado más ajustado al destino
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
     var iconoMonte = L.icon({
-        iconUrl: '/images/pinMonte.png',
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
-        popupAnchor: [0, -32]
+      iconUrl: '/images/pinMonte.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
     });
 
     var iconoInicio = L.icon({
-        iconUrl: '/images/pinInicio.png',
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
-        popupAnchor: [0, -32]
+      iconUrl: '/images/pinInicio.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
     });
 
     L.marker([final.latitud, final.longitud], { icon: iconoInicio })
-        .addTo(map)
-        .bindPopup(final.nombre);
+      .addTo(map)
+      .bindPopup(final.nombre);
 
     L.marker([inicio.latitud, inicio.longitud], { icon: iconoMonte })
-        .addTo(map)
-        .bindPopup(inicio.nombre);
+      .addTo(map)
+      .bindPopup(inicio.nombre);
 
-    var ruta = L.polyline([
-        [final.latitud, final.longitud],
-        [inicio.latitud, inicio.longitud]
-    ], {
-        color: 'green',
-        weight: 5,
-        opacity: 0.7
+    L.Routing.control({
+      waypoints: [
+        L.latLng(final.latitud, final.longitud),
+        L.latLng(inicio.latitud, inicio.longitud)
+      ],
+      routeWhileDragging: true,
+      createMarker: function() { return null; }
     }).addTo(map);
 
-    map.fitBounds(ruta.getBounds());
-  </script>
-</div>
+    map.fitBounds([
+      [final.latitud, final.longitud],
+      [inicio.latitud, inicio.longitud]
+    ]);
+
+  } else {
+    console.error("Error: Las ubicaciones 'inicio' o 'final' no están definidas correctamente.");
+  }
+  /*]]>*/
+</script>
 
 <div id="explicacion">
-  <p> &nbsp;</p>
-  <p><b>Punto A: </b> Ubicacion actual &nbsp;</p>
-  <p><b>Punto B: </b> Destino final &nbsp;</p>
-  <p><b>Linea verde: </b> Ruta sugerida para llegar al monte &nbsp;</p>
-  <p> &nbsp;</p>
+  <p><b>Punto A: </b> Ubicacion actual</p>
+  <p><b>Punto B: </b> Destino final</p>
+  <p><b>Linea verde: </b> Ruta sugerida para llegar al monte</p>
+  <p id="aviso"><b>AVISO: </b> La ruta tarde unos segundos en cargar</p>
 </div>
 
 </body>

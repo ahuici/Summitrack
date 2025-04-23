@@ -187,5 +187,9 @@ input[type="checkbox"]:checked::before {
 
   .tooltip-container:hover .tooltip-box {
     display: block;
-
+  }
 /* TODO Fin interrogante ayuda*/
+
+#aviso b {
+    color: red;
+}
