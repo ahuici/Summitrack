@@ -1,12 +1,9 @@
 package com.example.masanz.aimar.actividades.controller;
 
-import com.example.masanz.aimar.actividades.model.entity.Ruta;
 import com.example.masanz.aimar.actividades.model.entity.TiempoDTO;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.service.RutaService;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.io.Console;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -100,11 +88,14 @@ public class MonteController {
     }
 
     @GetMapping("/monte/monte")
-    public String verMonteIndividual(Model model, @RequestParam(name = "id") Integer id){
+    public String verMonteIndividual(Model model,
+                                     @RequestParam(name = "id") Integer id,
+                                     @RequestParam(name = "mapa") boolean mapa){
         Monte monte = monteService.findByID(id);
         List<TiempoDTO> tiempo = monteService.getTiempoMonte(monte);
         model.addAttribute("monte",monte);
         model.addAttribute("tiempo",tiempo);
+        model.addAttribute("mapa",mapa);
 
         return "monte/individual";
     }

@@ -32,7 +32,7 @@ public class MapaController {
         List<Monte> montesSinDTO = monteService.getAll();
         List<MapaDTO> montesConDTO = new ArrayList<>();
         for (Monte monte : montesSinDTO){
-            montesConDTO.add(new MapaDTO(monte.getNombre(), monte.getLatitud(), monte.getLongitud()));
+            montesConDTO.add(new MapaDTO(monte.getId(), monte.getNombre(), monte.getLatitud(), monte.getLongitud()));
         }
         model.addAttribute("montes", montesConDTO);
         return "mapa/mapa";

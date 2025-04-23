@@ -203,3 +203,48 @@ nav a {
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+/* TODO FLECHA */
+/* Estilo para el enlace de "Atrás" */
+.atras {
+    position: absolute; /* Posiciona el enlace en relación al contenedor más cercano */
+    top: 20px; /* Espacio de 20px desde la parte superior */
+    left: 20px; /* Espacio de 20px desde la parte izquierda */
+    display: inline-block; /* Hace que el enlace sea un bloque en línea */
+    color: #4CAF50; /* Color verde */
+    font-size: 14px; /* Tamaño pequeño para el texto */
+    font-weight: bold; /* Texto en negrita */
+    text-decoration: none; /* Elimina el subrayado */
+    padding: 8px 12px; /* Añade un pequeño espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f5f5f5; /* Fondo gris claro */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efectos de transición */
+    margin-top: 125px;
+}
+
+/* Efecto hover para el enlace "Atras" */
+.atras:hover {
+    background-color: #e0e0e0; /* Fondo ligeramente más oscuro */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba al pasar el ratón */
+}
+
+/* Efecto activo para el enlace "Atras" */
+.atras:active {
+    transform: translateY(1px); /* Desplazamiento hacia abajo cuando se hace clic */
+}
+
+table tr:nth-child(n):nth-child(-n+4) td,
+table tr:nth-child(n+9):nth-child(-n+12) td,
+table tr:nth-child(n+17):nth-child(-n+20) td,
+table tr:nth-child(n+25):nth-child(-n+28) td {
+    border: 1px solid #A5D6A7;
+    background-color: #e8f5e9; /* Verde claro (Color A) */
+}
+
+/* Color B para los 4 siguientes bloques: del 5 al 8, del 13 al 16, etc. */
+table tr:nth-child(n+5):nth-child(-n+8) td,
+table tr:nth-child(n+13):nth-child(-n+16) td,
+table tr:nth-child(n+21):nth-child(-n+24) td {
+    border: 1px solid #A5D6A7;
+    background-color: #c8e6c9; /* Verde más intenso (Color B) */
+}

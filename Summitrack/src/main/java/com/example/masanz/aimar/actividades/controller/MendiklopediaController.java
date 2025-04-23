@@ -1,6 +1,5 @@
 package com.example.masanz.aimar.actividades.controller;
 
-import com.example.masanz.aimar.actividades.model.entity.Calendario;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.service.MendiklopediaService;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
@@ -8,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
