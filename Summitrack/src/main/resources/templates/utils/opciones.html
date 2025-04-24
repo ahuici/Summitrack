@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Summitrack</title>
+  <link rel="stylesheet" href="/css/opciones.css">
+  <link rel="icon" type="image/png" href="/images/IconoSummitrack.png">
+</head>
+<body>
+  <!-- Contenido principal -->
+  <header>
+    <a href="/" id="logoCabecera">
+      <img src="/images/IconoSummitrack.png" alt="Home">
+    </a>
+    <nav>
+      <a href="/anadir">Añadir</a>
+      <a href="/ver">Ver</a>
+      <a href="/montes">Montes</a>
+      <a href="/top">Top</a>
+      <a href="/mapa">Mapa</a>
+    </nav>
+  </header>
+
+  <h1 th:text="${titulo}"></h1>
+
+  <div class="divOpciones">
+    <div class="opcion">
+      <img src="https://img.freepik.com/vector-gratis/ilustracion-contorno-montana-dibujada-mano_23-2150389432.jpg?t=st=1745485558~exp=1745489158~hmac=ad63a95d7ca6ebaaa400b4df9d8cef07ee41073ea27bae5f494eaeff832b0dda&w=826"/>
+      <p>Montes</p>
+      <a th:href="@{/{opt}/monte(opt=${opcion})}">Ir</a>
+    </div>
+
+    <div class="opcion">
+      <img src="https://img.freepik.com/fotos-premium/camino-esta-ilustrado-marcadores-ubicacion-que-sugieren-navegacion-o-viaje_1115583-48055.jpg?w=826"/>
+      <p>Rutas</p>
+      <a th:href="@{/{opt}/ruta(opt=${opcion})}">Ir</a>
+    </div>
+
+    <div class="opcion">
+      <img src="https://img.freepik.com/vector-gratis/coleccion-stickman-dibujados-mano_23-2149217627.jpg?t=st=1745485608~exp=1745489208~hmac=b3a9b9b9dc45e6211cab97a0f7776b427cb1525adf4c18b2aca4741a8e239f68&w=996"/>
+      <p>Personas</p>
+      <a th:href="@{/{opt}/persona(opt=${opcion})}">Ir</a>
+    </div>
+
+    <div class="opcion">
+      <img src="https://img.freepik.com/vector-premium/compruebe-vector-hermosamente-disenado-icono-premium-calendario-planificador_142112-1294.jpg?w=826"/>
+      <p>Calendario</p>
+      <a th:href="@{/{opt}/calendario(opt=${opcion})}">Ir</a>
+    </div>
+  </div>
+
+</body>
+</html>

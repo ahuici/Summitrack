@@ -67,7 +67,6 @@ public class RutaController {
     public String addRutaPost(@ModelAttribute Ruta ruta,
                               @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar,
                               @RequestParam("personas") List<Integer> personas) {
-        System.out.println("Entrando en el metodo");
         try {
             if (fotoAgregar != null && !fotoAgregar.isEmpty()) {
                 String filename = fotoAgregar.getOriginalFilename();

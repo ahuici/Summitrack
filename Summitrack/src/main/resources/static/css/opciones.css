@@ -1,0 +1,189 @@
+/* todo CABECERA */
+
+
+/* Estilo para la cabecera con enlaces */
+header {
+    background-color: rgb(76, 175, 80);
+    padding: 15px 20px; /* Espaciado interno */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo a la izquierda, enlaces a la derecha */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#logoCabecera img {
+    height: 50px; /* Ajusta el tamaño del logo */
+    display: flex;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav {
+    display: flex;
+    gap: 20px; /* Espacio entre los enlaces */
+    margin-right: 20%; /* Mueve los enlaces un poco más hacia la izquierda */
+}
+
+/* Estilo para los enlaces de la cabecera */
+header a {
+    color: white; /* Blanco para los enlaces */
+    text-decoration: none;
+    font-size: 20px; /* Aumenta el tamaño de los enlaces */
+    font-weight: 600; /* Un poco más de peso para los enlaces */
+    padding: 12px 18px; /* Aumenta el padding para que los enlaces sean más grandes */
+    border-radius: 5px; /* Bordes redondeados para los enlaces */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco en hover */
+    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba al pasar el ratón */
+}
+
+header a:active {
+    color: #006400; /* Verde oscuro cuando se hace clic */
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+/* todo FIN CABECERA */
+
+/* Reinicios y caja */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F5F5;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Cabecera */
+header {
+  background-color: rgb(76, 175, 80);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 5px;
+  transition: background-color .3s, transform .3s;
+}
+header a:hover {
+  background-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+#logoCabecera img {
+  height: 50px;
+}
+
+/* Contenedor de opciones */
+.divOpciones {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 4 columnas de igual tamaño */
+    gap: 30px;  /* Espacio entre las tarjetas */
+    max-width: 1100px;  /* Limita el ancho máximo del contenedor */
+    padding: 20px;
+    margin: 5px auto 0;  /* Centra el contenedor horizontalmente */
+    width: 100%;  /* Asegura que el contenedor ocupe el 100% del ancho disponible */
+    justify-content: center;  /* Centra las tarjetas horizontalmente */
+}
+
+/* Tarjetas */
+.opcion {
+    display: inline-block;
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.opcion img {
+    width: 250px;
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.opcion p {
+  padding: 15px;
+  font-size: 18px;
+}
+.opcion a {
+  display: inline-block;
+  margin: 15px 0 20px;
+  padding: 8px 15px;
+  background-color: #388E3C;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color .3s, transform .3s;
+  width: 50px;
+}
+.opcion:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+.opcion a:hover {
+  background-color: #2C6F2F;
+}
+
+/* Mensaje de error */
+.error {
+  color: red;
+  margin: 15px 0;
+}
+
+/* Títulos */
+/* Títulos */
+h1 {
+    color: #4CAF50;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-top: 145px; /* Espacio debajo del header fijo */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .divOpciones {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
