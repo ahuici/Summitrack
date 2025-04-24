@@ -8,6 +8,7 @@ body {
     justify-content: flex-start;
     height: 100vh;
     text-align: center;
+    margin: 0px;
 }
 
 /* Contenedor principal */

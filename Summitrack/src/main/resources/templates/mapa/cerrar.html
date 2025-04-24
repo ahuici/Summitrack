@@ -9,10 +9,16 @@
   <h2 style="font-size: 24px; color: red;" th:unless="${isExitoso}">Ha habido un error. Cerrando ventana...</h2>
 
   <script type="text/javascript">
-    // Cierra la ventana emergente después de un breve retraso
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.opener && !window.opener.closed) {
+        window.opener.location.reload();
+      }
+      window.close();
+    });
+
     setTimeout(function() {
-        window.close();  // Cierra la ventana emergente
-    }, 750);  // Espera 2 segundos antes de cerrar
+        window.close();
+    }, 750);
   </script>
 </body>
 </html>

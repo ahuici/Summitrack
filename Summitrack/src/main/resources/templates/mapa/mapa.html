@@ -36,7 +36,7 @@
       L.marker([monte.latitud, monte.longitud], { icon: monteIcon })
         .addTo(map)
         .on('click', function() {
-          window.location.href = '/monte/monte?id=' + monte.id + '&mapa=true';
+          window.location.href = '/monte/monte?id=' + monte.id + '&volver=/mapa';
         });
     });
 

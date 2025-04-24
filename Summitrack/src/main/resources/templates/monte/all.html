@@ -24,7 +24,7 @@
                 <th class="btnOpciones">Favorito</th>
 
             </tr>
-            <tr th:each="monte : ${montes}" th:onclick="'window.location=\'/monte/monte?id=' + ${monte.id} + '\&mapa=false\';'"  style="cursor: pointer;">
+            <tr th:each="monte : ${montes}" th:onclick="'window.location=\'/monte/monte?id=' + ${monte.id} + '\&volver=/ver/monte\';'"  style="cursor: pointer;">
                 <td th:text="${monte.nombre}"></td>
                 <td th:text="${monte.altura}"></td>
                 <td th:text="${monte.ubicacion}"></td>

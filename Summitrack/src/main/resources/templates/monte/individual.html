@@ -9,8 +9,7 @@
 <body>
 <div th:insert="fragments/header :: header"></div>
 
-<a href="/monte" class="atras" th:if="${!mapa}">← Atras</a>
-<a href="/mapa" class="atras" th:unless="${!mapa}">← Atras</a>
+<a th:href="@{(${volver})}" class="atras">← Atras</a>
 
 <div class="container">
     <h1 th:text="${monte.nombre}" id="nombreMonte">Nombre del Monte</h1>

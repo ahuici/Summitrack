@@ -90,12 +90,12 @@ public class MonteController {
     @GetMapping("/monte/monte")
     public String verMonteIndividual(Model model,
                                      @RequestParam(name = "id") Integer id,
-                                     @RequestParam(name = "mapa") boolean mapa){
+                                     @RequestParam(name = "volver") String volver){
         Monte monte = monteService.findByID(id);
         List<TiempoDTO> tiempo = monteService.getTiempoMonte(monte);
         model.addAttribute("monte",monte);
         model.addAttribute("tiempo",tiempo);
-        model.addAttribute("mapa",mapa);
+        model.addAttribute("volver",volver);
 
         return "monte/individual";
     }
