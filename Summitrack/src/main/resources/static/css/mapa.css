@@ -193,3 +193,33 @@ input[type="checkbox"]:checked::before {
 #aviso b {
     color: red;
 }
+
+/* TODO FLECHA*/
+/* Estilo para el enlace de "Atrás" */
+.atras {
+    position: absolute; /* Posiciona el enlace en relación al contenedor más cercano */
+    top: 20px; /* Espacio de 20px desde la parte superior */
+    left: 20px; /* Espacio de 20px desde la parte izquierda */
+    display: inline-block; /* Hace que el enlace sea un bloque en línea */
+    color: #4CAF50; /* Color verde */
+    font-size: 14px; /* Tamaño pequeño para el texto */
+    font-weight: bold; /* Texto en negrita */
+    text-decoration: none; /* Elimina el subrayado */
+    padding: 8px 12px; /* Añade un pequeño espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f5f5f5; /* Fondo gris claro */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efectos de transición */
+    margin-top: 125px;
+}
+
+/* Efecto hover para el enlace "Atras" */
+.atras:hover {
+    background-color: #e0e0e0; /* Fondo ligeramente más oscuro */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba al pasar el ratón */
+}
+
+/* Efecto activo para el enlace "Atras" */
+.atras:active {
+    transform: translateY(1px); /* Desplazamiento hacia abajo cuando se hace clic */
+}
+/* TODO FIN FLECHA */

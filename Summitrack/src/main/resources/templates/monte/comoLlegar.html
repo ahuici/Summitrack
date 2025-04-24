@@ -21,6 +21,8 @@
 <body>
 <div th:insert="fragments/header :: header"></div>
 
+<a th:href="@{/monte/monte(id=${id}, mapa=false)}" class="atras">←</a>
+
 <div id="map"></div>
 
 <script th:inline="javascript">

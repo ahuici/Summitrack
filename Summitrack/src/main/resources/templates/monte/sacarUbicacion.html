@@ -2,25 +2,20 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obtener Ubicación</title>
+    <title>Summitrack</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" type="image/png" href="/images/IconoSummitrack.png">
 </head>
 <body>
-
-<h1>Obtener tu ubicación actual</h1>
-<button onclick="getLocation()">Obtener ubicación</button>
-
-<!-- Muestra la ubicación -->
-<p id="ubicacion">Tu ubicación será mostrada aquí.</p>
+<div class="background-container"></div>
+<main>
+    <h1>Sacando ubicacion</h1>
+</main>
 
 <script>
     function getLocation() {
         if (navigator.geolocation) {
-            // Si la geolocalización está disponible
             navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            // Si la geolocalización no está soportada
-            document.getElementById("ubicacion").innerHTML = "Geolocalización no es soportada por tu navegador.";
         }
     }
 
@@ -41,7 +36,6 @@
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
-        document.getElementById("ubicacion").innerHTML = "Tu ubicación es: Latitud: " + lat + ", Longitud: " + lon;
 
         /*<![CDATA[*/
         var id = [[${id}]];
@@ -50,7 +44,7 @@
 
         setTimeout(function() {
             window.location.href = '/monte/monte/comoLlegar?id=' + id + '&latitud=' + lat + '&longitud=' + lon;
-        }, 50);
+        }, 120);
         /*]]>*/
     }
 
@@ -71,7 +65,7 @@
         }
         setTimeout(function() {
             window.location.href = "/monte";  // Cambia la URL a la página de destino
-        }, 50); // 5 segundos de espera antes de redirigir
+        }, 80); // 5 segundos de espera antes de redirigir
     }
 
 

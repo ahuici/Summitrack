@@ -233,6 +233,8 @@ nav a {
     transform: translateY(1px); /* Desplazamiento hacia abajo cuando se hace clic */
 }
 
+/* TODO TABLA COLORES*/
+
 table tr:nth-child(n):nth-child(-n+4) td,
 table tr:nth-child(n+9):nth-child(-n+12) td,
 table tr:nth-child(n+17):nth-child(-n+20) td,
@@ -249,6 +251,7 @@ table tr:nth-child(n+21):nth-child(-n+24) td {
     background-color: #c8e6c9; /* Verde más intenso (Color B) */
 }
 
+/* TODO COMO LLEGAR*/
 #comoLlegar {
     color: #388E3C;
     size: 8px;
