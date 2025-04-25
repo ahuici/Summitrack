@@ -74,14 +74,19 @@
         L.latLng(inicio.latitud, inicio.longitud)
       ],
       routeWhileDragging: true,
-      createMarker: function() { return null; }
+      createMarker: function() { return null; },
+      router: L.Routing.osrmv1({
+        serviceUrl: 'https://corsproxy.io/?https://router.project-osrm.org/route/v1'
+      }),
+      lineOptions: {
+        styles: [{ color: 'green', weight: 5 }]
+      }
     }).addTo(map);
 
     map.fitBounds([
       [final.latitud, final.longitud],
       [inicio.latitud, inicio.longitud]
     ]);
-
   } else {
     console.error("Error: Las ubicaciones 'inicio' o 'final' no están definidas correctamente.");
   }

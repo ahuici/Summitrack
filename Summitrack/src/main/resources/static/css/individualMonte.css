@@ -33,6 +33,7 @@ body {
 .monte-info {
     color: #333333; /* Texto oscuro */
     padding: 40px 50px;
+    padding-bottom: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 30px;
@@ -254,7 +255,7 @@ table tr:nth-child(n+21):nth-child(-n+24) td {
 
 /* TODO COMO LLEGAR*/
 #comoLlegar {
-    color: #388E3C;
+    color: #ff4ab4;
     size: 8px;
 }
 
@@ -264,6 +265,36 @@ table tr:nth-child(n+21):nth-child(-n+24) td {
 }
 
 #comoLlegar a:hover {
+    color: inherit; /* Mantiene el mismo color en hover */
+    text-decoration: none; /* Asegura que no haya subrayado en hover */
+}
+
+#linkEditar{
+   color: #2196F3;
+   size: 8px;
+}
+
+#linkEditar a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Mantiene el color del texto del contenedor (sin cambio de color de enlace) */
+}
+
+#linkEditar a:hover {
+    color: inherit; /* Mantiene el mismo color en hover */
+    text-decoration: none; /* Asegura que no haya subrayado en hover */
+}
+
+#linkEliminar{
+    color: #F44336;
+    size: 8px;
+}
+
+#linkEliminar a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Mantiene el color del texto del contenedor (sin cambio de color de enlace) */
+}
+
+#linkEliminar a:hover {
     color: inherit; /* Mantiene el mismo color en hover */
     text-decoration: none; /* Asegura que no haya subrayado en hover */
 }

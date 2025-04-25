@@ -77,6 +77,23 @@ header a:active {
     border-radius: 12px; /* Bordes redondeados */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
     background-color: white; /* Fondo blanco */
+    z-index: 0;
+}
+
+#mapRuta{
+    position: relative;
+    top: 120px;
+    height: calc(90vh - 120px); /* ajusta según la altura real del header */
+    width: 90%;
+    margin: 0 auto; /* centra el mapa */
+    padding: 20px; /* espacio interno en lugar de margen */
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
+
+    border: 3px solid #4CAF50; /* Marco de color verde */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+    background-color: white; /* Fondo blanco */
+    z-index: 0;
 }
 
 /* TODO FIN MAPA*/
@@ -223,3 +240,56 @@ input[type="checkbox"]:checked::before {
     transform: translateY(1px); /* Desplazamiento hacia abajo cuando se hace clic */
 }
 /* TODO FIN FLECHA */
+
+/* TODO CREAR RUTA BOTON */
+.btnCrearRuta {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Efectos al pasar el ratón y al hacer clic */
+.btnCrearRuta:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+}
+
+.btnCrearRuta:active {
+    background-color: #2C6F2F;
+    transform: translateY(1px);
+}
+/* TODO FIN CREAR RUTA BOTON */
+/* TODO DESCARGAR */
+.boton-inferior {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: none;
+    padding: 0;
+    border: none;
+}
+
+.btnCrearRuta {
+    background-color: #28a745; /* verde */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+
+.btnCrearRuta:hover {
+    background-color: #218838; /* verde más oscuro */
+}
+/* TODO FIN DESCARGAR*/

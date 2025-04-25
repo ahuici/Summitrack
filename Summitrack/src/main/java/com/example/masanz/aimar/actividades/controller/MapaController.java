@@ -65,6 +65,11 @@ public class MapaController {
         return "mapa/cerrar";
     }
 
+    @GetMapping("/mapa/crearRuta")
+    public String crearRuta(Model model){
+        return "mapa/crearRuta";
+    }
+
     private String sacarNombrePorCordenadas(Double latitud, Double longitud){
         String nombre = "Sin especificar";
         try {

@@ -15,12 +15,14 @@
     <h1 th:text="${monte.nombre}" id="nombreMonte">Nombre del Monte</h1>
     <!-- Sección del monte -->
     <section class="monte-info">
-        <p>
-            <strong>Ubicación:</strong> <span th:text="${monte.ubicacion}">Ubicación</span>
-            &nbsp;<b><a th:href="@{/monte/monte/sacarUbicacion(id=${monte.id})}" id="comoLlegar">¿Como llegar?</a></b>
-        </p>
+        <p><strong>Ubicación:</strong> <span th:text="${monte.ubicacion}">Ubicación</span></p>
         <p><strong>Altura:</strong> <span th:text="${monte.altura}">0000</span> m</p>
         <p><strong>Coordenadas:</strong> <span th:text="${monte.latitud}">00.0000</span>, <span th:text="${monte.longitud}">00.0000</span></p>
+        <p><br/>
+            <b><a th:href="@{/monte/monte/sacarUbicacion(id=${monte.id})}" id="comoLlegar">¿Como llegar?</a></b>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="@{/monte/add(id=${monte.id})}" id="linkEditar">Editar</a></b>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="@{/monte/eliminar(id=${monte.id})}" id="linkEliminar">Eliminar</a></b>
+        </p>
     </section>
 
 
