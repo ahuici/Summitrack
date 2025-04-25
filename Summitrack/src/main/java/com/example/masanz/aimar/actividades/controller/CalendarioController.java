@@ -32,47 +32,11 @@ public class CalendarioController {
     @Autowired
     private CalendarioService calendarioService;
 
-    @GetMapping("/calendario")
-    public String getAll(Model model){
-        /*Ordenar por fecha*/
-        List<Calendario> calendarios = calendarioService.getAll();
-        calendarios.sort(Comparator.comparing(Calendario::getFecha));
-
-        /* Agrupar por mes */
-        Map<String, List<Calendario>> calendariosPorMes = calendarios.stream()
-                .collect(Collectors.groupingBy(
-                        c -> c.getFecha().getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + c.getFecha().getYear(), // Mes y año juntos
-                        LinkedHashMap::new, // Mantiene el orden de inserción
-                        Collectors.toList()
-                ));
-
-        model.addAttribute("calendariosPorMes", calendariosPorMes);
-        return "calendario/all";
-    }
-
-    @GetMapping("/calendario/add")
-    public String addCalendarioGet(@RequestParam(name ="id", required = false) Integer id,Model model){
-        Calendario calendario  = new Calendario();
-        if (id != null) {
-            calendario = calendarioService.findByID(id);
-            model.addAttribute("editar", true);
-        }
-        model.addAttribute("calendario", calendario);
-        model.addAttribute("montes", monteService.getAll());
-        return "calendario/add";
-    }
-
-    @PostMapping("/calendario/add")
-    public String addCalendarioPost(@ModelAttribute Calendario calendario, Model model){
-        calendarioService.save(calendario);
-        return "redirect:/calendario";
-    }
-
     @GetMapping("/calendario/eliminar")
     public String eliminarCalendario(@RequestParam(name ="id") Integer id, Model model) {
         Calendario calendario = calendarioService.findByID(id);
 
         calendarioService.delete(calendario);
-        return "redirect:/calendario";
+        return "redirect:/ver/calendario";
     }
 }

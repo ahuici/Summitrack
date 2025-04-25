@@ -23,35 +23,12 @@ public class MonteController {
     @Autowired
     private RutaService rutaService;
 
-    @GetMapping("/monte")
-    public String getAll(Model model){
-        model.addAttribute("montes", monteService.getAll());
-        return "monte/all";
-    }
-
-    @GetMapping("/monte/add")
-    public String addMonteGet(@RequestParam(name ="id", required = false) Integer id,Model model){
-        Monte monte  = new Monte();
-        if (id != null) {
-            monte = monteService.findByID(id);
-            model.addAttribute("editar", true);
-        }
-        model.addAttribute("monte", monte);
-        return "monte/add";
-    }
-
-    @PostMapping("/monte/add")
-    public String addMontePost(@ModelAttribute Monte monte, Model model){
-        monteService.save(monte);
-        return "redirect:/monte";
-    }
-
     @GetMapping("/monte/eliminar")
     public String eliminarMonte(@RequestParam(name ="id") Integer id, Model model) {
         Monte monte = monteService.findByID(id);
 
         monteService.delete(monte);
-        return "redirect:/monte";
+        return "redirect:/ver/monte";
     }
 
     @GetMapping("/monte/rutas")
@@ -95,7 +72,7 @@ public class MonteController {
         List<TiempoDTO> tiempo = monteService.getTiempoMonte(monte);
         model.addAttribute("monte",monte);
         model.addAttribute("tiempo",tiempo);
-        model.addAttribute("volver",volver);
+        model.addAttribute("volver","/ver/monte");
 
         return "monte/individual";
     }
@@ -106,6 +83,7 @@ public class MonteController {
         Monte monte = monteService.findByID(id);
         model.addAttribute("monte",monte);
         model.addAttribute("id",id);
+        model.addAttribute("volver","/monte/monte?id=" + id + "&volver=/ver/monte");
 
         return "monte/sacarUbicacion";
     }

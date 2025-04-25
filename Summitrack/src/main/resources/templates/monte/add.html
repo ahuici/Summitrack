@@ -11,7 +11,7 @@
     <div th:insert="fragments/header :: header"></div>
 
 
-  <form action="#" th:action="@{/monte/add}" th:object="${monte}" method="post">
+  <form action="#" th:action="@{/anadir/monte}" th:object="${monte}" method="post">
 
 
      <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->

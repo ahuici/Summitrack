@@ -10,7 +10,7 @@
     <div th:insert="fragments/header :: header"></div>
 
 
-    <form action="#" th:action="@{/ruta/add}" th:object="${ruta}" method="post" enctype="multipart/form-data">
+    <form action="#" th:action="@{/anadir/ruta}" th:object="${ruta}" method="post" enctype="multipart/form-data">
 
 
         <input type="hidden" th:if="${editar}" th:field="*{id}" /> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->

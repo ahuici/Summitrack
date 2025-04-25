@@ -16,36 +16,11 @@ public class PersonaController {
     @Autowired
     private PersonaService personaService;
 
-    @GetMapping("/personas")
-    public String getAll(Model model){
-        model.addAttribute("personas",personaService.getAll());
-
-        return "persona/all";
-    }
-
-    @GetMapping("/personas/add")
-    public String addPersonaGet(@RequestParam(name ="id", required = false) Integer id, Model model){
-        Persona persona  = new Persona();
-        if (id != null) {
-            persona = personaService.findByID(id);
-            model.addAttribute("editar", true);
-        }
-        model.addAttribute("persona", persona);
-        return "persona/add";
-    }
-
-    @PostMapping("/personas/add")
-    public String addPersonaPost(@ModelAttribute Persona persona, Model model){
-        System.out.println("Genero: " + persona.getGenero());
-        personaService.save(persona);
-        return "redirect:/personas";
-    }
-
     @GetMapping("/personas/eliminar")
     public String eliminarPersona(@RequestParam(name ="id") Integer id, Model model) {
         Persona persona = personaService.findByID(id);
 
         personaService.delete(persona);
-        return "redirect:/personas";
+        return "redirect:/ver/persona";
     }
 }

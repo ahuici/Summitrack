@@ -44,56 +44,11 @@ public class RutaController {
     @Value("${upload.directory}")
     private String uploadDirectory;
 
-    @GetMapping("/ruta")
-    public String getAll(Model model){
-        model.addAttribute("rutas", rutaService.getAll());
-        return "ruta/all";
-    }
-
-    @GetMapping("/ruta/add")
-    public String addRutaGet(@RequestParam(name ="id", required = false) Integer id,Model model){
-        Ruta ruta = new Ruta();
-        if (id != null) {
-            ruta = rutaService.findByID(id);
-            model.addAttribute("editar", true);
-        }
-        model.addAttribute("ruta", ruta);
-        model.addAttribute("montes", monteService.getAll());
-        model.addAttribute("personas", personaService.getAll());
-        return "ruta/add";
-    }
-
-    @PostMapping("/ruta/add")
-    public String addRutaPost(@ModelAttribute Ruta ruta,
-                              @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar,
-                              @RequestParam("personas") List<Integer> personas) {
-        try {
-            if (fotoAgregar != null && !fotoAgregar.isEmpty()) {
-                String filename = fotoAgregar.getOriginalFilename();
-                Path filePath = Paths.get(uploadDirectory, filename);
-
-                File dir = new File(uploadDirectory);
-                if (!dir.exists()) {dir.mkdirs();}
-
-                File destFile = new File(filePath.toString());
-                fotoAgregar.transferTo(destFile); // Guarda el archivo en el disco
-                ruta.setFoto(filename);
-
-
-                rutaService.save(ruta, personas);
-                return "redirect:/ruta";  // Redirige a la lista de rutas
-            } else {throw new IllegalArgumentException("No se ha cargado una foto válida.");}
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "error";  // Redirige a una página de error si hay un fallo
-        }
-    }
-
     @GetMapping("/ruta/eliminar")
     public String eliminarRuta(@RequestParam(name ="id") Integer id, Model model) {
         Ruta ruta = rutaService.findByID(id);
         rutaService.delete(ruta);
-        return "redirect:/ruta";
+        return "redirect:/ver/ruta";
     }
 
 

@@ -62,7 +62,7 @@ public class AnadirController {
     @PostMapping({"/monte","/monte/"})
     public String anadirMontePost(@ModelAttribute Monte monte, Model model){
         monteService.save(monte);
-        return "redirect:/monte";
+        return "redirect:/ver/monte";
     }
 
     /*AÑADIR RUTA*/
@@ -105,7 +105,7 @@ public class AnadirController {
             System.out.println("ERROR AnadirController (anadirRutaPost): " + e.getMessage());
             return "error";
         }
-        return "";
+        return "redirect:/ver/ruta";
     }
 
     /* AÑADIR PERSONAS*/
@@ -124,7 +124,7 @@ public class AnadirController {
     public String anadirPersonaPost(@ModelAttribute Persona persona, Model model){
         System.out.println("Genero: " + persona.getGenero());
         personaService.save(persona);
-        return "redirect:/personas";
+        return "redirect:/ver/persona";
     }
 
     /* ANADIR CALENDARIO*/
@@ -143,7 +143,7 @@ public class AnadirController {
     @PostMapping({"/calendario", "/calendario/"})
     public String anadirCalendarioPost(@ModelAttribute Calendario calendario, Model model){
         calendarioService.save(calendario);
-        return "redirect:/calendario";
+        return "redirect:/ver/calendario";
     }
 
 }
