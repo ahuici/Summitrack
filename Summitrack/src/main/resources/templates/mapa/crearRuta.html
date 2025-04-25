@@ -22,112 +22,133 @@
 
 <div id="mapRuta">
     <script th:inline="javascript">
-        var map = L.map('mapRuta').setView([42.854865, -1.663550], 9);
-        var rutaActual = null;
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('mapRuta').setView([42.854865, -1.663550], 9);
+            var rutaActual = null;
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        var iconoMonte = L.icon({
-          iconUrl: '/images/pinMonte.png',
-          iconSize: [32, 32],
-          iconAnchor: [16, 32],
-          popupAnchor: [0, -32]
-        });
-
-        var iconoInicio = L.icon({
-          iconUrl: '/images/pinInicio.png',
-          iconSize: [32, 32],
-          iconAnchor: [16, 32],
-          popupAnchor: [0, -32]
-        });
-
-        var pInicio = null;
-        var pFinal = null;
-        var startMarker = null;
-        var endMarker = null;
-
-        map.on('click', function(e) {
-            var latlng = e.latlng;
-
-            if (!pInicio) {
-                pInicio = latlng;
-                startMarker = L.marker(pInicio, { icon: iconoInicio }).addTo(map)
-                    .bindPopup("Punto de Inicio");
-            } else if (!pFinal) {
-                pFinal = latlng;
-                endMarker = L.marker(pFinal, { icon: iconoMonte }).addTo(map)
-                    .bindPopup("Punto Final");
-                console.log("Punto final guardado en: ", pFinal);
-
-            var control = L.Routing.control({
-                waypoints: [
-                    L.latLng(pInicio.lat, pInicio.lng),
-                    L.latLng(pFinal.lat, pFinal.lng)
-                ],
-                routeWhileDragging: true,
-                createMarker: function () { return null; },
-                router: L.Routing.osrmv1({
-                    serviceUrl: 'https://corsproxy.io/?https://router.project-osrm.org/route/v1'
-                }),
-                lineOptions: {
-                    styles: [{ color: 'green', weight: 5 }]
-                }
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
-            control.on('routesfound', function (e) {
-                rutaActual = e.routes[0];
-                console.log("Ruta guardada:", rutaActual);
+            var iconoMonte = L.icon({
+                iconUrl: '/images/pinMonte.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
             });
 
-                map.fitBounds([
-                    [pInicio.lat, pInicio.lng],
-                    [pFinal.lat, pFinal.lng]
-                ]);
+            var iconoInicio = L.icon({
+                iconUrl: '/images/pinInicio.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            });
+
+            var pInicio = null;
+            var pFinal = null;
+            var startMarker = null;
+            var endMarker = null;
+            var control = null;
+
+            map.on('click', function (e) {
+                var latlng = e.latlng;
+
+                if (!pInicio) {
+                    pInicio = latlng;
+                    startMarker = L.marker(pInicio, { icon: iconoInicio }).addTo(map)
+                        .bindPopup("Punto de Inicio");
+                } else if (!pFinal) {
+                    pFinal = latlng;
+                    endMarker = L.marker(pFinal, { icon: iconoMonte }).addTo(map)
+                        .bindPopup("Punto Final");
+                    console.log("Punto final guardado en: ", pFinal);
+
+                    control = L.Routing.control({
+                        waypoints: [
+                            L.latLng(pInicio.lat, pInicio.lng),
+                            L.latLng(pFinal.lat, pFinal.lng)
+                        ],
+                        routeWhileDragging: true,
+                        createMarker: function () { return null; },
+                        router: L.Routing.osrmv1({
+                            serviceUrl: 'https://corsproxy.io/?https://router.project-osrm.org/route/v1'
+                        }),
+                        lineOptions: {
+                            styles: [{ color: 'green', weight: 5 }]
+                        }
+                    }).addTo(map);
+
+                    control.on('routesfound', function (e) {
+                        rutaActual = e.routes[0];
+                        console.log("Ruta guardada:", rutaActual);
+                    });
+
+                    map.fitBounds([
+                        [pInicio.lat, pInicio.lng],
+                        [pFinal.lat, pFinal.lng]
+                    ]);
+                }
+            });
+
+            // Función para limpiar la ruta
+            function limpiarRuta() {
+                if (startMarker) { map.removeLayer(startMarker); }
+                if (endMarker) { map.removeLayer(endMarker); }
+                if (control) { map.removeControl(control); }
+
+                pInicio = null;
+                pFinal = null;
+                rutaActual = null;
             }
-        });
-    </script>
-</div>
-<div class="boton-inferior">
-    <button class="btnCrearRuta" id="descargar">Descargar ruta</button>
-</div>
 
-<script>
-    document.getElementById('descargar').addEventListener('click', function () {
-        if (!rutaActual) {
-            alert("La ruta debe generarse antes para poder descargarse.");
-            return;
-        }
+            // Event listener para el botón de limpiar ruta
+            document.getElementById('limpiar').addEventListener('click', function () {
+                limpiarRuta();
+            });
 
-        const gpxData = rutaToGPX(rutaActual);
-        const blob = new Blob([gpxData], { type: "application/gpx+xml" });
-        const url = URL.createObjectURL(blob);
+            // Event listener para el botón de descargar
+            document.getElementById('descargar').addEventListener('click', function () {
+                if (!rutaActual) {
+                    alert("La ruta debe generarse antes para poder descargarse.");
+                    return;
+                }
 
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "ruta.gpx";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    });
+                const gpxData = rutaToGPX(rutaActual);
+                const blob = new Blob([gpxData], { type: "application/gpx+xml" });
+                const url = URL.createObjectURL(blob);
 
-    function rutaToGPX(route) {
-        const points = route.coordinates;
-        const gpxHeader = `<?xml version="1.0" encoding="UTF-8"?>
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "ruta.gpx";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+
+            function rutaToGPX(route) {
+                const points = route.coordinates;
+                const gpxHeader = `<?xml version="1.0" encoding="UTF-8"?>
     <gpx version="1.1" creator="Summitrack" xmlns="http://www.topografix.com/GPX/1/1">
     <trk>
       <name>Ruta creada</name>
       <trkseg>
     `;
-        const gpxFooter = `  </trkseg>\n</trk>\n</gpx>`;
-        const gpxPoints = points.map(pt =>
-            `    <trkpt lat="${pt.lat}" lon="${pt.lng}"></trkpt>`
-        ).join("\n");
+                const gpxFooter = `  </trkseg>\n</trk>\n</gpx>`;
+                const gpxPoints = points.map(pt =>
+                    `    <trkpt lat="${pt.lat}" lon="${pt.lng}"></trkpt>`
+                ).join("\n");
 
-        return gpxHeader + gpxPoints + "\n" + gpxFooter;
-    }
-</script>
+                return gpxHeader + gpxPoints + "\n" + gpxFooter;
+            }
+        });
+    </script>
+</div>
+
+<div class="boton-inferior">
+    <button class="btnCrearRuta" id="descargar">Descargar ruta</button>
+    <button class="btnCrearRuta" id="limpiar">Limpiar ruta</button>
+</div>
+
 </body>
 </html>
