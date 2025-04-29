@@ -72,7 +72,8 @@ public class MonteController {
         List<TiempoDTO> tiempo = monteService.getTiempoMonte(monte);
         model.addAttribute("monte",monte);
         model.addAttribute("tiempo",tiempo);
-        model.addAttribute("volver","/ver/monte");
+        model.addAttribute("volver",volver);
+        model.addAttribute("ascensiones", rutaService.getPersonasRuta(id).size());
 
         return "monte/individual";
     }
@@ -105,6 +106,7 @@ public class MonteController {
         model.addAttribute("inicio",new MapaDTO(monte.getId(), monte.getNombre(), monte.getLatitud(), monte.getLongitud()));
         model.addAttribute("final",new MapaDTO(0,"Inicio",latitud, longitud));
         model.addAttribute("id",id);
+        model.addAttribute("volver","/ver/monte");
 
         return "monte/comoLlegar";
     }

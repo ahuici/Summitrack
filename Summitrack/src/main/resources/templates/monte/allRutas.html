@@ -10,35 +10,20 @@
 <h1>Rutas</h1>
 
   <div th:insert="fragments/header :: header"></div>
-  <a href="/monte" class="atras">← Atras</a>
+  <a href="/ver/monte" class="atras">← Atras</a>
 <table>
   <tr>
-    <td>Distancia</td>
-    <td>Desnivel</td>
-    <td>Fecha</td>
-    <td>Tiempo</td>
-    <td>Ver mas</td>
-    <th class="btnOpciones">Editar</th>
-    <th class="btnOpciones">Eliminar</th>
+    <th>Distancia</th>
+    <th>Desnivel</th>
+    <th>Fecha</th>
+    <th>Tiempo</th>
   </tr>
   <tr th:each="ruta : ${rutas}">
     <td th:text="${ruta.distancia}"></td>
     <td th:text="${ruta.desnivel}"></td>
     <td th:text="${ruta.fecha}"></td>
     <td th:text="${ruta.tiempo}"></td>
-    <!--    <td th:text="${ruta.tipo}"></td>-->
-    <!--    <td th:text="${ruta.peligrosidad}"></td>-->
-    <!--    <td th:text="${ruta.dificultad}"></td>-->
-    <!--    <td><img th:src="@{/ruta/foto(id=${ruta.id})}" alt="Error al cargar" width="500"></td>-->
-<!--    <td th:text="${ruta.monte.nombre}"></td>-->
-    <td><a th:href="|/ruta/verMas?id=${ruta.id}|">Ver mas</a></td>
-    <td><a th:href="|/ruta/add?id=${ruta.id}|" id="btnEditar">Editar</a></td>
-    <td><a th:href="|/ruta/eliminar?id=${ruta.id}|" id="btnEliminar">Eliminar</a></td>
   </tr>
 </table>
-<div class="buttons-container">
-<a th:href="@{'/ruta/add'}">Añadir</a>
-<a th:href="@{'/monte'}">Atras</a>
-</div>
 </body>
 </html>

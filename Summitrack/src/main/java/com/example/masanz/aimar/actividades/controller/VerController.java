@@ -35,7 +35,7 @@ public class VerController {
     @GetMapping({"","/"})
     public String getOpciones(Model model){
         model.addAttribute("opcion","ver");
-        model.addAttribute("titulo","Ver");
+        model.addAttribute("titulo","Ver CRUD");
         return "utils/opciones";
     }
 

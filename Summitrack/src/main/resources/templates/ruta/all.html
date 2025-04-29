@@ -18,8 +18,6 @@
     <th>Tiempo</th>
     <th>Monte</th>
     <th>Personas</th>
-    <th class="btnOpciones">Editar</th>
-    <th class="btnOpciones">Eliminar</th>
   </tr>
   <tr th:each="ruta : ${rutas}" th:onclick="'window.location=\'/ruta/verMas?id=' + ${ruta.id} + '\';'" style="cursor: pointer;">
     <td th:text="${ruta.distancia}"></td>
@@ -27,8 +25,6 @@
     <td th:text="${ruta.tiempo}"></td>
     <td th:text="${ruta.monte.nombre}"></td>
     <td th:text="${ruta.completa.size()}"></td>
-    <td><a th:href="|/ruta/add?id=${ruta.id}|" id="btnEditar">Editar</a></td>
-    <td><a th:href="|/ruta/eliminar?id=${ruta.id}|" id="btnEliminar">Eliminar</a></td>
   </tr>
 </table>
   <div class="buttons-container">

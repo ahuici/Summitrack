@@ -111,12 +111,6 @@ th, td {
     background-color: #c8e6c9; /* Verde más oscuro */
 }
 
-/* ========== HOVER EFFECTS ========== */
-tr:hover:not(.cabecera) {
-    background-color: #e0f2f1;
-    transition: background-color 0.3s ease;
-}
-
 /* ========== RESPONSIVE ========== */
 @media screen and (max-width: 768px) {
     #local, #online {

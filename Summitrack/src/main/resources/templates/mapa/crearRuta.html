@@ -61,7 +61,6 @@
                     pFinal = latlng;
                     endMarker = L.marker(pFinal, { icon: iconoMonte }).addTo(map)
                         .bindPopup("Punto Final");
-                    console.log("Punto final guardado en: ", pFinal);
 
                     control = L.Routing.control({
                         waypoints: [
@@ -119,7 +118,7 @@
 
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = "ruta.gpx";
+                a.download = "Summitrack.gpx";
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);

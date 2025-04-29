@@ -97,6 +97,10 @@ td, th {
     text-align: center;
 }
 
+td {
+    height: 80px;
+}
+
 /* Estilo para las cabeceras de la tabla */
 th {
     background-color: #4CAF50;

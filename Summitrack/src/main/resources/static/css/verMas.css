@@ -1,77 +1,147 @@
-body {
-    background-color: #f3f4f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    margin: 0; /* Asegúrate de que no haya margen por defecto */
-}
-
-.container {
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-    max-width: 600px;
-    width: 100%;
-}
-
-h1 {
-    text-align: center;
-    color: #2d3748;
-    margin-bottom: 20px;
-}
-
-div.grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-div.grid div {
+/* Título del monte */
+.titulo-monte {
+    font-size: 3.5em;
     font-weight: bold;
+    margin: 140px auto 1.5rem auto;
+    color: #388E3C;
+    text-align: center;
 }
 
-img {
-    display: block;
-    margin: 20px auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: 180px;
-    object-fit: cover;
+/* Tarjeta principal con propiedades y botones */
+.tarjeta-ruta {
+    background-color: #ffffff;
+    max-width: 950px;
+    margin: 0 auto 2rem auto;
+    border-radius: 1rem;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.actions {
+.propiedades {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
-}
-
-.actions a {
-    text-decoration: none;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-weight: bold;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
     text-align: center;
 }
 
-.actions a.edit {
-    background-color: #3b82f6;
+.columna {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.actions a.delete {
-    background-color: #ef4444;
+.columna div {
+    margin-bottom: 1.2rem;
+    font-size: 1.3em;
+    color: #333;
 }
 
-.actions a.back {
-    background-color: #6b7280;
+.columna strong {
+    color: #388E3C;
 }
 
-.actions a:hover {
-    opacity: 0.8;
+.acciones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
+
+.acciones a {
+    background-color: #388E3C;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.acciones a:hover {
+    background-color: #2C6B3A;
+    transform: translateY(-2px);
+}
+
+.acciones a:active {
+    transform: translateY(1px);
+}
+
+/* Tarjeta separada para la imagen */
+.tarjeta-imagen {
+    background-color: #ffffff;
+    max-width: 950px;
+    margin: 0 auto 30px auto;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.imagen-ruta {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    border-radius: 0.75rem;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .propiedades {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .titulo-monte {
+        font-size: 2.2em;
+    }
+
+    .columna div {
+        font-size: 1.1em;
+    }
+
+    .acciones {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* TODO BOTONES */
+#linkEditar{
+   background-color: #2196F3;
+   size: 8px;
+}
+
+#linkEditar a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Mantiene el color del texto del contenedor (sin cambio de color de enlace) */
+}
+
+#linkEditar a:hover {
+    color: inherit; /* Mantiene el mismo color en hover */
+    text-decoration: none; /* Asegura que no haya subrayado en hover */
+}
+
+#linkEliminar{
+    background-color: #F44336;
+    size: 8px;
+}
+
+#linkEliminar a {
+    background-color: none; /* Elimina el subrayado */
+    color: inherit; /* Mantiene el color del texto del contenedor (sin cambio de color de enlace) */
+}
+
+#linkEliminar a:hover {
+    color: inherit; /* Mantiene el mismo color en hover */
+    text-decoration: none; /* Asegura que no haya subrayado en hover */
+}
+/* TODO END BOTONES*/
 
 /* TODO CABECERA */
 
@@ -136,3 +206,32 @@ nav a {
 }
 
 /* TODO FIN CABECERA */
+
+/* TODO FLECHA */
+/* Estilo para el enlace de "Atrás" */
+.atras {
+    position: absolute; /* Posiciona el enlace en relación al contenedor más cercano */
+    top: 20px; /* Espacio de 20px desde la parte superior */
+    left: 20px; /* Espacio de 20px desde la parte izquierda */
+    display: inline-block; /* Hace que el enlace sea un bloque en línea */
+    color: #4CAF50; /* Color verde */
+    font-size: 14px; /* Tamaño pequeño para el texto */
+    font-weight: bold; /* Texto en negrita */
+    text-decoration: none; /* Elimina el subrayado */
+    padding: 8px 12px; /* Añade un pequeño espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f5f5f5; /* Fondo gris claro */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efectos de transición */
+    margin-top: 125px;
+}
+
+/* Efecto hover para el enlace "Atras" */
+.atras:hover {
+    background-color: #e0e0e0; /* Fondo ligeramente más oscuro */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba al pasar el ratón */
+}
+
+/* Efecto activo para el enlace "Atras" */
+.atras:active {
+    transform: translateY(1px); /* Desplazamiento hacia abajo cuando se hace clic */
+}

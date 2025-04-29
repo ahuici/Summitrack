@@ -9,31 +9,37 @@
 </head>
 <body>
     <div th:insert="fragments/header :: header"></div>
-<div >
-    <h1>Detalles de la Ruta</h1>
 
-    <div >
-        <div><strong>Distancia:</strong> <span th:text="${ruta.distancia}"></span> km</div>
-        <div><strong>Desnivel:</strong> <span th:text="${ruta.desnivel}"></span> m</div>
-        <div><strong>Fecha:</strong> <span th:text="${ruta.fecha}"></span></div>
-        <div><strong>Tiempo:</strong> <span th:text="${ruta.tiempo}"></span> min</div>
-        <div><strong>Tipo:</strong> <span th:text="${ruta.tipo}"></span></div>
-        <div><strong>Peligrosidad:</strong> <span th:text="${ruta.peligrosidad}"></span>/10</div>
-        <div><strong>Dificultad:</strong> <span th:text="${ruta.dificultad}"></span>/10</div>
-        <div><strong>Apuntes:</strong> <span th:text="${ruta.apuntes}"></span>/10</div>
-        <div><strong>Monte:</strong> <span th:text="${ruta.monte != null ? ruta.monte.nombre : 'Sin Monte'}"></span></div>
+    <a th:href="@{/ver/ruta}" class="atras">← Atrás</a>
+
+    <h1 id="nombreMonte" class="titulo-monte">[[${ruta.monte != null ? ruta.monte.nombre : 'Sin Monte'}]]</h1>
+
+    <div class="tarjeta-ruta">
+        <div class="propiedades">
+            <div class="columna">
+                <div><strong>Distancia:</strong> <span th:text="${ruta.distancia}"></span> km</div>
+                <div><strong>Desnivel:</strong> <span th:text="${ruta.desnivel}"></span> m</div>
+                <div><strong>Fecha:</strong> <span th:text="${ruta.fecha}"></span></div>
+                <div><strong>Tiempo:</strong> <span th:text="${ruta.tiempo}"></span> min</div>
+            </div>
+            <div class="columna">
+                <div><strong>Tipo:</strong> <span th:text="${ruta.tipo}"></span></div>
+                <div><strong>Peligrosidad:</strong> <span th:text="${ruta.peligrosidad}"></span>/10</div>
+                <div><strong>Dificultad:</strong> <span th:text="${ruta.dificultad}"></span>/10</div>
+                <div><strong>Apuntes:</strong> <span th:text="${ruta.apuntes}"></span></div>
+            </div>
+        </div>
+
+        <div class="acciones">
+            <a th:href="|/anadir/ruta?id=${ruta.id}|" id="linkEditar">Editar</a>
+            <a th:href="|/ruta/eliminar?id=${ruta.id}|" id="linkEliminar">Eliminar</a>
+        </div>
     </div>
 
-    <div>
-        <img th:src="@{'/uploads/' + ${ruta.foto}}" alt="Imagen de la ruta" class="rounded-lg shadow-md mx-auto w-80 h-48 object-cover">
+    <div class="tarjeta-imagen">
+        <img th:src="@{'/uploads/' + ${ruta.foto}}" alt="Imagen de la ruta" class="imagen-ruta">
     </div>
 
-    <div >
-        <a th:href="|/ruta/add?id=${ruta.id}|" >✏️ Editar</a>
-        <a th:href="|/ruta/eliminar?id=${ruta.id}|" >🗑️ Eliminar</a>
-        <a th:href="@{/ver/ruta}" >⬅️ Volver</a>
-    </div>
-</div>
 
 </body>
 </html>

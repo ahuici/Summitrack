@@ -43,7 +43,7 @@ public class AnadirController {
     @GetMapping({"","/"})
     public String getOpciones(Model model){
         model.addAttribute("opcion","anadir");
-        model.addAttribute("titulo","Añadir");
+        model.addAttribute("titulo","Añadir CRUD");
         return "utils/opciones";
     }
 
@@ -97,7 +97,7 @@ public class AnadirController {
 
 
                 rutaService.save(ruta, personas);
-                return "redirect:/ruta";  // Redirige a la lista de rutas
+                return "redirect:/ver/ruta";  // Redirige a la lista de rutas
             } else {
                 System.out.println("IllegalArgumentException: No se ha cargado una foto válida.");
             }

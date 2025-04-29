@@ -24,30 +24,29 @@
   <h1 th:text="${titulo}"></h1>
 
   <div class="divOpciones">
-    <div class="opcion">
-      <img src="https://img.freepik.com/vector-gratis/ilustracion-contorno-montana-dibujada-mano_23-2150389432.jpg?t=st=1745485558~exp=1745489158~hmac=ad63a95d7ca6ebaaa400b4df9d8cef07ee41073ea27bae5f494eaeff832b0dda&w=826"/>
+
+    <a class="opcion" th:href="@{/{opt}/monte(opt=${opcion})}">
+      <img src="https://www.valleedossau.com/medias/images/prestataires/randonneehiver-picdossau8-poums64-7716.jpg" />
       <p>Montes</p>
-      <a th:href="@{/{opt}/monte(opt=${opcion})}">Ir</a>
-    </div>
+    </a>
 
-    <div class="opcion">
-      <img src="https://img.freepik.com/fotos-premium/camino-esta-ilustrado-marcadores-ubicacion-que-sugieren-navegacion-o-viaje_1115583-48055.jpg?w=826"/>
+    <a class="opcion" th:href="@{/{opt}/ruta(opt=${opcion})}">
+      <img src="https://i0.wp.com/atrochando.com/wp-content/uploads/2019/12/WhatsApp-Image-2019-12-17-at-21.59.03-1.jpeg?resize=1536%2C1152&ssl=1" />
       <p>Rutas</p>
-      <a th:href="@{/{opt}/ruta(opt=${opcion})}">Ir</a>
-    </div>
+    </a>
 
-    <div class="opcion">
-      <img src="https://img.freepik.com/vector-gratis/coleccion-stickman-dibujados-mano_23-2149217627.jpg?t=st=1745485608~exp=1745489208~hmac=b3a9b9b9dc45e6211cab97a0f7776b427cb1525adf4c18b2aca4741a8e239f68&w=996"/>
+    <a class="opcion" th:href="@{/{opt}/persona(opt=${opcion})}">
+      <img src="https://img.interempresas.net/fotos/4269013.jpeg" />
       <p>Personas</p>
-      <a th:href="@{/{opt}/persona(opt=${opcion})}">Ir</a>
-    </div>
+    </a>
 
-    <div class="opcion">
-      <img src="https://img.freepik.com/vector-premium/compruebe-vector-hermosamente-disenado-icono-premium-calendario-planificador_142112-1294.jpg?w=826"/>
+    <a class="opcion" th:href="@{/{opt}/calendario(opt=${opcion})}">
+      <img src="https://viajes.nationalgeographic.com.es/medio/2021/06/11/istock-1284549717_dc5c108b_1254x836.jpg" />
       <p>Calendario</p>
-      <a th:href="@{/{opt}/calendario(opt=${opcion})}">Ir</a>
-    </div>
+    </a>
+
   </div>
+
 
 </body>
 </html>
