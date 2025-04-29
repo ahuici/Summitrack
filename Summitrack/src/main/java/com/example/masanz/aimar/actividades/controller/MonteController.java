@@ -4,9 +4,8 @@ import com.example.masanz.aimar.actividades.model.entity.MapaDTO;
 import com.example.masanz.aimar.actividades.model.entity.TiempoDTO;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
-import com.example.masanz.aimar.actividades.model.service.RutaService;
+import com.example.masanz.aimar.actividades.model.service.AscensionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,7 @@ public class MonteController {
     private MonteService monteService;
 
     @Autowired
-    private RutaService rutaService;
+    private AscensionService ascensionService;
 
     @GetMapping("/monte/eliminar")
     public String eliminarMonte(@RequestParam(name ="id") Integer id, Model model) {
@@ -31,10 +30,10 @@ public class MonteController {
         return "redirect:/ver/monte";
     }
 
-    @GetMapping("/monte/rutas")
-    public String verRuta(@RequestParam(name ="id") Integer id, Model model) {
-        model.addAttribute("rutas", rutaService.getAllById(id));
-        return "monte/allRutas";
+    @GetMapping("/monte/ascension")
+    public String verAscension(@RequestParam(name ="id") Integer id, Model model) {
+        model.addAttribute("ascensiones", ascensionService.getAllById(id));
+        return "monte/allAscensiones";
     }
 
     @GetMapping("/monte/favoritos")
@@ -73,7 +72,6 @@ public class MonteController {
         model.addAttribute("monte",monte);
         model.addAttribute("tiempo",tiempo);
         model.addAttribute("volver",volver);
-        model.addAttribute("ascensiones", rutaService.getPersonasRuta(id).size());
 
         return "monte/individual";
     }

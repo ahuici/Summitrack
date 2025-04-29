@@ -1,13 +1,7 @@
 package com.example.masanz.aimar.actividades.model.service;
 
-import com.example.masanz.aimar.actividades.model.DAO.ICompletaDAO;
 import com.example.masanz.aimar.actividades.model.DAO.IMonteDAO;
-import com.example.masanz.aimar.actividades.model.DAO.IPersonaDAO;
-import com.example.masanz.aimar.actividades.model.DAO.IRutaDAO;
 import com.example.masanz.aimar.actividades.model.entity.*;
-import com.google.cloud.firestore.DocumentReference;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.aspectj.weaver.patterns.PerObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +17,7 @@ public class TopService {
     private PersonaService personaService;
 
     @Autowired
-    private RutaService rutaService;
+    private AscensionService ascensionService;
 
     @Autowired
     private CompletaService completaService;
@@ -41,7 +35,7 @@ public class TopService {
             Persona persona = completa.getPersona();
             if (personasDistancia.keySet().contains(persona)){
                 Integer distanciaActual = personasDistancia.get(persona);
-                personasDistancia.put(persona, distanciaActual + completa.getRuta().getDistancia());
+                personasDistancia.put(persona, distanciaActual + completa.getAscension().getDistancia());
             }
         }
 
@@ -64,7 +58,7 @@ public class TopService {
             Persona persona = completa.getPersona();
             if (personasDesnivel.keySet().contains(persona)) {
                 Integer desnivelActual = personasDesnivel.get(persona);
-                personasDesnivel.put(persona, desnivelActual + completa.getRuta().getDesnivel());
+                personasDesnivel.put(persona, desnivelActual + completa.getAscension().getDesnivel());
             }
         }
 
@@ -108,15 +102,15 @@ public class TopService {
     /* TOP GLOBAL*/
 
     public List<DistanciaDTO> getTopDistanciaGlobal(){
-        List<RutaDTO> rutas = firebase.getAllRuta();
+        List<AscensionDTO> ascensiones = firebase.getAllAscensiones();
         Map<Persona, Integer> personasDistancia = getPersonas();
 
-        for (RutaDTO rutaDTO : rutas){
-            for (Integer personaID : rutaDTO.getPersonas()){
+        for (AscensionDTO ascensionDTO : ascensiones){
+            for (Integer personaID : ascensionDTO.getPersonas()){
                 Persona persona = personaService.findByID(personaID);
                 if (personasDistancia.keySet().contains(persona)) {
                     Integer distanciaActual = personasDistancia.get(persona);
-                    personasDistancia.put(persona, distanciaActual + rutaDTO.getDistancia());
+                    personasDistancia.put(persona, distanciaActual + ascensionDTO.getDistancia());
                 }
             }
         }
@@ -133,15 +127,15 @@ public class TopService {
     }
 
     public List<DesnivelDTO> getTopDesnivelGlobal(){
-        List<RutaDTO> rutas = firebase.getAllRuta();
+        List<AscensionDTO> ascensiones = firebase.getAllAscensiones();
         Map<Persona, Integer> personasDesnivel = getPersonas();
 
-        for (RutaDTO rutaDTO : rutas){
-            for (Integer personaID : rutaDTO.getPersonas()){
+        for (AscensionDTO ascensionDTO : ascensiones){
+            for (Integer personaID : ascensionDTO.getPersonas()){
                 Persona persona = personaService.findByID(personaID);
                 if (personasDesnivel.keySet().contains(persona)) {
                     Integer desnivelActual = personasDesnivel.get(persona);
-                    personasDesnivel.put(persona, desnivelActual + rutaDTO.getDesnivel());
+                    personasDesnivel.put(persona, desnivelActual + ascensionDTO.getDesnivel());
                 }
             }
         }
@@ -158,11 +152,11 @@ public class TopService {
     }
 
     public List<CimasDTO> getTopCimasGlobal(){
-        List<RutaDTO> rutas = firebase.getAllRuta();
+        List<AscensionDTO> ascensiones = firebase.getAllAscensiones();
         Map<Persona, Integer> personasCimas = getPersonas();
 
-        for (RutaDTO rutaDTO : rutas){
-            for (Integer personaID : rutaDTO.getPersonas()){
+        for (AscensionDTO ascensionDTO : ascensiones){
+            for (Integer personaID : ascensionDTO.getPersonas()){
                 Persona persona = personaService.findByID(personaID);
                 if (personasCimas.keySet().contains(persona)) {
                     Integer totalCimas = personasCimas.get(persona);

@@ -4,7 +4,7 @@ USE summitrack;
 /*LIMPIAR DATOS RESTANTES*/
 delete from completa where 1 = 1;
 delete from calendario where 1 = 1;
-delete from ruta where 1 = 1;
+delete from ascension where 1 = 1;
 delete from monte where 1 = 1;
 delete from persona where 1 = 1;
 
@@ -40,7 +40,7 @@ INSERT INTO persona (id, nombre, apellidos, edad, genero, salir_top) values
     
 
 /* RUTA SCRIPT */
-INSERT INTO ruta (id, apuntes, desnivel, dificultad, distancia, fecha, foto, peligrosidad, tiempo, tipo, monte_id) values
+INSERT INTO ascension (id, apuntes, desnivel, dificultad, distancia, fecha, foto, peligrosidad, tiempo, tipo, monte_id) values
 	(2000, 'Muy bonito', 1500, 3, 21, "2021-07-10", null, 4, 4, "Cima", 1000),
     (2001, 'Muy feo, no vuelvo mas', 651, 1, 9, "2024-01-04", null, 1, 2, "Cima", 1001),
 	(2002, 'Muy bonito, se ven todo muy bien', 1231, 5, 15, "2019-07-21", null, 1, 6, "Subcima", 1002),
@@ -59,7 +59,7 @@ INSERT INTO calendario (id, descripcion, fecha, titulo, monte_id) values
 	(2005, 'Vamos a ir en cuadrilla', "2025-10-14", "Quedada cuadrilla", 1005);
     
 /* COMPLETA SCRIPT */
-INSERT INTO completa (id_persona, id_ruta, persona_id,ruta_id) values
+INSERT INTO completa (id_persona, id_ascension, persona_id, ascension_id) values
 	(2000, 2000, 2000, 2000),
 	(2001, 2001, 2001, 2001),
 	(2002, 2002, 2002, 2002),

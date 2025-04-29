@@ -2,8 +2,6 @@ package com.example.masanz.aimar.actividades.model.entity;
 
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Comment;
 
 @Entity
 @Table
@@ -13,7 +11,7 @@ public class Completa {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id")
-    private Ruta ruta;
+    private Ascension ascension;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id")
@@ -22,9 +20,9 @@ public class Completa {
     public Completa() {
     }
 
-    public Completa(Ruta ruta, Persona persona) {
-        this.completaID = new CompletaID(ruta.getId(), persona.getId());
-        this.ruta = ruta;
+    public Completa(Ascension ascension, Persona persona) {
+        this.completaID = new CompletaID(ascension.getId(), persona.getId());
+        this.ascension = ascension;
         this.persona = persona;
     }
 
@@ -36,12 +34,12 @@ public class Completa {
         this.completaID = completaID;
     }
 
-    public Ruta getRuta() {
-        return ruta;
+    public Ascension getAscension() {
+        return ascension;
     }
 
-    public void setRuta(Ruta ruta) {
-        this.ruta = ruta;
+    public void setAscension(Ascension ascension) {
+        this.ascension = ascension;
     }
 
     public Persona getPersona() {

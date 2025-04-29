@@ -1,13 +1,13 @@
 package com.example.masanz.aimar.actividades.controller;
 
+import com.example.masanz.aimar.actividades.model.entity.Ascension;
 import com.example.masanz.aimar.actividades.model.entity.Calendario;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.entity.Persona;
-import com.example.masanz.aimar.actividades.model.entity.Ruta;
 import com.example.masanz.aimar.actividades.model.service.CalendarioService;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.service.PersonaService;
-import com.example.masanz.aimar.actividades.model.service.RutaService;
+import com.example.masanz.aimar.actividades.model.service.AscensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ public class AnadirController {
     private MonteService monteService;
 
     @Autowired
-    private RutaService rutaService;
+    private AscensionService ascensionService;
 
     @Autowired
     private PersonaService personaService;
@@ -66,21 +66,21 @@ public class AnadirController {
     }
 
     /*AÑADIR RUTA*/
-    @GetMapping({"/ruta","/ruta/"})
-    public String anadirRutaGet(@RequestParam(name ="id", required = false) Integer id,Model model){
-        Ruta ruta = new Ruta();
+    @GetMapping({"/ascension","/ascension/"})
+    public String anadirAscensionGet(@RequestParam(name ="id", required = false) Integer id, Model model){
+        Ascension ascension = new Ascension();
         if (id != null) {
-            ruta = rutaService.findByID(id);
+            ascension = ascensionService.findByID(id);
             model.addAttribute("editar", true);
         }
-        model.addAttribute("ruta", ruta);
+        model.addAttribute("ascension", ascension);
         model.addAttribute("montes", monteService.getAll());
         model.addAttribute("personas", personaService.getAll());
-        return "ruta/add";
+        return "ascension/add";
     }
 
-    @PostMapping({"/ruta","/ruta/"})
-    public String anadirRutaPost(@ModelAttribute Ruta ruta,
+    @PostMapping({"/ascension","/ascension/"})
+    public String anadirRutaPost(@ModelAttribute Ascension ascension,
                               @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar,
                               @RequestParam("personas") List<Integer> personas) {
         try {
@@ -93,11 +93,11 @@ public class AnadirController {
 
                 File destFile = new File(filePath.toString());
                 fotoAgregar.transferTo(destFile); // Guarda el archivo en el disco
-                ruta.setFoto(filename);
+                ascension.setFoto(filename);
 
 
-                rutaService.save(ruta, personas);
-                return "redirect:/ver/ruta";  // Redirige a la lista de rutas
+                ascensionService.save(ascension, personas);
+                return "redirect:/ver/ascension";  // Redirige a la lista de rutas
             } else {
                 System.out.println("IllegalArgumentException: No se ha cargado una foto válida.");
             }

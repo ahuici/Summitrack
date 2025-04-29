@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Summitrack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+    <link rel="stylesheet" href="/css/verMas.css">
+</head>
+<body>
+    <div th:insert="fragments/header :: header"></div>
+
+    <a th:href="@{/ver/ascension}" class="atras">← Atrás</a>
+
+    <h1 id="nombreMonte" class="titulo-monte">[[${ascension.monte != null ? ascension.monte.nombre : 'Sin Monte'}]]</h1>
+
+    <div class="tarjeta-ascension">
+        <div class="propiedades">
+            <div class="columna">
+                <div><strong>Distancia:</strong> <span th:text="${ascension.distancia}"></span> km</div>
+                <div><strong>Desnivel:</strong> <span th:text="${ascension.desnivel}"></span> m</div>
+                <div><strong>Fecha:</strong> <span th:text="${ascension.fecha}"></span></div>
+                <div><strong>Tiempo:</strong> <span th:text="${ascension.tiempo}"></span> min</div>
+            </div>
+            <div class="columna">
+                <div><strong>Tipo:</strong> <span th:text="${ascension.tipo}"></span></div>
+                <div><strong>Peligrosidad:</strong> <span th:text="${ascension.peligrosidad}"></span>/10</div>
+                <div><strong>Dificultad:</strong> <span th:text="${ascension.dificultad}"></span>/10</div>
+                <div><strong>Apuntes:</strong> <span th:text="${ascension.apuntes}"></span></div>
+            </div>
+        </div>
+
+        <div class="acciones">
+            <a th:href="|/anadir/ascension?id=${ascension.id}|" id="linkEditar">Editar</a>
+            <a th:href="|/ascension/eliminar?id=${ascension.id}|" id="linkEliminar">Eliminar</a>
+        </div>
+    </div>
+
+    <div class="tarjeta-imagen">
+        <img th:src="@{'/uploads/' + ${ascension.foto}}" alt="Imagen de la ascension" class="imagen-ascension">
+    </div>
+
+
+</body>
+</html>

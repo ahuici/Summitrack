@@ -1,18 +1,14 @@
 package com.example.masanz.aimar.actividades.model.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.IdGeneratorType;
-import org.hibernate.grammars.hql.HqlParser;
-import org.springframework.boot.autoconfigure.ssl.SslProperties;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Ruta")
-public class Ruta {
+@Table(name = "Ascension")
+public class Ascension {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,13 +45,13 @@ public class Ruta {
     @JoinColumn(referencedColumnName = "id")
     private Monte monte;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "ruta", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "ascension", orphanRemoval = true)
     private List<Completa> completa;
 
-    public Ruta() {
+    public Ascension() {
     }
 
-    public Ruta(Integer id, int peligrosidad, String foto, int desnivel, int distancia, int dificultad, String tipo, int tiempo, LocalDate fecha, Monte monte, String apuntes) {
+    public Ascension(Integer id, int peligrosidad, String foto, int desnivel, int distancia, int dificultad, String tipo, int tiempo, LocalDate fecha, Monte monte, String apuntes) {
         this.id = id;
         this.peligrosidad = peligrosidad;
         this.foto = foto;

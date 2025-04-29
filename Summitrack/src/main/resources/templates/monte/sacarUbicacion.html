@@ -51,16 +51,16 @@
     function showError(error) {
         switch(error.code) {
             case error.PERMISSION_DENIED:
-                alert("El usuario denegó la solicitud de geolocalización. No se puede calcular la ruta, redirigiendo.");
+                alert("El usuario denegó la solicitud de geolocalización. No se puede calcular la ascension, redirigiendo.");
                 break;
             case error.POSITION_UNAVAILABLE:
                 alert("La información de ubicación no está disponible. No se puede calcular la , redirigiendo.");
                 break;
             case error.TIMEOUT:
-                alert("Se alcanzó el tiempo máximo de espera para obtener la ubicación. No se puede calcular la ruta, redirigiendo.");
+                alert("Se alcanzó el tiempo máximo de espera para obtener la ubicación. No se puede calcular la ascension, redirigiendo.");
                 break;
             case error.UNKNOWN_ERROR:
-                alert("Se produjo un error desconocido. No se puede calcular la ruta, redirigiendo.");
+                alert("Se produjo un error desconocido. No se puede calcular la ascension, redirigiendo.");
                 break;
         }
         setTimeout(function() {

@@ -1,11 +1,10 @@
 package com.example.masanz.aimar.actividades.controller;
 
-import com.example.masanz.aimar.actividades.model.entity.Completa;
-import com.example.masanz.aimar.actividades.model.entity.Ruta;
+import com.example.masanz.aimar.actividades.model.entity.Ascension;
 import com.example.masanz.aimar.actividades.model.service.CompletaService;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.service.PersonaService;
-import com.example.masanz.aimar.actividades.model.service.RutaService;
+import com.example.masanz.aimar.actividades.model.service.AscensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -21,16 +20,12 @@ import java.net.MalformedURLException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 
 @Controller
-public class RutaController {
+public class AscensionController {
 
     @Autowired
-    private RutaService rutaService;
+    private AscensionService ascensionService;
 
     @Autowired
     private MonteService monteService;
@@ -46,17 +41,17 @@ public class RutaController {
 
     @GetMapping("/ruta/eliminar")
     public String eliminarRuta(@RequestParam(name ="id") Integer id, Model model) {
-        Ruta ruta = rutaService.findByID(id);
-        rutaService.delete(ruta);
+        Ascension ascension = ascensionService.findByID(id);
+        ascensionService.delete(ascension);
         return "redirect:/ver/ruta";
     }
 
 
-    @GetMapping("/ruta/verMas")
+    @GetMapping("/ascension/verMas")
     public String verMasRuta(@RequestParam(name ="id") Integer id, Model model) {
-        Ruta ruta = rutaService.findByID(id);
-        model.addAttribute("ruta", ruta);
-        return "ruta/verMas";
+        Ascension ascension = ascensionService.findByID(id);
+        model.addAttribute("ascension", ascension);
+        return "ascension/verMas";
     }
 
     @GetMapping("/uploads/{filename:.+}")

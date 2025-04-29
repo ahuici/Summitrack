@@ -1,6 +1,5 @@
 package com.example.masanz.aimar.actividades.model.entity;
 import jakarta.persistence.*;
-import org.hibernate.annotations.IdGeneratorType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class Monte {
     private Boolean isFavorito = Boolean.FALSE;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "monte", orphanRemoval = true)
-    private List<Ruta> asciende;
+    private List<Ascension> asciende;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "monte", orphanRemoval = true)
     private List<Calendario> futurasAscensiones;
@@ -85,7 +84,7 @@ public class Monte {
         this.altura = altura;
     }
 
-    public List<Ruta> getAsciende() {
+    public List<Ascension> getAsciende() {
         return asciende;
     }
 
@@ -117,12 +116,12 @@ public class Monte {
         return isFavorito;
     }
 
-    public void setAsciende(List<Ruta> asciendes) {
+    public void setAsciende(List<Ascension> asciendes) {
         this.asciende = asciendes;
     }
 
-    public void addAsciende(Ruta ruta){
-        this.asciende.add(ruta);
+    public void addAsciende(Ascension ascension){
+        this.asciende.add(ascension);
     }
 
     public List<Calendario> getFuturasAscensiones() {

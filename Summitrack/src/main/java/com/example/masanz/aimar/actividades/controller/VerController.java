@@ -4,7 +4,7 @@ import com.example.masanz.aimar.actividades.model.entity.Calendario;
 import com.example.masanz.aimar.actividades.model.service.CalendarioService;
 import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.service.PersonaService;
-import com.example.masanz.aimar.actividades.model.service.RutaService;
+import com.example.masanz.aimar.actividades.model.service.AscensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,7 @@ public class VerController {
     private MonteService monteService;
 
     @Autowired
-    private RutaService rutaService;
+    private AscensionService ascensionService;
 
     @Autowired
     private PersonaService personaService;
@@ -46,10 +46,10 @@ public class VerController {
         return "monte/all";
     }
 
-    @GetMapping({"/ruta","/ruta/"})
+    @GetMapping({"/ascension","/ascension/"})
     public String verRuta(Model model){
-        model.addAttribute("rutas", rutaService.getAll());
-        return "ruta/all";
+        model.addAttribute("ascensiones", ascensionService.getAll());
+        return "ascension/all";
     }
 
     @GetMapping({"/persona","/persona/"})

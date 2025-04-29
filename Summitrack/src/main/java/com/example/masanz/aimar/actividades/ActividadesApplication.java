@@ -1,7 +1,6 @@
 package com.example.masanz.aimar.actividades;
 
 import com.example.masanz.aimar.actividades.model.service.CalendarioService;
-import com.example.masanz.aimar.actividades.model.service.RutaService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +19,7 @@ public class ActividadesApplication {
 
 	// Método que se ejecutará una vez que la aplicación esté completamente inicializada
 	@PostConstruct
-	public void eliminarRutasPasadas() {
-		calendarioService.eliminarCalendariosPasadas(); // Elimina las rutas pasadas
+	public void eliminarAscensionesPasadas() {
+		calendarioService.eliminarCalendariosPasadas(); // Elimina las ascensiones pasadas
 	}
 }

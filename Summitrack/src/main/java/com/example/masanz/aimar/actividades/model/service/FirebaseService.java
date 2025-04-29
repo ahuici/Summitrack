@@ -1,7 +1,6 @@
 package com.example.masanz.aimar.actividades.model.service;
 
-import com.example.masanz.aimar.actividades.model.entity.Ruta;
-import com.example.masanz.aimar.actividades.model.entity.RutaDTO;
+import com.example.masanz.aimar.actividades.model.entity.AscensionDTO;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
@@ -41,12 +40,12 @@ public class FirebaseService {
         return FirestoreClient.getFirestore();
     }
 
-    public List<RutaDTO> getAllRuta(){
-        List<RutaDTO> rutas = new ArrayList<>();
+    public List<AscensionDTO> getAllAscensiones(){
+        List<AscensionDTO> rutas = new ArrayList<>();
         try {
             List<QueryDocumentSnapshot> lista = getFirestore().collection("summitrack").get().get().getDocuments();
             for (QueryDocumentSnapshot document : lista) {
-                RutaDTO temporal = document.toObject(RutaDTO.class);
+                AscensionDTO temporal = document.toObject(AscensionDTO.class);
                 rutas.add(temporal);
             }
         } catch (InterruptedException e) {

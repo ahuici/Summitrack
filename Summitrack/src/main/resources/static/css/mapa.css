@@ -241,7 +241,7 @@ input[type="checkbox"]:checked::before {
 }
 /* TODO FIN FLECHA */
 
-/* TODO CREAR RUTA BOTON */
+/* TODO CREAR ASCENSION BOTON */
 .btnCrearRuta {
     background-color: #4CAF50;
     color: white;
@@ -264,7 +264,7 @@ input[type="checkbox"]:checked::before {
     background-color: #2C6F2F;
     transform: translateY(1px);
 }
-/* TODO FIN CREAR RUTA BOTON */
+/* TODO FIN CREAR ASCENSION BOTON */
 /* TODO DESCARGAR */
 .boton-inferior {
     position: fixed;

@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Rutas asociadas a un monte</title>
+  <title>Summitrack</title>
   <link rel="stylesheet" href="/css/all.css">
   <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 </head>
 <body>
-<h1>Rutas</h1>
+<h1>Ascensiones</h1>
 
   <div th:insert="fragments/header :: header"></div>
   <a href="/ver/monte" class="atras">← Atras</a>
@@ -18,11 +18,11 @@
     <th>Fecha</th>
     <th>Tiempo</th>
   </tr>
-  <tr th:each="ruta : ${rutas}">
-    <td th:text="${ruta.distancia}"></td>
-    <td th:text="${ruta.desnivel}"></td>
-    <td th:text="${ruta.fecha}"></td>
-    <td th:text="${ruta.tiempo}"></td>
+  <tr th:each="ascension : ${ascensiones}">
+    <td th:text="${ascension.distancia}"></td>
+    <td th:text="${ascension.desnivel}"></td>
+    <td th:text="${ascension.fecha}"></td>
+    <td th:text="${ascension.tiempo}"></td>
   </tr>
 </table>
 </body>

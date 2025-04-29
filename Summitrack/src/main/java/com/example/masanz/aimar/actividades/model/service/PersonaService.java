@@ -1,9 +1,7 @@
 package com.example.masanz.aimar.actividades.model.service;
 
-import com.example.masanz.aimar.actividades.model.DAO.IMonteDAO;
 import com.example.masanz.aimar.actividades.model.DAO.IPersonaDAO;
-import com.example.masanz.aimar.actividades.model.DAO.IRutaDAO;
-import com.example.masanz.aimar.actividades.model.entity.Monte;
+import com.example.masanz.aimar.actividades.model.DAO.IAscensionDAO;
 import com.example.masanz.aimar.actividades.model.entity.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,7 @@ public class PersonaService {
     private IPersonaDAO personaDAO;
 
     @Autowired
-    private IRutaDAO rutaDAO;
+    private IAscensionDAO ascensionDAO;
 
     public List<Persona> getAll(){
         return personaDAO.findAll();

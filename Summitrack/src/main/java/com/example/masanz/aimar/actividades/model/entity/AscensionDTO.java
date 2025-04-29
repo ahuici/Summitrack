@@ -1,17 +1,15 @@
 package com.example.masanz.aimar.actividades.model.entity;
 
-import org.hibernate.persister.entity.SingleTableEntityPersister;
-
 import java.util.List;
 
-public class RutaDTO {
+public class AscensionDTO {
     private String id;
     private Integer idMySQL;
     private Integer desnivel;
     private Integer distancia;
     private List<Integer> personas;
 
-    public RutaDTO(String id, Integer idMySQL, Integer desnivel, Integer distancia, List<Integer> personas) {
+    public AscensionDTO(String id, Integer idMySQL, Integer desnivel, Integer distancia, List<Integer> personas) {
         this.id = id;
         this.idMySQL = idMySQL;
         this.desnivel = desnivel;
@@ -19,7 +17,7 @@ public class RutaDTO {
         this.personas = personas;
     }
 
-    public RutaDTO() {
+    public AscensionDTO() {
     }
 
     public String getId() {

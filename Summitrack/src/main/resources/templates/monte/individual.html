@@ -20,7 +20,7 @@
         <p><strong>Coordenadas:</strong> <span th:text="${monte.latitud}">00.0000</span>, <span th:text="${monte.longitud}">00.0000</span></p>
         <p><br/>
             <b><a th:href="@{/monte/monte/sacarUbicacion(id=${monte.id})}" id="comoLlegar">¿Cómo llegar?</a></b>
-            &nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="@{/monte/rutas(id=${monte.id})}" id="linkAscensiones">Ver ascensiones</a></b>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="@{/monte/ascension(id=${monte.id})}" id="linkAscensiones">Ver ascensiones</a></b>
             &nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="@{/anadir/monte(id=${monte.id})}" id="linkEditar">Editar</a></b>
             &nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="@{/monte/eliminar(id=${monte.id})}" id="linkEliminar">Eliminar</a></b>
         </p>

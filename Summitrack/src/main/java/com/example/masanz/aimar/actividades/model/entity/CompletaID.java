@@ -1,30 +1,27 @@
 package com.example.masanz.aimar.actividades.model.entity;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Embeddable
 public class CompletaID {
 
-    private Integer idRuta;
+    private Integer idAscension;
     private Integer idPersona;
 
-    public CompletaID(Integer idRuta, Integer idPersona) {
-        this.idRuta = idRuta;
+    public CompletaID(Integer idAscension, Integer idPersona) {
+        this.idAscension = idAscension;
         this.idPersona = idPersona;
     }
 
     public CompletaID() {
     }
 
-    public Integer getIdRuta() {
-        return idRuta;
+    public Integer getIdAscension() {
+        return idAscension;
     }
 
-    public void setIdRuta(Integer idRuta) {
-        this.idRuta = idRuta;
+    public void setIdAscension(Integer idAscension) {
+        this.idAscension = idAscension;
     }
 
     public Integer getIdPersona() {
@@ -38,7 +35,7 @@ public class CompletaID {
     @Override
     public String toString() {
         return "VendeID{" +
-                "idRuta =" + idRuta +
+                "idAscension =" + idAscension +
                 ", idPersona=" + idPersona +
                 '}';
     }

@@ -1,7 +1,7 @@
 package com.example.masanz.aimar.actividades.model.service;
 
 import com.example.masanz.aimar.actividades.model.DAO.IMonteDAO;
-import com.example.masanz.aimar.actividades.model.DAO.IRutaDAO;
+import com.example.masanz.aimar.actividades.model.DAO.IAscensionDAO;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.entity.TiempoDTO;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -28,7 +28,7 @@ public class MonteService {
     private IMonteDAO monteDAO;
 
     @Autowired
-    private IRutaDAO rutaDAO;
+    private IAscensionDAO rutaDAO;
 
     public List<Monte> getAll(){
         return monteDAO.findAll();
