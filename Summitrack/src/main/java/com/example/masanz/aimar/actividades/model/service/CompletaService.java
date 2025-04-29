@@ -2,22 +2,16 @@ package com.example.masanz.aimar.actividades.model.service;
 
 import com.example.masanz.aimar.actividades.model.DAO.ICompletaDAO;
 import com.example.masanz.aimar.actividades.model.entity.*;
-import com.google.cloud.firestore.DocumentReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @Service
 public class CompletaService {
 
     @Autowired
     private ICompletaDAO completaDAO;
-
-    @Autowired
-    private FirebaseService firebase;
 
     public void save(Completa completa){
         completaDAO.save(completa);

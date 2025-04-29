@@ -1,6 +1,5 @@
 package com.example.masanz.aimar.actividades.model.service;
 
-import com.example.masanz.aimar.actividades.model.DAO.IMonteDAO;
 import com.example.masanz.aimar.actividades.model.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,13 +10,7 @@ import java.util.*;
 public class TopService {
 
     @Autowired
-    private IMonteDAO monteDAO;
-
-    @Autowired
     private PersonaService personaService;
-
-    @Autowired
-    private AscensionService ascensionService;
 
     @Autowired
     private CompletaService completaService;

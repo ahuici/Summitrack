@@ -9,16 +9,12 @@ import com.example.masanz.aimar.actividades.model.service.MonteService;
 import com.example.masanz.aimar.actividades.model.service.PersonaService;
 import com.example.masanz.aimar.actividades.model.service.AscensionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -36,14 +32,12 @@ public class AnadirController {
     @Autowired
     private CalendarioService calendarioService;
 
-    @Value("${upload.directory}")
-    private String uploadDirectory;
-
     /* OPCIONES*/
     @GetMapping({"","/"})
     public String getOpciones(Model model){
         model.addAttribute("opcion","anadir");
         model.addAttribute("titulo","Añadir CRUD");
+
         return "utils/opciones";
     }
 
@@ -56,12 +50,14 @@ public class AnadirController {
             model.addAttribute("editar", true);
         }
         model.addAttribute("monte", monte);
+
         return "monte/add";
     }
 
     @PostMapping({"/monte","/monte/"})
     public String anadirMontePost(@ModelAttribute Monte monte, Model model){
         monteService.save(monte);
+
         return "redirect:/ver/monte";
     }
 
@@ -76,35 +72,26 @@ public class AnadirController {
         model.addAttribute("ascension", ascension);
         model.addAttribute("montes", monteService.getAll());
         model.addAttribute("personas", personaService.getAll());
+
         return "ascension/add";
     }
 
     @PostMapping({"/ascension","/ascension/"})
     public String anadirAscensionPost(@ModelAttribute Ascension ascension,
                               @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar,
-                              @RequestParam("personas") List<Integer> personas) {
+                              @RequestParam("personas") List<Integer> personas)
+    {
         try {
             if (fotoAgregar != null && !fotoAgregar.isEmpty()) {
-                String filename = fotoAgregar.getOriginalFilename();
-                Path filePath = Paths.get(uploadDirectory, filename);
-
-                File dir = new File(uploadDirectory);
-                if (!dir.exists()) {dir.mkdirs();}
-
-                File destFile = new File(filePath.toString());
-                fotoAgregar.transferTo(destFile);
-                ascension.setFoto(filename);
-
-
-                ascensionService.save(ascension, personas);
+                ascensionService.save(ascension, personas, fotoAgregar);
                 return "redirect:/ver/ascension";
-            } else {
-                System.out.println("IllegalArgumentException: No se ha cargado una foto válida.");
-            }
+            } else System.out.println("IllegalArgumentException: No se ha cargado una foto válida.");
+
         } catch (IOException e) {
             System.out.println("ERROR AnadirController (anadirAscensionPost): " + e.getMessage());
             return "error";
         }
+
         return "redirect:/ver/ascension";
     }
 
@@ -117,13 +104,14 @@ public class AnadirController {
             model.addAttribute("editar", true);
         }
         model.addAttribute("persona", persona);
+
         return "persona/add";
     }
 
     @PostMapping({"/persona", "/persona/"})
     public String anadirPersonaPost(@ModelAttribute Persona persona, Model model){
-        System.out.println("Genero: " + persona.getGenero());
         personaService.save(persona);
+
         return "redirect:/ver/persona";
     }
 
@@ -137,12 +125,14 @@ public class AnadirController {
         }
         model.addAttribute("calendario", calendario);
         model.addAttribute("montes", monteService.getAll());
+
         return "calendario/add";
     }
 
     @PostMapping({"/calendario", "/calendario/"})
     public String anadirCalendarioPost(@ModelAttribute Calendario calendario, Model model){
         calendarioService.save(calendario);
+
         return "redirect:/ver/calendario";
     }
 

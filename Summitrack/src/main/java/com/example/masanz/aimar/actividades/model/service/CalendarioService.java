@@ -1,24 +1,17 @@
 package com.example.masanz.aimar.actividades.model.service;
 
 import com.example.masanz.aimar.actividades.model.DAO.ICalendarioDAO;
-import com.example.masanz.aimar.actividades.model.DAO.IMonteDAO;
-import com.example.masanz.aimar.actividades.model.DAO.IPersonaDAO;
 import com.example.masanz.aimar.actividades.model.entity.Calendario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.format.TextStyle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CalendarioService {
-
-    @Autowired
-    private IMonteDAO monteDAO;
-
-    @Autowired
-    private IPersonaDAO personaDAO;
 
     @Autowired
     private ICalendarioDAO calendarioDAO;
@@ -52,6 +45,17 @@ public class CalendarioService {
         for (Calendario calendario : eliminadas){
             delete(calendario);
         }
+    }
+
+    public Map<String, List<Calendario>> getCalendariosAgrupadosPorMes() {
+        List<Calendario> calendarios = getAll();
+        calendarios.sort(Comparator.comparing(Calendario::getFecha));
+        return calendarios.stream()
+                .collect(Collectors.groupingBy(
+                        c -> c.getFecha().getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + c.getFecha().getYear(),
+                        LinkedHashMap::new,
+                        Collectors.toList()
+                ));
     }
 }
 

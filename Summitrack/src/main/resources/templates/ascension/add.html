@@ -5,6 +5,9 @@
     <title>Summitrack</title>
     <link rel="stylesheet" href="/css/add.css">
     <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+
+    <!-- Tom Select CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
 </head>
 <body>
     <div th:insert="fragments/header :: header"></div>
@@ -43,7 +46,7 @@
         </p>
 
         <p>Personas:
-            <select name="personas" id="personas"  multiple size="5">
+            <select name="personas" id="personas" multiple required>
                 <option th:each="persona : ${personas}"
                         th:value="${persona.id}"
                         th:text="${persona.nombre}"></option>
@@ -52,8 +55,20 @@
 
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
-<div class="buttons-container">
-    <a th:href="|/anadir|">Salir</a>
-</div>
+
+    <div class="buttons-container">
+        <a th:href="|/anadir|">Salir</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+    <script>
+        new TomSelect("#personas", {
+            maxItems: null, // permite múltiples
+            plugins: ['remove_button'], // añade botón para eliminar selección
+            create: false, // no permite crear nuevas opciones
+            placeholder: 'Escribe para buscar personas...',
+        });
+    </script>
 </body>
 </html>

@@ -3,7 +3,6 @@ package com.example.masanz.aimar.actividades.model.service;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.ResponseEntity;
 

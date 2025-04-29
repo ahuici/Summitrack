@@ -4,8 +4,14 @@ import com.example.masanz.aimar.actividades.model.DAO.IAscensionDAO;
 import com.example.masanz.aimar.actividades.model.entity.*;
 import com.google.cloud.firestore.DocumentReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -25,6 +31,9 @@ public class AscensionService {
     @Autowired
     private IAscensionDAO ascensionDAO;
 
+    @Value("${upload.directory}")
+    private String uploadDirectory;
+
     public List<Ascension> getAll(){
         return ascensionDAO.findAll();
     }
@@ -33,14 +42,23 @@ public class AscensionService {
         return ascensionDAO.findById(id).orElse(null);
     }
 
-    public void save(Ascension ascension, List<Integer> personasID){
+    public void save(Ascension ascension, List<Integer> personasID, MultipartFile fotoAgregar) throws IOException {
+        String filename = fotoAgregar.getOriginalFilename();
+        Path filePath = Paths.get(uploadDirectory, filename);
+
+        File dir = new File(uploadDirectory);
+        if (!dir.exists()) {dir.mkdirs();}
+
+        File destFile = new File(filePath.toString());
+        fotoAgregar.transferTo(destFile);
+        ascension.setFoto(filename);
+
         ascensionDAO.save(ascension);
         for (Integer idPersona : personasID){
             Completa completa = new Completa(ascension, personaService.findByID(Math.toIntExact(idPersona)));
             completaService.save(completa);
         }
         try {
-            //TODO GUARDAR LA DISTANCIA EN FIREBASE
             DocumentReference docRef = firebase.getFirestore().collection("summitrack").document();
             AscensionDTO ascensionDTO = new AscensionDTO(docRef.getId(), ascension.getId(), ascension.getDesnivel(), ascension.getDistancia(), personasID);
             docRef.set(ascensionDTO).get();

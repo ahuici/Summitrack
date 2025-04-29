@@ -1,7 +1,7 @@
 package com.example.masanz.aimar.actividades.model.service;
 
 import com.example.masanz.aimar.actividades.model.DAO.IMonteDAO;
-import com.example.masanz.aimar.actividades.model.DAO.IAscensionDAO;
+import com.example.masanz.aimar.actividades.model.entity.MapaDTO;
 import com.example.masanz.aimar.actividades.model.entity.Monte;
 import com.example.masanz.aimar.actividades.model.entity.TiempoDTO;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,6 +18,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class MonteService {
@@ -26,9 +28,6 @@ public class MonteService {
 
     @Autowired
     private IMonteDAO monteDAO;
-
-    @Autowired
-    private IAscensionDAO ascensionDAO;
 
     public List<Monte> getAll(){
         return monteDAO.findAll();
@@ -131,5 +130,52 @@ public class MonteService {
         return null;
     }
 
+    public List<MapaDTO> pasarMonteAMonteDTO(){
+        List<Monte> montesSinDTO = getAll();
+        List<MapaDTO> montesConDTO = new ArrayList<>();
+        for (Monte monte : montesSinDTO){
+            montesConDTO.add(new MapaDTO(monte.getId(), monte.getNombre(), monte.getLatitud(), monte.getLongitud()));
+        }
+
+        return montesConDTO;
+    }
+
+    public String sacarNombrePorCordenadas(Double latitud, Double longitud){
+        String nombre = "Sin especificar";
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://nominatim.openstreetmap.org/reverse?lat=" + latitud + "&lon=" + longitud + "&format=json"))
+                    .header("User-Agent", "SummitrackApp/1.0 (aimarhuici@gmail.com)")
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            // Sacar nombre del JSON
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode rootNode = objectMapper.readTree( response.body());
+            JsonNode addressNode = rootNode.path("name");
+            nombre = addressNode.asText();
+        } catch (Exception e) {
+            System.out.println("ERROR: SacarNombrePorCordenadas (MapaController) --> "); e.printStackTrace();
+        }
+        return nombre;
+    }
+
+    public List<Monte> ordenar(String campo, String orden, List<Monte> montes){
+        if (campo != null && orden != null){
+            if (campo.equals("nombre") && orden.equals("asc")) montes.sort(Comparator.comparing(Monte::getNombre));
+            else if (campo.equals("nombre")) montes.sort(Comparator.comparing(Monte::getNombre).reversed());
+            else if (campo.equals("altura") && orden.equals("asc")) montes.sort(Comparator.comparing(Monte::getAltura));
+            else montes.sort(Comparator.comparing(Monte::getAltura).reversed());
+        }
+        return montes;
+    }
+
+    public Map<String, List<TiempoDTO>> getTiempoAgrupadoPorDia(Monte monte) {
+        List<TiempoDTO> tiempos = getTiempoMonte(monte);
+        return tiempos.stream()
+                .collect(Collectors.groupingBy(t -> t.getDia() + "/" + t.getMes()));
+    }
 }
 

@@ -11,9 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.format.TextStyle;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/ver")
@@ -36,6 +34,7 @@ public class VerController {
     public String getOpciones(Model model){
         model.addAttribute("opcion","ver");
         model.addAttribute("titulo","Ver CRUD");
+
         return "utils/opciones";
     }
 
@@ -43,35 +42,29 @@ public class VerController {
     @GetMapping({"/monte","/monte/"})
     public String verMonte(Model model){
         model.addAttribute("montes", monteService.getAll());
+
         return "monte/all";
     }
 
     @GetMapping({"/ascension","/ascension/"})
     public String verAscension(Model model){
         model.addAttribute("ascensiones", ascensionService.getAll());
+
         return "ascension/all";
     }
 
     @GetMapping({"/persona","/persona/"})
     public String verPersona(Model model){
         model.addAttribute("personas",personaService.getAll());
+
         return "persona/all";
     }
 
     @GetMapping({"/calendario","/calendario/"})
     public String verCalendario(Model model){
-        List<Calendario> calendarios = calendarioService.getAll();
-        calendarios.sort(Comparator.comparing(Calendario::getFecha));
-
-        /* Agrupar por mes */
-        Map<String, List<Calendario>> calendariosPorMes = calendarios.stream()
-                .collect(Collectors.groupingBy(
-                        c -> c.getFecha().getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + c.getFecha().getYear(), // Mes y año juntos
-                        LinkedHashMap::new, // Mantiene el orden de inserción
-                        Collectors.toList()
-                ));
-
+        Map<String, List<Calendario>> calendariosPorMes = calendarioService.getCalendariosAgrupadosPorMes();
         model.addAttribute("calendariosPorMes", calendariosPorMes);
+
         return "calendario/all";
     }
 }

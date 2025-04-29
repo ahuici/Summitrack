@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 public class MonteController {
@@ -25,14 +24,15 @@ public class MonteController {
     @GetMapping("/monte/eliminar")
     public String eliminarMonte(@RequestParam(name ="id") Integer id, Model model) {
         Monte monte = monteService.findByID(id);
-
         monteService.delete(monte);
+
         return "redirect:/ver/monte";
     }
 
     @GetMapping("/monte/ascension")
     public String verAscension(@RequestParam(name ="id") Integer id, Model model) {
         model.addAttribute("ascensiones", ascensionService.getAllById(id));
+
         return "monte/allAscensiones";
     }
 
@@ -47,18 +47,16 @@ public class MonteController {
 
         monteService.save(monte);
         model.addAttribute("montes", monteService.getAll());
+
         return "redirect:/monte";
     }
 
     @GetMapping("/monte/tiempo")
     public String verTiempo(Model model, @RequestParam(name = "id") Integer id){
         Monte monte = monteService.findByID(id);
-        List<TiempoDTO> tiempos = monteService.getTiempoMonte(monte);
 
         model.addAttribute("monte", monte);
-        Map<String, List<TiempoDTO>> tiemposAgrupados = tiempos.stream()
-                .collect(Collectors.groupingBy(t -> t.getDia() + "/" + t.getMes()));
-        model.addAttribute("tiemposAgrupadosPorDia", tiemposAgrupados);
+        model.addAttribute("tiemposAgrupadosPorDia", monteService.getTiempoAgrupadoPorDia(monte));
 
         return "monte/tiempo";
     }
