@@ -28,7 +28,7 @@ public class MonteService {
     private IMonteDAO monteDAO;
 
     @Autowired
-    private IAscensionDAO rutaDAO;
+    private IAscensionDAO ascensionDAO;
 
     public List<Monte> getAll(){
         return monteDAO.findAll();

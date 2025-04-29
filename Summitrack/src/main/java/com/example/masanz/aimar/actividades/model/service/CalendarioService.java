@@ -50,7 +50,6 @@ public class CalendarioService {
         }
 
         for (Calendario calendario : eliminadas){
-            System.out.println("Eliminando rutas pasada: " + calendario.getId());
             delete(calendario);
         }
     }

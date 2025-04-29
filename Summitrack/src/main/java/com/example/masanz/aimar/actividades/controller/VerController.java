@@ -47,7 +47,7 @@ public class VerController {
     }
 
     @GetMapping({"/ascension","/ascension/"})
-    public String verRuta(Model model){
+    public String verAscension(Model model){
         model.addAttribute("ascensiones", ascensionService.getAll());
         return "ascension/all";
     }

@@ -39,16 +39,16 @@ public class AscensionController {
     @Value("${upload.directory}")
     private String uploadDirectory;
 
-    @GetMapping("/ruta/eliminar")
-    public String eliminarRuta(@RequestParam(name ="id") Integer id, Model model) {
+    @GetMapping("/ascension/eliminar")
+    public String eliminarAscension(@RequestParam(name ="id") Integer id, Model model) {
         Ascension ascension = ascensionService.findByID(id);
         ascensionService.delete(ascension);
-        return "redirect:/ver/ruta";
+        return "redirect:/ver/ascension";
     }
 
 
     @GetMapping("/ascension/verMas")
-    public String verMasRuta(@RequestParam(name ="id") Integer id, Model model) {
+    public String verMasAscension(@RequestParam(name ="id") Integer id, Model model) {
         Ascension ascension = ascensionService.findByID(id);
         model.addAttribute("ascension", ascension);
         return "ascension/verMas";

@@ -65,7 +65,7 @@ public class AnadirController {
         return "redirect:/ver/monte";
     }
 
-    /*AÑADIR RUTA*/
+    /*AÑADIR ASCENSION*/
     @GetMapping({"/ascension","/ascension/"})
     public String anadirAscensionGet(@RequestParam(name ="id", required = false) Integer id, Model model){
         Ascension ascension = new Ascension();
@@ -80,7 +80,7 @@ public class AnadirController {
     }
 
     @PostMapping({"/ascension","/ascension/"})
-    public String anadirRutaPost(@ModelAttribute Ascension ascension,
+    public String anadirAscensionPost(@ModelAttribute Ascension ascension,
                               @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar,
                               @RequestParam("personas") List<Integer> personas) {
         try {
@@ -92,20 +92,20 @@ public class AnadirController {
                 if (!dir.exists()) {dir.mkdirs();}
 
                 File destFile = new File(filePath.toString());
-                fotoAgregar.transferTo(destFile); // Guarda el archivo en el disco
+                fotoAgregar.transferTo(destFile);
                 ascension.setFoto(filename);
 
 
                 ascensionService.save(ascension, personas);
-                return "redirect:/ver/ascension";  // Redirige a la lista de rutas
+                return "redirect:/ver/ascension";
             } else {
                 System.out.println("IllegalArgumentException: No se ha cargado una foto válida.");
             }
         } catch (IOException e) {
-            System.out.println("ERROR AnadirController (anadirRutaPost): " + e.getMessage());
+            System.out.println("ERROR AnadirController (anadirAscensionPost): " + e.getMessage());
             return "error";
         }
-        return "redirect:/ver/ruta";
+        return "redirect:/ver/ascension";
     }
 
     /* AÑADIR PERSONAS*/

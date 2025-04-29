@@ -15,9 +15,9 @@
 
   <input type="hidden" th:if="${editar}" th:field="*{id}" /> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
 
-  <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+  <p>Nombre: <input type="text" th:field="*{nombre}" required/></p>
 
-  <p>Apellidos: <input type="text" th:field="*{apellidos}"/></p>
+  <p>Apellidos: <input type="text" th:field="*{apellidos}" required/></p>
 
   <p>Edad: <input type="number" th:field="*{edad}" required/></p>
 

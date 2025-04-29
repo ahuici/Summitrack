@@ -41,18 +41,18 @@ public class FirebaseService {
     }
 
     public List<AscensionDTO> getAllAscensiones(){
-        List<AscensionDTO> rutas = new ArrayList<>();
+        List<AscensionDTO> ascensiones = new ArrayList<>();
         try {
             List<QueryDocumentSnapshot> lista = getFirestore().collection("summitrack").get().get().getDocuments();
             for (QueryDocumentSnapshot document : lista) {
                 AscensionDTO temporal = document.toObject(AscensionDTO.class);
-                rutas.add(temporal);
+                ascensiones.add(temporal);
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         }
-        return rutas;
+        return ascensiones;
     }
 }

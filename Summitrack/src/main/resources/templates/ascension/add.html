@@ -15,26 +15,26 @@
 
         <input type="hidden" th:if="${editar}" th:field="*{id}" /> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
 
-        <p>Distancia: <input type="number" th:field="*{distancia}"/></p>
+        <p>Distancia: <input type="number" th:field="*{distancia}" required/></p>
 
-        <p>Desnivel: <input type="number" th:field="*{desnivel}"/></p>
+        <p>Desnivel: <input type="number" th:field="*{desnivel}" required/></p>
 
-        <p>Fecha: <input type="date" th:field="*{fecha}" /></p>
+        <p>Fecha: <input type="date" th:field="*{fecha}" required/></p>
 
         <p>Tiempo: <input type="number" th:field="*{tiempo}" required/></p>
 
-        <p>Tipo: <input type="text" th:field="*{tipo}" /></p>
+        <p>Tipo: <input type="text" th:field="*{tipo}" required/></p>
 
         <p>Dificultad: <input type="number" th:field="*{dificultad}" required/></p>
 
         <p>Peligrosidad: <input type="number" th:field="*{peligrosidad}" required/></p>
 
-        <p>Apuntes: <input type="text" th:field="*{apuntes}"/></p>
+        <p>Apuntes: <input type="text" th:field="*{apuntes}" required/></p>
 
         <p>Foto: <input type="file" name="fotoAgregar" accept="image/*" id="fotoAgregar" required/></p>
 
         <p>Monte:
-            <select th:field="*{monte}" >
+            <select th:field="*{monte}" required>
                 <option value="">-- Selecciona un monte --</option>
                 <option th:each="monte : ${montes}"
                         th:value="${monte.id}"
