@@ -5,17 +5,22 @@
     box-sizing: border-box;
 }
 
-/* Cuerpo del documento */
+/* Cuerpo general sin flexbox centrado */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #F5F5F5; /* Fondo gris claro */
-    color: #333333; /* Color de texto */
-    padding: 0;
+    background-color: #F5F5F5;
+    color: #333;
+    margin: 0;
+}
+
+/* Contenedor para centrar el contenido */
+.contenedorAdd {
     display: flex;
-    justify-content: center; /* Centrar contenido horizontalmente */
-    align-items: center; /* Centrar contenido verticalmente */
-    min-height: 100vh; /* Asegurarnos que ocupe todo el alto de la pantalla */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     flex-direction: column;
+    padding-top: 100px; /* deja espacio para el header fijo */
 }
 
 /* Estilo para el formulario */
@@ -26,7 +31,7 @@ form {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
-    margin-top: 120px; /* Espacio suficiente para no quedar cubierto por la cabecera */
+    margin-top: 30px; /* Espacio suficiente para no quedar cubierto por la cabecera */
     margin-bottom: 40px; /* Aseguramos que haya espacio abajo */
 }
 
@@ -105,27 +110,12 @@ button:focus {
     transform: translateY(1px); /* Efecto al hacer clic */
 }
 
-
-/* Estilo para el enlace "Salir" */
-a {
-    text-align: center;
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    font-size: 16px;
-    color: #4CAF50;
-    font-weight: bold;
-}
-
 a:hover {
     text-decoration: underline;
 }
 
 /* Diseño responsivo para dispositivos móviles */
 @media (max-width: 768px) {
-    header a {
-        font-size: 16px; /* Reducir tamaño de los enlaces en pantallas pequeñas */
-    }
     h1 {
         font-size: 2em; /* Título más pequeño en pantallas pequeñas */
     }
@@ -164,101 +154,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 }
 
-/* TODO CABECERA */
-/* Estilo para la cabecera */
-header {
-    background-color: rgb(76, 175, 80); /* Fondo verde */
-    padding: 20px 0; /* Espacio interno */
-    text-align: center;
-    position: fixed;
-    top: 0;
-    left: 0; /* Asegura que la cabecera toque el borde izquierdo */
-    width: 100%; /* Asegura que ocupe todo el ancho */
-    z-index: 10; /* Asegura que la cabecera esté sobre otros elementos */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
-    margin: 0; /* Elimina cualquier margen alrededor de la cabecera */
-}
-
-/* Estilo para los enlaces en la cabecera */
-header a {
-    color: white; /* Enlaces blancos */
-    text-decoration: none;
-    margin: 0 20px; /* Espaciado entre los enlaces */
-    font-size: 20px; /* Tamaño de los enlaces */
-    font-weight: 600; /* Peso medio para los enlaces */
-    padding: 12px 18px; /* Espaciado interno en los enlaces */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
-}
-
-header a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco al pasar el ratón */
-    transform: translateY(-2px); /* Desplazamiento hacia arriba */
-}
-
-header a:active {
-    color: #006400; /* Verde oscuro cuando se hace clic */
-    transform: translateY(1px); /* Efecto al hacer clic */
-}
-
-#logoCabecera img {
-    height: 50px; /* Ajusta el tamaño del logo */
-    display: flex;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
-    padding: 12px 18px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-nav {
-    display: flex;
-    gap: 20px; /* Espacio entre los enlaces */
-    margin-right: 15%; /* Mueve los enlaces un poco más hacia la izquierda */
-}
-
-
-
-/* Estilo para los enlaces de la cabecera */
-header a {
-    color: white; /* Blanco para los enlaces */
-    text-decoration: none;
-    font-size: 20px; /* Aumenta el tamaño de los enlaces */
-    font-weight: 600; /* Un poco más de peso para los enlaces */
-    padding: 12px 18px; /* Aumenta el padding para que los enlaces sean más grandes */
-    border-radius: 5px; /* Bordes redondeados para los enlaces */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
-}
-
-header a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco en hover */
-    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba al pasar el ratón */
-}
-
-header a:active {
-    color: #006400; /* Verde oscuro cuando se hace clic */
-    transform: translateY(1px); /* Efecto al hacer clic */
-}
-
-header {
-    background-color: rgb(76, 175, 80);
-    padding: 15px 20px; /* Espaciado interno */
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Logo a la izquierda, enlaces a la derecha */
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* TODO CABECERA*/
 
 /* TODO CHECKBOX */
 input[type="checkbox"] {

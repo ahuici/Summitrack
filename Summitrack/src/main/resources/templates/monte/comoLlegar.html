@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Summitrack</title>
   <link rel="stylesheet" href="/css/mapa.css">
+  <link rel="stylesheet" href="/css/header.css">
   <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 
   <!-- Cargar Leaflet primero -->
@@ -19,86 +20,86 @@
 
 </head>
 <body>
-<div th:insert="fragments/header :: header"></div>
 
-<a th:href="@{/monte/monte(id=${id}, volver=${volver})}" class="atras">←</a>
+  <div th:insert="fragments/header :: header"></div>
 
-<div id="map"></div>
+  <a th:href="@{/monte/monte(id=${id}, volver=${volver})}" class="atras">←</a>
 
-<script th:inline="javascript">
-  /*<![CDATA[*/
-  var inicio = {
-    latitud: [[${inicio.latitud}]],
-    longitud: [[${inicio.longitud}]],
-    nombre: [[${inicio.nombre}]]
-  };  // El monte destino
+  <div id="map"></div>
 
-  var final = {
-    latitud: [[${final.latitud}]],
-    longitud: [[${final.longitud}]],
-    nombre: [[${final.nombre}]]
-  };
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    var inicio = {
+      latitud: [[${inicio.latitud}]],
+      longitud: [[${inicio.longitud}]],
+      nombre: [[${inicio.nombre}]]
+    };  // El monte destino
 
-  if (inicio.latitud && inicio.longitud && final.latitud && final.longitud) {
-    var map = L.map('map').setView([inicio.latitud, inicio.longitud], 11); // centrado más ajustado al destino
+    var final = {
+      latitud: [[${final.latitud}]],
+      longitud: [[${final.longitud}]],
+      nombre: [[${final.nombre}]]
+    };
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    if (inicio.latitud && inicio.longitud && final.latitud && final.longitud) {
+      var map = L.map('map').setView([inicio.latitud, inicio.longitud], 11); // centrado más ajustado al destino
 
-    var iconoMonte = L.icon({
-      iconUrl: '/images/pinMonte.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-      popupAnchor: [0, -32]
-    });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
 
-    var iconoInicio = L.icon({
-      iconUrl: '/images/pinInicio.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-      popupAnchor: [0, -32]
-    });
+      var iconoMonte = L.icon({
+        iconUrl: '/images/pinMonte.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+      });
 
-    L.marker([final.latitud, final.longitud], { icon: iconoInicio })
-      .addTo(map)
-      .bindPopup(final.nombre);
+      var iconoInicio = L.icon({
+        iconUrl: '/images/pinInicio.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+      });
 
-    L.marker([inicio.latitud, inicio.longitud], { icon: iconoMonte })
-      .addTo(map)
-      .bindPopup(inicio.nombre);
+      L.marker([final.latitud, final.longitud], { icon: iconoInicio })
+        .addTo(map)
+        .bindPopup(final.nombre);
 
-    L.Routing.control({
-      waypoints: [
-        L.latLng(final.latitud, final.longitud),
-        L.latLng(inicio.latitud, inicio.longitud)
-      ],
-      routeWhileDragging: true,
-      createMarker: function() { return null; },
-      router: L.Routing.osrmv1({
-        serviceUrl: 'https://corsproxy.io/?https://router.project-osrm.org/route/v1'
-      }),
-      lineOptions: {
-        styles: [{ color: 'green', weight: 5 }]
-      }
-    }).addTo(map);
+      L.marker([inicio.latitud, inicio.longitud], { icon: iconoMonte })
+        .addTo(map)
+        .bindPopup(inicio.nombre);
 
-    map.fitBounds([
-      [final.latitud, final.longitud],
-      [inicio.latitud, inicio.longitud]
-    ]);
-  } else {
-    console.error("Error: Las ubicaciones 'inicio' o 'final' no están definidas correctamente.");
-  }
-  /*]]>*/
-</script>
+      L.Routing.control({
+        waypoints: [
+          L.latLng(final.latitud, final.longitud),
+          L.latLng(inicio.latitud, inicio.longitud)
+        ],
+        routeWhileDragging: true,
+        createMarker: function() { return null; },
+        router: L.Routing.osrmv1({
+          serviceUrl: 'https://corsproxy.io/?https://router.project-osrm.org/route/v1'
+        }),
+        lineOptions: {
+          styles: [{ color: 'green', weight: 5 }]
+        }
+      }).addTo(map);
 
-<div id="explicacion">
-  <p><b>Punto A: </b> Ubicacion actual</p>
-  <p><b>Punto B: </b> Destino final</p>
-  <p><b>Linea verde: </b> Ruta sugerida para llegar al monte</p>
-  <p id="aviso"><b>AVISO: </b> La ruta puede tardar unos segundos en cargar</p>
-</div>
+      map.fitBounds([
+        [final.latitud, final.longitud],
+        [inicio.latitud, inicio.longitud]
+      ]);
+    } else {
+      console.error("Error: Las ubicaciones 'inicio' o 'final' no están definidas correctamente.");
+    }
+    /*]]>*/
+  </script>
 
+  <div id="explicacion">
+    <p><b>Punto A: </b> Ubicacion actual</p>
+    <p><b>Punto B: </b> Destino final</p>
+    <p><b>Linea verde: </b> Ruta sugerida para llegar al monte</p>
+    <p id="aviso"><b>AVISO: </b> La ruta puede tardar unos segundos en cargar</p>
+  </div>
 </body>
 </html>

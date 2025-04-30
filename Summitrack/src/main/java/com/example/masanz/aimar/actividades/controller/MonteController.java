@@ -51,22 +51,14 @@ public class MonteController {
         return "redirect:/monte";
     }
 
-    @GetMapping("/monte/tiempo")
-    public String verTiempo(Model model, @RequestParam(name = "id") Integer id){
-        Monte monte = monteService.findByID(id);
-
-        model.addAttribute("monte", monte);
-        model.addAttribute("tiemposAgrupadosPorDia", monteService.getTiempoAgrupadoPorDia(monte));
-
-        return "monte/tiempo";
-    }
-
     @GetMapping("/monte/monte")
     public String verMonteIndividual(Model model,
                                      @RequestParam(name = "id") Integer id,
                                      @RequestParam(name = "volver") String volver){
         Monte monte = monteService.findByID(id);
         List<TiempoDTO> tiempo = monteService.getTiempoMonte(monte);
+        tiempo.sort(Comparator.comparingInt(TiempoDTO::getMes).thenComparingInt(TiempoDTO::getDia));
+
         model.addAttribute("monte",monte);
         model.addAttribute("tiempo",tiempo);
         model.addAttribute("volver",volver);

@@ -13,12 +13,10 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -174,8 +172,11 @@ public class MonteService {
 
     public Map<String, List<TiempoDTO>> getTiempoAgrupadoPorDia(Monte monte) {
         List<TiempoDTO> tiempos = getTiempoMonte(monte);
-        return tiempos.stream()
-                .collect(Collectors.groupingBy(t -> t.getDia() + "/" + t.getMes()));
+        tiempos.sort(Comparator.comparingInt(TiempoDTO::getMes).thenComparingInt(TiempoDTO::getDia));
+        Map<String, List<TiempoDTO>> sinOrdenar = tiempos.stream()
+                .collect(Collectors.groupingBy(t -> t.getDia() + "/" + t.getMes(), LinkedHashMap::new, Collectors.toList()));
+
+        return sinOrdenar;
     }
 }
 

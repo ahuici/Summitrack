@@ -20,10 +20,6 @@ public class Calendario {
     @Column
     private LocalDate fecha;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(referencedColumnName = "monte")
-//    private Monte monte;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id")
     private Monte monte;

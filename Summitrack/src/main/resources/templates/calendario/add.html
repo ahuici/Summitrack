@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Summitrack</title>
     <link rel="stylesheet" href="/css/add.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 
 </head>
@@ -11,31 +12,32 @@
 
     <div th:insert="fragments/header :: header"></div>
 
+    <div class="contenedorAdd">
+        <form action="#" th:action="@{/anadir/calendario}" th:object="${calendario}" method="post">
 
-  <form action="#" th:action="@{/anadir/calendario}" th:object="${calendario}" method="post">
-
-     <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->
+             <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->
 
 
-    <p>Titulo: <input type="text" th:field="*{titulo}" required/></p>
+            <p>Titulo: <input type="text" th:field="*{titulo}" required/></p>
 
-    <p>Descripcion: <input type="text" th:field="*{descripcion}" required/></p>
+            <p>Descripcion: <input type="text" th:field="*{descripcion}" required/></p>
 
-    <p>Fecha: <input type="date" th:field="*{fecha}" required/></p>
+            <p>Fecha: <input type="date" th:field="*{fecha}" required/></p>
 
-      <p>Monte:
-          <select th:field="*{monte}" required>
-              <option value="">-- Selecciona un monte --</option>
-              <option th:each="monte : ${montes}"
-                      th:value="${monte.id}"
-                      th:text="${monte.nombre}"></option>
-          </select>
-      </p>
+              <p>Monte:
+                  <select th:field="*{monte}" required>
+                      <option value="">-- Selecciona un monte --</option>
+                      <option th:each="monte : ${montes}"
+                              th:value="${monte.id}"
+                              th:text="${monte.nombre}"></option>
+                  </select>
+              </p>
 
-      <button type="submit" class="btn btn-primary">Guardar</button>
-  </form>
-<div class="buttons-container">
-  <a th:href="|/anadir|">Salir</a>
-</div>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+        <div class="buttons-container">
+          <a th:href="|/anadir|">Salir</a>
+        </div>
+    </div>
 </body>
 </html>

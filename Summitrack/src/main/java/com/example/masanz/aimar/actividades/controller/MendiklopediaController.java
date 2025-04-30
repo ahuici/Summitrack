@@ -23,7 +23,7 @@ public class MendiklopediaController {
 
     @GetMapping("/mendiklopedia")
     public String getAPI(Model model){
-        return "API/opciones";  // El nombre de la vista donde quieres mostrar los montes
+        return "API/mendiklopedia";  // El nombre de la vista donde quieres mostrar los montes
     }
 
     @GetMapping("/mendiklopedia/navarra")
@@ -35,7 +35,7 @@ public class MendiklopediaController {
 
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
-            return "API/opciones";
+            return "API/mendiklopedia";
         }
         // Añadimos los montes al modelo
         model.addAttribute("montes", montes);
@@ -54,7 +54,7 @@ public class MendiklopediaController {
 
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
-            return "API/opciones";
+            return "API/mendiklopedia";
         }
         model.addAttribute("montes", montes);
         model.addAttribute("url", "tresmiles");
@@ -71,7 +71,7 @@ public class MendiklopediaController {
 
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
-            return "API/opciones";
+            return "API/mendiklopedia";
         }
 
         model.addAttribute("montes", montes);

@@ -4,26 +4,28 @@
   <meta charset="UTF-8">
   <title>Summitrack</title>
   <link rel="stylesheet" href="/css/all.css">
+  <link rel="stylesheet" href="/css/header.css">
   <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 </head>
 <body>
 <h1>Ascensiones</h1>
 
   <div th:insert="fragments/header :: header"></div>
+
   <a href="/ver/monte" class="atras">← Atras</a>
-<table>
-  <tr>
-    <th>Distancia</th>
-    <th>Desnivel</th>
-    <th>Fecha</th>
-    <th>Tiempo</th>
-  </tr>
-  <tr th:each="ascension : ${ascensiones}">
-    <td th:text="${ascension.distancia}"></td>
-    <td th:text="${ascension.desnivel}"></td>
-    <td th:text="${ascension.fecha}"></td>
-    <td th:text="${ascension.tiempo}"></td>
-  </tr>
-</table>
+  <table>
+    <tr>
+      <th>Distancia</th>
+      <th>Desnivel</th>
+      <th>Fecha</th>
+      <th>Tiempo</th>
+    </tr>
+    <tr th:each="ascension : ${ascensiones}">
+      <td th:text="${ascension.distancia}"></td>
+      <td th:text="${ascension.desnivel}"></td>
+      <td th:text="${ascension.fecha}"></td>
+      <td th:text="${ascension.tiempo}"></td>
+    </tr>
+  </table>
 </body>
 </html>

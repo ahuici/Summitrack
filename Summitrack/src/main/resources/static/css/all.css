@@ -1,5 +1,5 @@
 * {
-    padding: 0;
+    padding: 0px;
     box-sizing: border-box;
 }
 
@@ -8,12 +8,12 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #F5F5F5; /* Fondo gris claro */
     color: #333333; /* Texto en gris oscuro */
-    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Empuja los elementos hacia arriba */
     height: 100vh;  /* Asegura que el body ocupe toda la altura */
     text-align: center;
+    margin: 0px;
 }
 
 /* Contenedor para la imagen de fondo */
@@ -31,48 +31,12 @@ body {
     filter: blur(11px); /* Aplica difuminado a la imagen */
 }
 
-/* Estilo para la cabecera */
-header {
-    background-color: rgb(76, 175, 80); /* Fondo verde */
-    padding: 20px 0; /* Espacio interno */
-    text-align: center;
-    position: fixed;
-    top: 0;
-    left: 0; /* Asegura que la cabecera toque el borde izquierdo */
-    width: 100%; /* Asegura que ocupe todo el ancho */
-    z-index: 10; /* Asegura que la cabecera esté sobre otros elementos */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
-    margin: 0; /* Elimina cualquier margen alrededor de la cabecera */
-}
-
-/* Estilo para los enlaces en la cabecera */
-header a {
-    color: white; /* Enlaces blancos */
-    text-decoration: none;
-    margin: 0 20px; /* Espaciado entre los enlaces */
-    font-size: 20px; /* Tamaño de los enlaces */
-    font-weight: 600; /* Peso medio para los enlaces */
-    padding: 12px 18px; /* Espaciado interno en los enlaces */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
-}
-
-header a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco al pasar el ratón */
-    transform: translateY(-2px); /* Desplazamiento hacia arriba */
-}
-
-header a:active {
-    color: #006400; /* Verde oscuro cuando se hace clic */
-    transform: translateY(1px); /* Efecto al hacer clic */
-}
-
 /* Estilo para el título h1 */
 h1 {
     color: #4CAF50; /* Verde */
     font-size: 2.5em;  /* Tamaño medio */
     font-weight: bold;
-    margin-top: 120px; /* Espacio superior para alejarlo de la cabecera */
+    margin-top: 140px;
     margin-bottom: 10px;  /* Espacio inferior */
     text-align: center;
 }
@@ -83,9 +47,12 @@ h1 {
 
 /* Estilo para la tabla */
 table {
-    width: 100%;
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 20px;
     border-collapse: collapse;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-bottom: 100px;
     border: 2px solid #FFFFFF; /* Línea verde más gruesa para toda la tabla */
 }
@@ -174,9 +141,6 @@ main {
     h1 {
         font-size: 2em; /* Título más pequeño en pantallas pequeñas */
     }
-    header a {
-        font-size: 16px; /* Reducir tamaño de los enlaces en pantallas pequeñas */
-    }
     .buttons-container {
         flex-direction: column; /* Los botones se alinean en columna en pantallas pequeñas */
     }
@@ -184,12 +148,12 @@ main {
 
 /* Estilo para cada sección de mes */
 .month-section {
-    margin-bottom: 15px; /* Espacio entre meses */
     margin-top: 15px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 }
 
 /* Estilo para los títulos de mes y año */
@@ -204,8 +168,13 @@ main {
 
 /* Estilo para las tablas dentro de cada mes */
 .month-section table {
-    width: 100%;
+    width: 94%;
     border-collapse: collapse;
+    margin: 20px;
+}
+
+.month-section table:last-of-type {
+    margin-bottom: 90px;
 }
 
 /* Estilo para las filas de la tabla (aplicado a todas las tablas) */
@@ -232,7 +201,6 @@ table {
     font-size: 1.8em;  /* Tamaño adecuado */
     font-weight: bold;
     margin-top: 20px;
-    margin-bottom: 10px;
     text-transform: capitalize;  /* Pone la primera letra en mayúscula */
 }
 
@@ -258,11 +226,6 @@ table {
 /* Efecto hover para el botón "Editar" */
 #btnEditar:hover {
     background-color: #1976D2; /* Azul más oscuro */
-}
-
-#logoCabecera img {
-    height: 50px; /* Ajusta el tamaño del logo */
-    display: flex;
 }
 
 /* Efecto hover para el botón "Eliminar" */
@@ -439,64 +402,10 @@ table {
     color: red;
 }
 
-/* TODO CABECERA */
-
-/* Estilo para la cabecera */
-header {
-    background-color: rgb(76, 175, 80);
-    padding: 15px 20px; /* Espaciado interno */
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Logo a la izquierda, enlaces a la derecha */
-    position: fixed;
-    top: 0;
+.contenedorAdd {
+    padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 120px auto 40px auto; /* centrado y separación vertical */
 }
-
-/* Estilo para los enlaces en la cabecera */
-header a {
-    color: white; /* Blanco para los enlaces */
-    text-decoration: none;
-    font-size: 20px; /* Aumenta el tamaño de los enlaces */
-    font-weight: 600; /* Un poco más de peso para los enlaces */
-    padding: 12px 18px; /* Aumenta el padding para que los enlaces sean más grandes */
-    border-radius: 5px; /* Bordes redondeados para los enlaces */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
-}
-
-header a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco en hover */
-    transform: translateY(-2px); /* Efecto de desplazamiento hacia arriba al pasar el ratón */
-}
-
-header a:active {
-    color: #006400; /* Verde oscuro cuando se hace clic */
-    transform: translateY(1px); /* Efecto al hacer clic */
-}
-
-/* Estilo del logo en la cabecera */
-#logoCabecera img {
-    height: 50px; /* Ajusta el tamaño del logo */
-    display: flex;
-}
-
-/* Estilos del menú de navegación en la cabecera */
-nav {
-    display: flex;
-    gap: 20px; /* Espacio entre los enlaces */
-    margin-right: 15%; /* Mueve los enlaces un poco más hacia la izquierda */
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
-    padding: 12px 18px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* TODO */

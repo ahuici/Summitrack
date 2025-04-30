@@ -5,30 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Summitrack</title>
   <link href="/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/header.css">
   <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
-
 </head>
 <body>
 
-<div th:insert="fragments/header :: header"></div>
+  <div th:insert="fragments/header :: header"></div>
 
-<a href="/mendiklopedia" class="atras">← Atras</a>
-<h1 th:text="${nombreOpcion}"></h1>
-<table>
-  <tr>
-    <th>Nombre</th>
-    <th>Ubicacion</th>
-    <th>Altura</th>
-    <th>Favorito</th>
-  </tr>
-  <!-- Iterar sobre los montes -->
-  <tr th:each="monte : ${montes}" th:onclick="'window.location=\'/monte/monte?id=' + ${monte.id} + '\&volver=/mendiklopedia/favoritos\';'"  style="cursor: pointer;">
-    <td th:text="${monte.nombre}"></td>
-    <td th:text="${monte.altura}"></td>
-    <td th:text="${monte.ubicacion}"></td>
-    <td><a th:href="|/mendiklopedia/favoritoDelete?id=${monte.id}|" id="btnFavorito">
-      <span th:if="${monte.isFavorito}">❤️</span></a></td>
-  </tr>
-</table>
+  <a href="/mendiklopedia" class="atras">← Atras</a>
+  <h1 th:text="${nombreOpcion}"></h1>
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Ubicacion</th>
+      <th>Altura</th>
+      <th>Favorito</th>
+    </tr>
+    <!-- Iterar sobre los montes -->
+    <tr th:each="monte : ${montes}" th:onclick="'window.location=\'/monte/monte?id=' + ${monte.id} + '\&volver=/mendiklopedia/favoritos\';'"  style="cursor: pointer;">
+      <td th:text="${monte.nombre}"></td>
+      <td th:text="${monte.altura}"></td>
+      <td th:text="${monte.ubicacion}"></td>
+      <td><a th:href="|/mendiklopedia/favoritoDelete?id=${monte.id}|" id="btnFavorito">
+        <span th:if="${monte.isFavorito}">❤️</span></a></td>
+    </tr>
+  </table>
 </body>
 </html>

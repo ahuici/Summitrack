@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Summitrack</title>
     <link rel="stylesheet" href="/css/mapa.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 
     <!-- Cargar Leaflet primero -->
@@ -18,6 +19,7 @@
     <script src="https://unpkg.com/leaflet-routing-machine-graphhopper@latest/dist/leaflet-routing-machine-graphhopper.js"></script>
 </head>
 <body>
+
 <div th:insert="fragments/header :: header"></div>
 
 <div id="mapRuta">

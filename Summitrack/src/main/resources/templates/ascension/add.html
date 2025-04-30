@@ -4,60 +4,63 @@
     <meta charset="UTF-8">
     <title>Summitrack</title>
     <link rel="stylesheet" href="/css/add.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 
     <!-- Tom Select CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
 </head>
 <body>
+
     <div th:insert="fragments/header :: header"></div>
 
+    <div class="contenedorAdd">
+        <form action="#" th:action="@{/anadir/ascension}" th:object="${ascension}" method="post" enctype="multipart/form-data">
 
-    <form action="#" th:action="@{/anadir/ascension}" th:object="${ascension}" method="post" enctype="multipart/form-data">
 
+            <input type="hidden" th:if="${editar}" th:field="*{id}" /> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
 
-        <input type="hidden" th:if="${editar}" th:field="*{id}" /> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
+            <p>Distancia: <input type="number" th:field="*{distancia}" required/></p>
 
-        <p>Distancia: <input type="number" th:field="*{distancia}" required/></p>
+            <p>Desnivel: <input type="number" th:field="*{desnivel}" required/></p>
 
-        <p>Desnivel: <input type="number" th:field="*{desnivel}" required/></p>
+            <p>Fecha: <input type="date" th:field="*{fecha}" required/></p>
 
-        <p>Fecha: <input type="date" th:field="*{fecha}" required/></p>
+            <p>Tiempo: <input type="number" th:field="*{tiempo}" required/></p>
 
-        <p>Tiempo: <input type="number" th:field="*{tiempo}" required/></p>
+            <p>Tipo: <input type="text" th:field="*{tipo}" required/></p>
 
-        <p>Tipo: <input type="text" th:field="*{tipo}" required/></p>
+            <p>Dificultad: <input type="number" th:field="*{dificultad}" required/></p>
 
-        <p>Dificultad: <input type="number" th:field="*{dificultad}" required/></p>
+            <p>Peligrosidad: <input type="number" th:field="*{peligrosidad}" required/></p>
 
-        <p>Peligrosidad: <input type="number" th:field="*{peligrosidad}" required/></p>
+            <p>Apuntes: <input type="text" th:field="*{apuntes}" required/></p>
 
-        <p>Apuntes: <input type="text" th:field="*{apuntes}" required/></p>
+            <p>Foto: <input type="file" name="fotoAgregar" accept="image/*" id="fotoAgregar" required/></p>
 
-        <p>Foto: <input type="file" name="fotoAgregar" accept="image/*" id="fotoAgregar" required/></p>
+            <p>Monte:
+                <select th:field="*{monte}" required>
+                    <option value="">-- Selecciona un monte --</option>
+                    <option th:each="monte : ${montes}"
+                            th:value="${monte.id}"
+                            th:text="${monte.nombre}"></option>
+                </select>
+            </p>
 
-        <p>Monte:
-            <select th:field="*{monte}" required>
-                <option value="">-- Selecciona un monte --</option>
-                <option th:each="monte : ${montes}"
-                        th:value="${monte.id}"
-                        th:text="${monte.nombre}"></option>
-            </select>
-        </p>
+            <p>Personas:
+                <select name="personas" id="personas" multiple required>
+                    <option th:each="persona : ${personas}"
+                            th:value="${persona.id}"
+                            th:text="${persona.nombre}"></option>
+                </select>
+            </p>
 
-        <p>Personas:
-            <select name="personas" id="personas" multiple required>
-                <option th:each="persona : ${personas}"
-                        th:value="${persona.id}"
-                        th:text="${persona.nombre}"></option>
-            </select>
-        </p>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
 
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
-
-    <div class="buttons-container">
-        <a th:href="|/anadir|">Salir</a>
+        <div class="buttons-container">
+            <a th:href="|/anadir|">Salir</a>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>

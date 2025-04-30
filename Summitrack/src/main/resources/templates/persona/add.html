@@ -4,38 +4,41 @@
   <meta charset="UTF-8">
   <title>Summitrack</title>
   <link rel="stylesheet" href="/css/add.css">
+  <link rel="stylesheet" href="/css/header.css">
   <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 </head>
 <body>
+
   <div th:insert="fragments/header :: header"></div>
 
+  <div class="contenedorAdd">
+    <form action="#" th:action="@{/anadir/persona}" th:object="${persona}" method="post" enctype="multipart/form-data">
 
-<form action="#" th:action="@{/anadir/persona}" th:object="${persona}" method="post" enctype="multipart/form-data">
 
+      <input type="hidden" th:if="${editar}" th:field="*{id}" /> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
 
-  <input type="hidden" th:if="${editar}" th:field="*{id}" /> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
+      <p>Nombre: <input type="text" th:field="*{nombre}" required/></p>
 
-  <p>Nombre: <input type="text" th:field="*{nombre}" required/></p>
+      <p>Apellidos: <input type="text" th:field="*{apellidos}" required/></p>
 
-  <p>Apellidos: <input type="text" th:field="*{apellidos}" required/></p>
+      <p>Edad: <input type="number" th:field="*{edad}" required/></p>
 
-  <p>Edad: <input type="number" th:field="*{edad}" required/></p>
+      <p>Genero:
+        <select name="personas" id="personas" th:field="*{genero}" required>
+          <option value="">-- Selecciona un genero --</option>
+          <option th:value="Hombre">Hombre</option>
+          <option th:value="Mujer">Mujer</option>
+          <option th:value="Otro">Otro</option>
+        </select>
+      </p>
 
-  <p>Genero:
-    <select name="personas" id="personas" th:field="*{genero}" required>
-      <option value="">-- Selecciona un genero --</option>
-      <option th:value="Hombre">Hombre</option>
-      <option th:value="Mujer">Mujer</option>
-      <option th:value="Otro">Otro</option>
-    </select>
-  </p>
+      <p>Salir en top global:  <input type="checkbox" th:field="*{salirTop}"/></p><br/>
 
-  <p>Salir en top global:  <input type="checkbox" th:field="*{salirTop}"/></p><br/>
-
-  <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
-<div class="buttons-container">
-  <a th:href="|/anadir|">Salir</a>
-</div>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+    <div class="buttons-container">
+      <a th:href="|/anadir|">Salir</a>
+    </div>
+  </div>
 </body>
 </html>
