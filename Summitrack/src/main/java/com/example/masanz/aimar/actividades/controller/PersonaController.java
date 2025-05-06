@@ -14,7 +14,7 @@ public class PersonaController {
     @Autowired
     private PersonaService personaService;
 
-    @GetMapping("/personas/eliminar")
+    @GetMapping("/persona/eliminar")
     public String eliminarPersona(@RequestParam(name ="id") Integer id, Model model) {
         Persona persona = personaService.findByID(id);
 

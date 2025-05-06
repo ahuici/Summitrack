@@ -29,8 +29,8 @@
         <td th:text="${persona.edad}"></td>
         <td th:text="${persona.salirTop} ? '✅' : '❌'"></td>
         <td th:text="${persona.genero}"></td>
-        <td><a th:href="|/personas/add?id=${persona.id}|" id="btnEditar">Editar</a></td>
-        <td><a th:href="|/personas/eliminar?id=${persona.id}|" id="btnEliminar">Eliminar</a></td>
+        <td><a th:href="|/anadir/persona?id=${persona.id}|" id="btnEditar">Editar</a></td>
+        <td><a th:href="|/persona/eliminar?id=${persona.id}|" id="btnEliminar">Eliminar</a></td>
       </tr>
     </table>
   </div>

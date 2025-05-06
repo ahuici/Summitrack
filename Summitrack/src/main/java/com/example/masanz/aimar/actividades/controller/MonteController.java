@@ -48,7 +48,7 @@ public class MonteController {
         monteService.save(monte);
         model.addAttribute("montes", monteService.getAll());
 
-        return "redirect:/monte";
+        return "redirect:/ver/monte";
     }
 
     @GetMapping("/monte/monte")

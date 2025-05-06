@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Completa {
+public class  Completa {
     @Id
     private CompletaID completaID;
 
