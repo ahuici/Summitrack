@@ -5,7 +5,7 @@
     <title>Summitrack</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
-    <link rel="stylesheet" href="/css/verMas.css">
+    <link rel="stylesheet" href="/css/individualAscension.css">
     <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
@@ -31,11 +31,12 @@
                 <div><strong>Apuntes:</strong> <span th:text="${ascension.apuntes}"></span></div>
             </div>
         </div>
-
-        <div class="acciones">
-            <a th:href="|/anadir/ascension?id=${ascension.id}|" id="linkEditar">Editar</a>
-            <a th:href="|/ascension/eliminar?id=${ascension.id}|" id="linkEliminar">Eliminar</a>
-        </div>
+        <section class="ascension-info">
+            <p><br/>
+                <b><a th:href="|/anadir/ascension?id=${ascension.id}|" id="linkEditar" style="text-decoration: underline;">Editar</a></b>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="|/ascension/eliminar?id=${ascension.id}|" id="linkEliminar" style="text-decoration: underline;">Eliminar</a></b>
+            </p>
+        </section>
     </div>
 
     <div class="tarjeta-imagen">

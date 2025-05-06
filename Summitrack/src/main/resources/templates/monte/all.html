@@ -19,7 +19,6 @@
                 <th>Altura</th>
                 <th>Ubicacion</th>
                 <th>Num ascensiones</th>
-                <th>Num personas</th>
                 <th class="btnOpciones">Favorito</th>
 
             </tr>
@@ -28,7 +27,6 @@
                 <td th:text="${monte.altura}"></td>
                 <td th:text="${monte.ubicacion}"></td>
                 <td><p th:text="'Numero: ' + ${monte.asciende.size()}"></p></td>
-                <td><a th:href="|/monte/ascensions?id=${monte.id}|">TODO</a></td>
                 <td><a th:href="|/monte/favoritos?id=${monte.id}|" id="btnFavorito">
                         <span th:if="${!monte.isFavorito}">🤍</span>
                         <span th:if="${monte.isFavorito}">❤️</span></a></td>

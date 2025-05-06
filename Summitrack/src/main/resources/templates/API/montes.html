@@ -16,11 +16,12 @@
   <h1 th:text="${nombreOpcion}"></h1>
 
   <div class="ordenar">
-    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=nombre&orden=asc'}">Nombre asc</a>
-    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=nombre&orden=desc'}">Nombre desc</a>
-    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=altura&orden=asc'}">Altura asc</a>
-    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=altura&orden=desc'}">Altura desc</a>
+    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=nombre&orden=asc'}">Nombre  &nbsp;↓</a>
+    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=nombre&orden=desc'}">Nombre  &nbsp;↑</a>
+    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=altura&orden=asc'}">Altura  &nbsp;↓</a>
+    <a th:href="@{'/mendiklopedia/' + ${url} + '?campo=altura&orden=desc'}">Altura  &nbsp;↑</a>
   </div>
+
 <table>
   <tr>
     <th>Nombre</th>

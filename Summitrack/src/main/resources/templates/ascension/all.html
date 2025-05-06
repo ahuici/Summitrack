@@ -21,7 +21,7 @@
         <th>Monte</th>
         <th>Personas</th>
       </tr>
-      <tr th:each="ascension : ${ascensiones}" th:onclick="'window.location=\'/ascension/verMas?id=' + ${ascension.id} + '\';'" style="cursor: pointer;">
+      <tr th:each="ascension : ${ascensiones}" th:onclick="'window.location=\'/ascension/individual?id=' + ${ascension.id} + '\';'" style="cursor: pointer;">
         <td th:text="${ascension.distancia}"></td>
         <td th:text="${ascension.desnivel}"></td>
         <td th:text="${ascension.tiempo}"></td>

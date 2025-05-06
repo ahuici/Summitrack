@@ -1,3 +1,12 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline; /* Asegura que todos los enlaces estén subrayados por defecto */
+}
+
 /* Título del monte */
 .titulo-monte {
     font-size: 3.5em;
@@ -21,7 +30,6 @@
     display: flex;
     justify-content: space-between;
     gap: 3rem;
-    margin-bottom: 2.5rem;
     text-align: center;
 }
 
@@ -54,7 +62,6 @@
     padding: 10px 20px;
     border-radius: 0.5rem;
     font-weight: bold;
-    text-decoration: none;
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -113,34 +120,44 @@
 
 /* TODO BOTONES */
 #linkEditar{
-   background-color: #2196F3;
+   color: #2196F3;
    size: 8px;
+   font-size: 1.4em;
 }
 
-#linkEditar a {
-    text-decoration: none; /* Elimina el subrayado */
-    color: inherit; /* Mantiene el color del texto del contenedor (sin cambio de color de enlace) */
+#linkEditar > a {
+    text-decoration: underline !important;
+    color: inherit;
 }
 
 #linkEditar a:hover {
     color: inherit; /* Mantiene el mismo color en hover */
-    text-decoration: none; /* Asegura que no haya subrayado en hover */
+    text-decoration: underline !important; /* Asegura que no haya subrayado en hover */
 }
 
 #linkEliminar{
-    background-color: #F44336;
+    color: #F44336;
     size: 8px;
+    font-size: 1.4em;
 }
 
-#linkEliminar a {
-    background-color: none; /* Elimina el subrayado */
+#linkEliminar > a {
+    text-decoration: underline !important; /* Elimina el subrayado */
     color: inherit; /* Mantiene el color del texto del contenedor (sin cambio de color de enlace) */
 }
 
 #linkEliminar a:hover {
     color: inherit; /* Mantiene el mismo color en hover */
-    text-decoration: none; /* Asegura que no haya subrayado en hover */
+    text-decoration: underline !important; /* Asegura que no haya subrayado en hover */
 }
+
+.ascension-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
 /* TODO END BOTONES*/
 
 /* TODO FLECHA */

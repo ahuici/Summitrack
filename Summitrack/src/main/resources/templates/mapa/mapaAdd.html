@@ -8,27 +8,29 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/mapa/guardar}" th:object="${monte}" method="post">
+<div class="contenedorAdd" style="padding-top: 40px; min-height: 0vh;">
+  <h1 style="margin-top: 10px !important;">SUMMITRACK</h1>
 
-  <h1>SUMMITRACK</h1>
+  <form action="#" th:action="@{/mapa/guardar}" th:object="${monte}" method="post">
 
-  <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->
+      <input type="hidden" th:if="${editar}" th:field="*{id}"/>
 
+      <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
 
-  <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+      <p>Altura: <input type="number" th:field="*{altura}"/></p>
 
-  <p>Altura: <input type="number" th:field="*{altura}"/></p>
+      <p>Ubicacion: <input type="text" th:field="*{ubicacion}"/></p>
 
-  <p>Ubicacion: <input type="text" th:field="*{ubicacion}"/></p>
+      <p><input type="text" th:field="*{latitud}" hidden="hidden"/></p>
 
-  <p><input type="text" th:field="*{latitud}" hidden="hidden"/></p>
+      <p><input type="text" th:field="*{longitud}" hidden="hidden"/></p>
 
-  <p><input type="text" th:field="*{longitud}" hidden="hidden"/></p>
-
-  <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
-<div class="buttons-container">
-  <a th:href="|/mapa/salir|">Salir</a>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
 </div>
+<div class="buttons-container" style=" align-items: center; display: flex; justify-content: center;">
+  <a th:href="|/mapa/salir|" style="width: 9%;">Salir</a>
+</div>
+
 </body>
 </html>

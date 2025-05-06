@@ -23,7 +23,7 @@
         <th class="btnOpciones">Editar</th>
         <th class="btnOpciones">Eliminar</th>
       </tr>
-      <tr th:each="persona : ${personas}">
+      <tr th:each="persona : ${personas}" th:onclick="|window.location='/persona/persona?id=${persona.id}'|">
         <td th:text="${persona.nombre}"></td>
         <td th:text="${persona.apellidos}"></td>
         <td th:text="${persona.edad}"></td>

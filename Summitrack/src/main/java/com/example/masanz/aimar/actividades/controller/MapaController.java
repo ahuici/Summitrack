@@ -31,7 +31,7 @@ public class MapaController {
         Monte monte = new Monte();
         monte.setLatitud(lat);
         monte.setLongitud(lon);
-        if (!checkbox) monte.setUbicacion(monteService.sacarNombrePorCordenadas(lat, lon));
+        if (checkbox) monte.setUbicacion(monteService.sacarNombrePorCordenadas(lat, lon));
         model.addAttribute("monte", monte);
         return "mapa/mapaAdd";
     }
@@ -44,8 +44,7 @@ public class MapaController {
     }
 
     @GetMapping("/mapa/salir")
-    public String salirAgregar(@ModelAttribute Monte monte, Model model){
-        monteService.save(monte);
+    public String salirAgregar(Model model){
         model.addAttribute("isExitoso", false);
         return "mapa/cerrar";
     }

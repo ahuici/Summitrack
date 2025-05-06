@@ -21,4 +21,12 @@ public class PersonaController {
         personaService.delete(persona);
         return "redirect:/ver/persona";
     }
+
+    @GetMapping("/persona/persona")
+    public String individualPersona(@RequestParam(name ="id") Integer id, Model model) {
+        Persona persona = personaService.findByID(id);
+        model.addAttribute("persona", persona);
+
+        return "persona/individual";
+    }
 }

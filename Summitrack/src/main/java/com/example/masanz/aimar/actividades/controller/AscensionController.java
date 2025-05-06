@@ -23,12 +23,12 @@ public class AscensionController {
     }
 
 
-    @GetMapping("/ascension/verMas")
-    public String verMasAscension(@RequestParam(name ="id") Integer id, Model model) {
+    @GetMapping("/ascension/individual")
+    public String individualAscension(@RequestParam(name ="id") Integer id, Model model) {
         Ascension ascension = ascensionService.findByID(id);
         model.addAttribute("ascension", ascension);
 
-        return "ascension/verMas";
+        return "ascension/individual";
     }
 
 }
