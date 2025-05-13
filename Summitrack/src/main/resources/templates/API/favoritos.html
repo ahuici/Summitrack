@@ -10,21 +10,21 @@
 </head>
 <body>
 
-  <div th:insert="fragments/header :: header"></div>
+<div th:insert="fragments/header :: header"></div>
 
   <a href="/mendiklopedia" class="atras">← Atras</a>
   <h1 th:text="${nombreOpcion}"></h1>
   <table style="margin-top: 45px;">
     <tr>
       <th>Nombre</th>
-      <th>Ubicacion</th>
       <th>Altura</th>
+      <th>Ubicacion</th>
       <th>Favorito</th>
     </tr>
     <!-- Iterar sobre los montes -->
     <tr th:each="monte : ${montes}" th:onclick="'window.location=\'/monte/monte?id=' + ${monte.id} + '\&volver=/mendiklopedia/favoritos\';'"  style="cursor: pointer;">
       <td th:text="${monte.nombre}"></td>
-      <td th:text="${monte.altura}"></td>
+      <td th:text="${monte.altura} + ' m'"></td>
       <td th:text="${monte.ubicacion}"></td>
       <td><a th:href="|/mendiklopedia/favoritoDelete?id=${monte.id}|" id="btnFavorito">
         <span th:if="${monte.isFavorito}">❤️</span></a></td>

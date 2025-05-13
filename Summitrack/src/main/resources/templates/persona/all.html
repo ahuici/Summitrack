@@ -24,7 +24,7 @@
       <tr th:each="persona : ${personas}" th:onclick="|window.location='/persona/persona?id=${persona.id}'|" style="cursor: pointer;">
         <td th:text="${persona.nombre}"></td>
         <td th:text="${persona.apellidos}"></td>
-        <td th:text="${persona.edad}"></td>
+        <td th:text="${persona.edad} + ' años'"></td>
         <td th:text="${persona.salirTop} ? '✅' : '❌'"></td>
         <td th:text="${persona.genero}"></td>
       </tr>

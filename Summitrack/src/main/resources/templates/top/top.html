@@ -23,7 +23,7 @@
         </tr>
         <tr th:each="distancia : ${distanciasLocal}">
           <td th:text="${distancia.nombre}"></td>
-          <td th:text="${distancia.distancia}"></td>
+          <td th:text="${distancia.distancia} + ' km'"></td>
         </tr>
       </table>
     </div>
@@ -37,7 +37,7 @@
         </tr>
         <tr th:each="desnivel : ${desnivelesLocal}">
           <td th:text="${desnivel.nombre}"></td>
-          <td th:text="${desnivel.desnivel}"></td>
+          <td th:text="${desnivel.desnivel} + ' m'"></td>
         </tr>
       </table>
     </div>
@@ -69,7 +69,7 @@
         </tr>
         <tr th:each="distancia : ${distanciasGlobal}">
           <td th:text="${distancia.nombre}"></td>
-          <td th:text="${distancia.distancia}"></td>
+          <td th:text="${distancia.distancia} + ' km'"></td>
         </tr>
       </table>
     </div>
@@ -83,7 +83,7 @@
         </tr>
         <tr th:each="desnivel : ${desnivelesGlobal}">
           <td th:text="${desnivel.nombre}"></td>
-          <td th:text="${desnivel.desnivel}"></td>
+          <td th:text="${desnivel.desnivel} + ' m'"></td>
         </tr>
       </table>
     </div>

@@ -25,7 +25,6 @@
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
-      // Icono de monte
       var monteIcon = L.icon({
         iconUrl: '/images/pinMonte.png',
         iconSize: [32, 32],
@@ -33,7 +32,6 @@
         popupAnchor: [0, -32]
       });
 
-      // Añadir marcador del monte
       montes.forEach(function(monte) {
         L.marker([monte.latitud, monte.longitud], { icon: monteIcon })
           .addTo(map)
@@ -57,26 +55,20 @@
         var lon = e.latlng.lng;
         console.log('Doble clic en Latitud:', lat, 'Longitud:', lon);
 
-        // Obtener el estado del checkbox
         var checkbox = document.querySelector('input[type="checkbox"]');
         var isChecked = checkbox.checked;
 
-        // Construir la URL incluyendo el estado del checkbox
         var url = '/mapa/guardar?lat=' + lat + '&lon=' + lon + '&checkbox=' + isChecked;
 
-        // Dimensiones de la ventana emergente
         var width = 900;
         var height = 750;
 
-        // Obtener las dimensiones de la ventana actual
         var screenWidth = window.innerWidth;
         var screenHeight = window.innerHeight;
 
-        // Calcular las coordenadas de la ventana emergente para que esté centrada
         var left = (screenWidth - width) / 2;
         var top = (screenHeight - height) / 2;
 
-        // Abrir la ventana emergente centrada
         window.open(url, 'popup', `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`);
       });
     </script>

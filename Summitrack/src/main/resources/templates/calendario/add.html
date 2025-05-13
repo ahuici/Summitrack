@@ -6,17 +6,14 @@
     <link rel="stylesheet" href="/css/add.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
-
 </head>
 <body>
-
     <div th:insert="fragments/header :: header"></div>
 
     <div class="contenedorAdd">
         <form action="#" th:action="@{/anadir/calendario}" th:object="${calendario}" method="post">
 
              <input type="hidden" th:if="${editar}" th:field="*{id}"/> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no carnet seria null-->
-
 
             <p>Titulo: <input type="text" th:field="*{titulo}" required/></p>
 

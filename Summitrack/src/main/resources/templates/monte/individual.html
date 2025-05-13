@@ -5,7 +5,7 @@
     <title>Summitrack</title>
     <link rel="stylesheet" href="/css/individualMonte.css">
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="icon" type="image/png" href="/images/IconoSummitrack.png">
+    <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 </head>
 <body>
 
@@ -17,9 +17,9 @@
         <h1 th:text="${monte.nombre}" id="nombreMonte">Nombre del Monte</h1>
         <!-- Sección del monte -->
         <section class="monte-info">
-            <p><strong>Ubicación:</strong> <span th:text="${monte.ubicacion}">Ubicación</span></p>
-            <p><strong>Altura:</strong> <span th:text="${monte.altura}">0000</span> m</p>
-            <p><strong>Coordenadas:</strong> <span th:text="${monte.latitud}">00.0000</span>, <span th:text="${monte.longitud}">00.0000</span></p>
+            <p><strong>Ubicación:</strong> <span th:text="${monte.ubicacion}"></span></p>
+            <p><strong>Altura:</strong> <span th:text="${monte.altura}"></span> m</p>
+            <p><strong>Coordenadas:</strong> <span th:text="${monte.latitud}"></span>º, <span th:text="${monte.longitud}"></span>º</p>
             <p><br/>
                 <b><a th:href="@{/monte/monte/sacarUbicacion(id=${monte.id})}" id="comoLlegar">¿Cómo llegar?</a></b>
                 &nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="@{/monte/ascension(id=${monte.id})}" id="linkAscensiones">Ver ascensiones</a></b>
@@ -38,11 +38,11 @@
                 <tr>
                     <th>Dia</th>
                     <th>Hora</th>
-                    <th>Temperatura (°C)</th>
-                    <th>Viento (km/h)</th>
-                    <th>Prob. Lluvia (%)</th>
-                    <th>Nieve Acumulada (cm)</th>
-                    <th>Nieve Nueva (cm)</th>
+                    <th>Temperatura</th>
+                    <th>Viento</th>
+                    <th>Prob. Lluvia</th>
+                    <th>Nieve Acumulada</th>
+                    <th>Nieve Nueva</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -50,11 +50,11 @@
                 <tr th:each="t : ${tiempo}">
                     <td th:text="${t.dia} + '/' + ${t.mes}">Dia</td>
                     <td th:text="${t.hora} + 'h'">Hora</td>
-                    <td th:text="${t.temperatura}">0</td>
-                    <td th:text="${t.viento}">0</td>
-                    <td th:text="${t.probLluvia}">0</td>
-                    <td th:text="${t.nieveAcumulada}">0</td>
-                    <td th:text="${t.precipitacionNieve}">0</td>
+                    <td th:text="${t.temperatura} + ' ºC'">0</td>
+                    <td th:text="${t.viento} + ' km/h'">0</td>
+                    <td th:text="${t.probLluvia} + ' %'">0</td>
+                    <td th:text="${t.nieveAcumulada} + ' cm'">0</td>
+                    <td th:text="${t.precipitacionNieve} + ' cm'">0</td>
                 </tr>
                 </tbody>
             </table>

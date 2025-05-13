@@ -5,7 +5,7 @@
   <title>Summitrack</title>
   <link rel="stylesheet" href="/css/individualPersona.css">
   <link rel="stylesheet" href="/css/header.css">
-  <link rel="icon" type="image/png" href="/images/IconoSummitrack.png">
+  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 </head>
 <body>
 
@@ -37,7 +37,7 @@
       </tr>
       <tr th:each="entrada : ${montes}" th:onclick="|window.location='/monte/monte?id=${entrada.key.id}&volver=/persona/persona?id=${persona.id}'|" style="cursor: pointer;">
         <td th:text="${entrada.key.nombre}">Monte</td>
-        <td th:text="${entrada.key.altura}">Altura</td>
+        <td th:text="${entrada.key.altura} + ' m'">Altura</td>
         <td th:text="${entrada.value}">Núm ascensiones</td>
       </tr>
     </table>

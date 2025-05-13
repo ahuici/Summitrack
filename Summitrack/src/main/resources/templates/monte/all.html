@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Montes</title>
+    <title>Summitrack</title>
     <link rel="stylesheet" href="/css/all.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
@@ -24,7 +24,7 @@
             </tr>
             <tr th:each="monte : ${montes}" th:onclick="'window.location=\'/monte/monte?id=' + ${monte.id} + '\&volver=/ver/monte\';'"  style="cursor: pointer;">
                 <td th:text="${monte.nombre}"></td>
-                <td th:text="${monte.altura}"></td>
+                <td th:text="${monte.altura} + ' m'"></td>
                 <td th:text="${monte.ubicacion}"></td>
                 <td><p th:text="'Numero: ' + ${monte.asciende.size()}"></p></td>
                 <td><a th:href="|/monte/favoritos?id=${monte.id}|" id="btnFavorito">

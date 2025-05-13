@@ -22,10 +22,10 @@
       <th>Tiempo</th>
     </tr>
     <tr th:each="ascension : ${ascensiones}">
-      <td th:text="${ascension.distancia}"></td>
-      <td th:text="${ascension.desnivel}"></td>
+      <td th:text="${ascension.distancia} + ' km'"></td>
+      <td th:text="${ascension.desnivel} + ' m'"></td>
       <td th:text="${ascension.fecha}"></td>
-      <td th:text="${ascension.tiempo}"></td>
+      <td th:text="${ascension.tiempo} + ' h'"></td>
     </tr>
   </table>
 </body>

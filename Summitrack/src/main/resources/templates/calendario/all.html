@@ -8,14 +8,12 @@
     <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
 </head>
 <body>
-
     <div th:insert="fragments/header :: header"></div>
 
     <h1>Calendario</h1>
 
-    <!-- Iterar sobre los meses -->
     <div th:if="${calendariosPorMes != null}" th:each="entry : ${calendariosPorMes}" class="month-section">
-        <h2 th:text="${entry.key}"></h2> <!-- Muestra el nombre del mes -->
+        <h2 th:text="${entry.key}"></h2>
 
         <table>
             <tr>
@@ -26,7 +24,6 @@
                 <th class="btnOpciones">Editar</th>
                 <th class="btnOpciones">Eliminar</th>
             </tr>
-            <!-- Iterar sobre los eventos de cada mes -->
             <tr th:each="calendario : ${entry.value}">
                 <td th:text="${calendario.titulo}"></td>
                 <td th:text="${calendario.descripcion}"></td>

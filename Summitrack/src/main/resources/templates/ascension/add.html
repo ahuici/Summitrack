@@ -16,8 +16,6 @@
 
     <div class="contenedorAdd">
         <form action="#" th:action="@{/anadir/ascension}" th:object="${ascension}" method="post" enctype="multipart/form-data">
-
-
             <input type="hidden" th:if="${editar}" th:field="*{id}" /> <!-- Los inputs disabled no envian informacion, por lo que si esta disables hago esta trampa para enviar informacion. Si no matricula seria null-->
 
             <p>Distancia: <input type="number" th:field="*{distancia}" required/></p>
