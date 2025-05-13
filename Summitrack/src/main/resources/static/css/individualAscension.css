@@ -2,6 +2,12 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 a {
     color: inherit;
     text-decoration: underline; /* Asegura que todos los enlaces estén subrayados por defecto */

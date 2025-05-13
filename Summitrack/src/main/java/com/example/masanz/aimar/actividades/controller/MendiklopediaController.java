@@ -23,7 +23,7 @@ public class MendiklopediaController {
 
     @GetMapping("/mendiklopedia")
     public String getAPI(Model model){
-        return "API/mendiklopedia";  // El nombre de la vista donde quieres mostrar los montes
+        return "API/mendiklopedia";
     }
 
     @GetMapping("/mendiklopedia/navarra")
@@ -32,12 +32,11 @@ public class MendiklopediaController {
                                 @RequestParam(name = "orden", required = false) String orden){
 
         List<Monte> montes = monteService.ordenar(campo, orden, mendiklopediaService.getMontesNavarra());
-
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
+
             return "API/mendiklopedia";
         }
-        // Añadimos los montes al modelo
         model.addAttribute("montes", montes);
         model.addAttribute("url", "navarra");
         model.addAttribute("nombreOpcion", "Montes de Navarra");
@@ -51,9 +50,9 @@ public class MendiklopediaController {
                                   @RequestParam(name = "orden", required = false) String orden){
 
         List<Monte> montes = monteService.ordenar(campo, orden, mendiklopediaService.getMontesTresmiles());
-
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
+
             return "API/mendiklopedia";
         }
         model.addAttribute("montes", montes);
@@ -68,12 +67,11 @@ public class MendiklopediaController {
                                @RequestParam(name = "campo", required = false) String campo,
                                @RequestParam(name = "orden", required = false) String orden){
         List<Monte> montes = monteService.ordenar(campo, orden, mendiklopediaService.getAll());
-
         if (montes == null){
             model.addAttribute("error", "ERROR: Parece ser que el servidor no responde. Intentelo mas tarde. " + LocalTime.now().getHour() + " : " + LocalTime.now().getMinute() + " : " + LocalTime.now().getSecond());
+
             return "API/mendiklopedia";
         }
-
         model.addAttribute("montes", montes);
         model.addAttribute("url", "españa");
         model.addAttribute("nombreOpcion", "Montes de España");
@@ -84,18 +82,16 @@ public class MendiklopediaController {
     @GetMapping("/mendiklopedia/favoritos")
     public String getFavoritos(Model model){
         model.addAttribute("montes", monteService.getFavoritos());
+
         return "API/favoritos";
     }
 
     @GetMapping("/mendiklopedia/favoritoDelete")
     public String deleteFavorito(Model model,
                               @RequestParam(name = "id", required = false) Integer id){
-
-        Monte monte = monteService.findByID(id);
-        monte.setFavorito(Boolean.FALSE);
-
-        monteService.save(monte);
+        monteService.deleteFavorito(id);
         model.addAttribute("montes", monteService.getAll());
+
         return "redirect:/mendiklopedia/favoritos";
     }
 

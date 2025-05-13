@@ -16,8 +16,7 @@ public class AscensionController {
 
     @GetMapping("/ascension/eliminar")
     public String eliminarAscension(@RequestParam(name ="id") Integer id, Model model) {
-        Ascension ascension = ascensionService.findByID(id);
-        ascensionService.delete(ascension);
+        ascensionService.delete(ascensionService.findByID(id));
 
         return "redirect:/ver/ascension";
     }
@@ -25,8 +24,7 @@ public class AscensionController {
 
     @GetMapping("/ascension/individual")
     public String individualAscension(@RequestParam(name ="id") Integer id, Model model) {
-        Ascension ascension = ascensionService.findByID(id);
-        model.addAttribute("ascension", ascension);
+        model.addAttribute("ascension", ascensionService.findByID(id));
         model.addAttribute("personas", ascensionService.getPersonasAscension(id));
 
         return "ascension/individual";

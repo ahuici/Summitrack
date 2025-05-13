@@ -15,7 +15,7 @@ header {
 }
 
 #logoCabecera img {
-    height: 50px; /* Ajusta el tamaño del logo */
+    height: 50px;
     display: flex;
 }
 

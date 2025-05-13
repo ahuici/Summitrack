@@ -20,6 +20,7 @@ public class MapaController {
     @GetMapping("/mapa")
     public String mostrarMapa(Model model) {
         model.addAttribute("montes", monteService.pasarMonteAMonteDTO());
+
         return "mapa/mapa";
     }
 
@@ -33,6 +34,7 @@ public class MapaController {
         monte.setLongitud(lon);
         if (checkbox) monte.setUbicacion(monteService.sacarNombrePorCordenadas(lat, lon));
         model.addAttribute("monte", monte);
+
         return "mapa/mapaAdd";
     }
 
@@ -45,8 +47,8 @@ public class MapaController {
 
             return "error";
         }
-
         model.addAttribute("isExitoso", true);
+
         return "mapa/cerrar";
     }
 

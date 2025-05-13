@@ -59,7 +59,8 @@ public class AnadirController {
         String respuesta = monteService.save(monte);
         if (respuesta != null){
             model.addAttribute("msg",respuesta);
-            model.addAttribute("volver","/anadir/monte");
+            if (monte.getId() != null) model.addAttribute("volver","/anadir/monte?id?=" + monte.getId());
+            else model.addAttribute("volver","/anadir/monte?");
 
             return "error";
         }
@@ -92,7 +93,8 @@ public class AnadirController {
                 String respuesta = ascensionService.save(ascension, personas, fotoAgregar);
                 if (respuesta != null){
                     model.addAttribute("msg",respuesta);
-                    model.addAttribute("volver","/anadir/ascension");
+                    if (ascension.getId() != null) model.addAttribute("volver","/anadir/ascension?id=" + ascension.getId());
+                    else model.addAttribute("volver","/anadir/ascension");
 
                     return "error";
                 }
@@ -125,7 +127,8 @@ public class AnadirController {
         String respuesta = personaService.save(persona);
         if (respuesta != null){
             model.addAttribute("msg",respuesta);
-            model.addAttribute("volver","/anadir/persona");
+            if (persona.getId() != null) model.addAttribute("volver","/anadir/persona?id=" + persona.getId());
+            else model.addAttribute("volver","/anadir/persona");
 
             return "error";
         }
@@ -152,7 +155,8 @@ public class AnadirController {
         String respuesta = calendarioService.save(calendario);
         if (respuesta != null){
             model.addAttribute("msg",respuesta);
-            model.addAttribute("volver","/anadir/calendario");
+            if (calendario.getId() != null) model.addAttribute("volver","/anadir/calendario?id=" + calendario.getId());
+            else model.addAttribute("volver","/anadir/calendario");
 
             return "error";
         }

@@ -3,6 +3,12 @@ body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 
 /* TODO MAPA*/
 
@@ -16,7 +22,7 @@ body {
     box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
 
     border: 3px solid #4CAF50; /* Marco de color verde */
-    border-radius: 12px; /* Bordes redondeados */
+    border-radius: 12px; /* Bordes redondefados */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
     background-color: white; /* Fondo blanco */
     z-index: 0;
@@ -45,7 +51,7 @@ body {
 #explicacion {
     display: flex; /* Activa el modelo de flexbox */
     justify-content: space-between; /* Distribuye el contenido en la misma línea con espacio entre ellos */
-    width: 87%;
+    width: 90%;
     margin: 20px auto;
     margin-top: 140px;
     padding: 20px;

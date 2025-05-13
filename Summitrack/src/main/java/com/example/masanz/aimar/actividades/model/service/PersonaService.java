@@ -29,9 +29,10 @@ public class PersonaService {
     }
 
     public String save(Persona persona){
-        if (persona.getNombre().length() < 2) return "El nombre debe tener al menos 2 letras";
+        if (persona.getNombre().length() < 2) return "El nombre debe tener al menos 2 caracteres";
+        else if (persona.getNombre().length() > 30) return "El nombre debe tener menos de 30 caracteres";
         else if (persona.getNombre().matches("\\d+")) return "El nombre debe estar compuesto por letras";
-        else if (persona.getApellidos().length() < 5) return "Los apellidos debe tener al menos 5 letras";
+        else if (persona.getApellidos().length() < 5) return "Los apellidos debe tener al menos 5 caracteres";
         else if (persona.getApellidos().matches("\\d+")) return "Los apellidos debe estar compuesto por letras";
         else if (persona.getEdad() < 1) return "La edad minima es de 1 año";
 

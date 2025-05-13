@@ -60,7 +60,7 @@ public class AscensionService {
         else if (ascension.getDesnivel() < 0) return "El desnivel debe ser superior a 0m";
         else if (ascension.getFecha().isAfter(LocalDate.now())) return "La fecha debe ser anterior al dia de hoy";
         else if (ascension.getTiempo() < 0) return "El tiempo debe ser un numero positivo";
-        else if (ascension.getTipo().length() < 5) return "El tipo debe tener al menos 5 letras";
+        else if (ascension.getTipo().length() < 5) return "El tipo debe tener al menos 5 caracteres";
         else if (ascension.getTipo().matches("\\d+")) return "El tipo debe estar compuesto por letras";
         else if (ascension.getDificultad() < 0 || ascension.getDificultad() > 10) return "La dificultad debe ser superior/igual a 0 y menor/igual de 10";
         else if (ascension.getPeligrosidad() < 0 || ascension.getPeligrosidad() > 10) return "La peligrosidad debe ser superior/igual a 0 y menor/igual de 10";

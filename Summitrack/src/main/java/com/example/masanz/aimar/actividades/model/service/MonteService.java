@@ -38,10 +38,10 @@ public class MonteService {
 
     public String save(Monte monte){
         if (monte == null) return "Ha habido un error al guardar el monte";
-        else if (monte.getNombre().length() < 5) return "El nombre del monte debe tener al menos 5 letras";
+        else if (monte.getNombre().length() < 5) return "El nombre del monte debe tener al menos 5 caracteres";
         else if (monte.getNombre().matches("\\d+")) return "El nombre debe estar compuesto por letras";
         else if (monte.getAltura() < 250) return "La altura del monte debe de ser de al menos 250m";
-        else if (monte.getUbicacion().length() < 5) return "La ubicación del monte debe tener al menos 5 letras";
+        else if (monte.getUbicacion().length() < 5) return "La ubicación del monte debe tener al menos 5 caracteres";
         else if (monte.getUbicacion().matches("\\d+")) return "La ubicación debe estar compuesto por letras";
         else if (monte.getLatitud() > 90 || monte.getLatitud() < -90) return "La latitud debe ser mayor de -90º y menor de 90º";
         else if (monte.getLongitud() > 180 || monte.getLongitud() < -180) return "La longitud debe ser mayor de -180º y menor de 180º";
@@ -58,6 +58,18 @@ public class MonteService {
         monteDAO.delete(monte);
     }
 
+    /*
+    * Elimina el monte dado de la lista de favoritos
+     */
+    public void deleteFavorito(Integer id){
+        Monte monte = findByID(id);
+        monte.setFavorito(Boolean.FALSE);
+        save(monte);
+    }
+
+    /*
+    * Obtener todos los montes favoritos
+     */
     public List<Monte> getFavoritos(){
         List<Monte> favoritos = new ArrayList<>();
         for (Monte monte : getAll()){
@@ -66,6 +78,9 @@ public class MonteService {
         return favoritos;
     }
 
+    /*
+    * Obtener el tiempo en un monte haciendo peticiones a una API, se devuelve una lista de TiempoDTO para facilitar su manejo
+     */
     public List<TiempoDTO> getTiempoMonte(Monte monte){
         List<TiempoDTO> tiempo = new ArrayList<>();
 
@@ -151,6 +166,9 @@ public class MonteService {
         return montesConDTO;
     }
 
+    /*
+    * Hace una peticion a una API para sacar el nombre de las coordenadas
+     */
     public String sacarNombrePorCordenadas(Double latitud, Double longitud){
         String nombre = "Sin especificar";
         try {
@@ -192,6 +210,9 @@ public class MonteService {
         return sinOrdenar;
     }
 
+    /*
+    * Devuelve una lista con todos los montes ascendidos por la persona dada
+     */
     public Map<Monte, Integer> getMontesUnicos(Integer id) {
         Map<Monte, Integer> montes = new HashMap<>();
         Persona persona = personaService.findByID(id);

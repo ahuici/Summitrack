@@ -9,18 +9,7 @@
 </head>
 <body>
   <!-- Contenido principal -->
-  <header>
-    <a href="/" id="logoCabecera">
-      <img src="/images/IconoSummitrack.png" alt="Home">
-    </a>
-    <nav>
-      <a href="/ver">Ver</a>
-      <a href="/anadir">Añadir</a>
-      <a href="/mendiklopedia">Mendiklopedia</a>
-      <a href="/top">Top</a>
-      <a href="/mapa">Mapa</a>
-    </nav>
-  </header>
+  <div th:insert="fragments/header :: header"></div>
 
   <h1 th:text="${titulo}"></h1>
 
