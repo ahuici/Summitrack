@@ -1,9 +1,7 @@
 package com.example.masanz.aimar.actividades.model.service;
 
 import com.example.masanz.aimar.actividades.model.DAO.IMonteDAO;
-import com.example.masanz.aimar.actividades.model.entity.MapaDTO;
-import com.example.masanz.aimar.actividades.model.entity.Monte;
-import com.example.masanz.aimar.actividades.model.entity.TiempoDTO;
+import com.example.masanz.aimar.actividades.model.entity.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,9 @@ public class MonteService {
     @Autowired
     private IMonteDAO monteDAO;
 
+    @Autowired
+    private PersonaService personaService;
+
     public List<Monte> getAll(){
         return monteDAO.findAll();
     }
@@ -35,7 +36,19 @@ public class MonteService {
         return monteDAO.findById(id).orElse(null);
     }
 
-    public void save(Monte monte){ monteDAO.save(monte);}
+    public String save(Monte monte){
+        if (monte == null) return "Ha habido un error al guardar el monte";
+        else if (monte.getNombre().length() < 5) return "El nombre del monte debe tener al menos 5 letras";
+        else if (monte.getNombre().matches("\\d+")) return "El nombre debe estar compuesto por letras";
+        else if (monte.getAltura() < 250) return "La altura del monte debe de ser de al menos 250m";
+        else if (monte.getUbicacion().length() < 5) return "La ubicación del monte debe tener al menos 5 letras";
+        else if (monte.getUbicacion().matches("\\d+")) return "La ubicación debe estar compuesto por letras";
+        else if (monte.getLatitud() > 90 || monte.getLatitud() < -90) return "La latitud debe ser mayor de -90º y menor de 90º";
+        else if (monte.getLongitud() > 180 || monte.getLongitud() < -180) return "La longitud debe ser mayor de -180º y menor de 180º";
+
+        monteDAO.save(monte);
+        return null;
+    }
 
     public boolean existe(Monte monte){
         return monteDAO.existsById(monte.getId());
@@ -177,6 +190,34 @@ public class MonteService {
                 .collect(Collectors.groupingBy(t -> t.getDia() + "/" + t.getMes(), LinkedHashMap::new, Collectors.toList()));
 
         return sinOrdenar;
+    }
+
+    public Map<Monte, Integer> getMontesUnicos(Integer id) {
+        Map<Monte, Integer> montes = new HashMap<>();
+        Persona persona = personaService.findByID(id);
+
+        for (Monte monte : getAll()){
+            for (Ascension ascension : monte.getAsciende()){
+                for (Completa completa : ascension.getCompleta()){
+                    if (completa.getPersona().equals(persona)){
+                        if (montes.keySet().contains(monte)){
+                            montes.put(monte, montes.get(monte) + 1);
+                        }
+                        else montes.put(monte, 1);
+                    }
+                }
+            }
+        }
+
+        // Ordenar el mapa por valores (número de ascensiones) ChatGPT
+        return montes.entrySet().stream()
+                .sorted(Map.Entry.<Monte, Integer>comparingByValue(Comparator.reverseOrder())) // Orden descendente
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,                  // Clave
+                        Map.Entry::getValue,                // Valor
+                        (e1, e2) -> e1,                    // Si hay duplicados, mantener el primero
+                        LinkedHashMap::new                 // Usar LinkedHashMap para mantener el orden
+                ));
     }
 }
 

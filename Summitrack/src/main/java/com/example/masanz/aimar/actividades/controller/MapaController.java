@@ -38,7 +38,14 @@ public class MapaController {
 
     @PostMapping("/mapa/guardar")
     public String addMontePost(@ModelAttribute Monte monte, Model model){
-        monteService.save(monte);
+        String respuesta = monteService.save(monte);
+        if (respuesta != null){
+            model.addAttribute("msg",respuesta);
+            model.addAttribute("volver", "javascript:window.close()");
+
+            return "error";
+        }
+
         model.addAttribute("isExitoso", true);
         return "mapa/cerrar";
     }

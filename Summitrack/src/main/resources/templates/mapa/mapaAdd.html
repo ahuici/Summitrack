@@ -15,11 +15,11 @@
 
       <input type="hidden" th:if="${editar}" th:field="*{id}"/>
 
-      <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+      <p>Nombre: <input type="text" th:field="*{nombre}" required/></p>
 
-      <p>Altura: <input type="number" th:field="*{altura}"/></p>
+      <p>Altura: <input type="number" th:field="*{altura}" required/></p>
 
-      <p>Ubicacion: <input type="text" th:field="*{ubicacion}"/></p>
+      <p>Ubicacion: <input type="text" th:field="*{ubicacion}" required/></p>
 
       <p><input type="text" th:field="*{latitud}" hidden="hidden"/></p>
 

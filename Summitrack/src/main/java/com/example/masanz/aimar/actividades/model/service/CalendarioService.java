@@ -24,7 +24,15 @@ public class CalendarioService {
         return calendarioDAO.findById(id).orElse(null);
     }
 
-    public void save(Calendario calendario){ calendarioDAO.save(calendario);}
+    public String save(Calendario calendario){
+        if (calendario.getTitulo().length() < 5) return "El titulo debe tener al menos 5 letras";
+        else if (calendario.getTitulo().matches("\\d+")) return "El titulo debe estar compuesto por letras";
+        else if (calendario.getFecha().isBefore(LocalDate.now())) return "La fecha no puede ser anterior a hoy";
+        else if (calendario.getMonte() == null) return "El monte no puede estar vacio";
+
+        calendarioDAO.save(calendario);
+        return null;
+    }
 
     public boolean existe(Calendario calendario){
         return calendarioDAO.existsById(calendario.getId());

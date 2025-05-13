@@ -32,7 +32,7 @@
                 <td th:text="${calendario.descripcion}"></td>
                 <td th:text="${calendario.monte.nombre}"></td>
                 <td th:text="${calendario.fecha.dayOfMonth}"></td>
-                <td><a th:href="|/calendario/add?id=${calendario.id}|" id="btnEditar">Editar</a></td>
+                <td><a th:href="|/anadir/calendario?id=${calendario.id}|" id="btnEditar">Editar</a></td>
                 <td><a th:href="|/calendario/eliminar?id=${calendario.id}|" id="btnEliminar" >Eliminar</a></td>
             </tr>
         </table>

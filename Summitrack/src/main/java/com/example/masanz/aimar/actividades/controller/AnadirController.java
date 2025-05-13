@@ -56,8 +56,13 @@ public class AnadirController {
 
     @PostMapping({"/monte","/monte/"})
     public String anadirMontePost(@ModelAttribute Monte monte, Model model){
-        monteService.save(monte);
+        String respuesta = monteService.save(monte);
+        if (respuesta != null){
+            model.addAttribute("msg",respuesta);
+            model.addAttribute("volver","/anadir/monte");
 
+            return "error";
+        }
         return "redirect:/ver/monte";
     }
 
@@ -78,12 +83,19 @@ public class AnadirController {
 
     @PostMapping({"/ascension","/ascension/"})
     public String anadirAscensionPost(@ModelAttribute Ascension ascension,
-                              @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar,
-                              @RequestParam("personas") List<Integer> personas)
+                                      @RequestPart(name = "fotoAgregar", required = false) MultipartFile fotoAgregar,
+                                      @RequestParam("personas") List<Integer> personas,
+                                      Model model)
     {
         try {
             if (fotoAgregar != null && !fotoAgregar.isEmpty()) {
-                ascensionService.save(ascension, personas, fotoAgregar);
+                String respuesta = ascensionService.save(ascension, personas, fotoAgregar);
+                if (respuesta != null){
+                    model.addAttribute("msg",respuesta);
+                    model.addAttribute("volver","/anadir/ascension");
+
+                    return "error";
+                }
                 return "redirect:/ver/ascension";
             } else System.out.println("IllegalArgumentException: No se ha cargado una foto válida.");
 
@@ -110,7 +122,13 @@ public class AnadirController {
 
     @PostMapping({"/persona", "/persona/"})
     public String anadirPersonaPost(@ModelAttribute Persona persona, Model model){
-        personaService.save(persona);
+        String respuesta = personaService.save(persona);
+        if (respuesta != null){
+            model.addAttribute("msg",respuesta);
+            model.addAttribute("volver","/anadir/persona");
+
+            return "error";
+        }
 
         return "redirect:/ver/persona";
     }
@@ -131,7 +149,13 @@ public class AnadirController {
 
     @PostMapping({"/calendario", "/calendario/"})
     public String anadirCalendarioPost(@ModelAttribute Calendario calendario, Model model){
-        calendarioService.save(calendario);
+        String respuesta = calendarioService.save(calendario);
+        if (respuesta != null){
+            model.addAttribute("msg",respuesta);
+            model.addAttribute("volver","/anadir/calendario");
+
+            return "error";
+        }
 
         return "redirect:/ver/calendario";
     }
