@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Summitrack</title>
-  <link rel="stylesheet" href="/css/all.css">
+  <link rel="stylesheet" href="/css/individualPersona.css">
   <link rel="stylesheet" href="/css/header.css">
-  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+  <link rel="icon" type="image/png" href="/images/IconoSummitrack.png">
 </head>
 <body>
 
 <div th:insert="fragments/header :: header"></div>
 
-<h1 th:text="${persona.nombre}"></h1>
+<a th:href="@{(${volver})}" class="atras">← Atras</a>
+
+<div class="container">
+  <h1 th:text="${persona.nombre + ' ' + persona.apellidos}" id="nombreMonte">Nombre de la Persona</h1>
+
+  <!-- Sección de información personal -->
+  <section class="monte-info">
+    <p><strong>Género:</strong> <span th:text="${persona.genero}">Género</span></p>
+    <p><strong>Edad:</strong> <span th:text="${persona.edad}">0</span> años</p>
+    <p><strong>Salir en Top:</strong> <span th:text="${persona.salirTop} ? 'Sí' : 'No'">No</span></p>
+    <p><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="@{/anadir/persona(id=${persona.id})}" id="linkEditar">Editar</a></b>
+      &nbsp;&nbsp;&nbsp;&nbsp;<b><a th:href="@{/persona/eliminar(id=${persona.id})}" id="linkEliminar">Eliminar</a></b>
+    </p>
+  </section>
+
+  <section class="montesUnicos" th:if="${persona.completa != null and !persona.completa.isEmpty()}">
+    <h2>Montes unicos</h2>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Altura</th>
+        <th>Num ascensiones</th>
+      </tr>
+      <tr th:each="entrada : ${montes}">
+        <td th:text="${entrada.key.nombre}">Monte</td>
+        <td th:text="${entrada.key.altura}">Altura</td>
+        <td th:text="${entrada.value}">Núm ascensiones</td>
+      </tr>
+    </table>
+  </section>
+</div>
+
 </body>
 </html>

@@ -27,6 +27,7 @@ public class AscensionController {
     public String individualAscension(@RequestParam(name ="id") Integer id, Model model) {
         Ascension ascension = ascensionService.findByID(id);
         model.addAttribute("ascension", ascension);
+        model.addAttribute("personas", ascensionService.getPersonasAscension(id));
 
         return "ascension/individual";
     }

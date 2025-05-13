@@ -31,6 +31,14 @@
                 <div><strong>Apuntes:</strong> <span th:text="${ascension.apuntes}"></span></div>
             </div>
         </div>
+        <table>
+            <tr>
+                <th>Personas que han ascendido</th>
+            </tr>
+            <tr th:each="persona : ${personas}">
+                <td th:text="${persona.nombre}"></td>
+            </tr>
+        </table>
         <section class="ascension-info">
             <p><br/>
                 <b><a th:href="|/anadir/ascension?id=${ascension.id}|" id="linkEditar" style="text-decoration: underline;">Editar</a></b>
@@ -40,9 +48,8 @@
     </div>
 
     <div class="tarjeta-imagen">
-        <img th:src="@{'/uploads/' + ${ascension.foto}}" alt="Imagen de la ascension" class="imagen-ascension">
+        <img th:src="@{'/uploads/' + ${ascension.foto}}" alt="Imagen de la ascension" class="imagen-ruta">
     </div>
-
 
 </body>
 </html>

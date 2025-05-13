@@ -1,0 +1,214 @@
+/* Cuerpo del documento */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F5F5; /* Fondo gris claro */
+    color: #333333; /* Texto en gris oscuro */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    text-align: center;
+    margin: 0px;
+}
+
+/* Contenedor principal */
+.container {
+    margin-top: 120px;
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    flex-direction: column;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+/* Estilo para el nombre del monte */
+#nombreMonte {
+    font-size: 4em; /* Aumenta aún más el tamaño del nombre */
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #388E3C; /* Color verde oscuro */
+}
+
+/* Contenedor de la información del monte */
+.monte-info {
+    color: #333333; /* Texto oscuro */
+    padding: 40px 50px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    text-align: center; /* Centra el texto */
+    max-width: 950px; /* Establece un ancho máximo para el contenedor */
+    width: 100%;
+}
+
+.monte-info h1 {
+    font-size: 4em; /* Aumenta aún más el tamaño del nombre */
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #388E3C; /* Color verde oscuro */
+}
+
+.monte-info p {
+    font-size: 1.4em; /* Texto más grande */
+    margin: 12px 0;
+}
+
+.monte-info strong {
+    color: #388E3C; /* Color verde para los labels */
+}
+
+/* Sección del pronóstico del montesUnicos */
+.montesUnicos {
+    color: #333333;
+    padding: 40px 50px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    text-align: center;
+    max-width: 950px;
+    width: 100%;
+}
+
+/* Estilo de los encabezados del pronóstico del montesUnicos */
+.montesUnicos h2 {
+    color: #388E3C; /* Verde */
+    font-size: 2.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Tabla para el pronóstico del montesUnicos */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 1.1em;
+}
+
+table th {
+    background-color: #388E3C;
+    color: white;
+    font-weight: bold;
+}
+
+table td {
+    background-color: #f9f9f9;
+}
+
+table tr:nth-child(even) td {
+    background-color:  #e8f5e9;
+}
+
+tr:nth-child(odd) td{
+    background-color: #c8e6c9;
+}
+
+
+/* Estilo para los enlaces dentro de las celdas */
+.card a {
+    display: inline-block;
+    background-color: #388E3C; /* Verde */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.card a:hover {
+    background-color: #2C6B3A; /* Verde más oscuro */
+    transform: translateY(-2px); /* Efecto hover */
+}
+
+.card a:active {
+    transform: translateY(1px); /* Efecto al hacer clic */
+}
+
+/* Diseño responsivo para dispositivos móviles */
+@media (max-width: 768px) {
+    .monte-info h1 {
+        font-size: 2.5em; /* Título más pequeño en pantallas pequeñas */
+    }
+
+    .montesUnicos h2 {
+        font-size: 1.8em; /* Título más pequeño en pantallas pequeñas */
+    }
+
+    table th, table td {
+        font-size: 1em; /* Ajuste de tamaño de texto en la tabla */
+        padding: 10px;
+    }
+}
+
+
+/* TODO FLECHA */
+/* Estilo para el enlace de "Atrás" */
+.atras {
+    position: absolute; /* Posiciona el enlace en relación al contenedor más cercano */
+    top: 20px; /* Espacio de 20px desde la parte superior */
+    left: 20px; /* Espacio de 20px desde la parte izquierda */
+    display: inline-block; /* Hace que el enlace sea un bloque en línea */
+    color: #4CAF50; /* Color verde */
+    font-size: 14px; /* Tamaño pequeño para el texto */
+    font-weight: bold; /* Texto en negrita */
+    text-decoration: none; /* Elimina el subrayado */
+    padding: 8px 12px; /* Añade un pequeño espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f5f5f5; /* Fondo gris claro */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efectos de transición */
+    margin-top: 125px;
+}
+
+/* Efecto hover para el enlace "Atras" */
+.atras:hover {
+    background-color: #e0e0e0; /* Fondo ligeramente más oscuro */
+    transform: translateY(-2px); /* Desplazamiento hacia arriba al pasar el ratón */
+}
+
+/* Efecto activo para el enlace "Atras" */
+.atras:active {
+    transform: translateY(1px); /* Desplazamiento hacia abajo cuando se hace clic */
+}
+
+/* TODO TABLA COLORES*/
+
+#linkEditar{
+   color: #2196F3;
+   size: 8px;
+}
+
+#linkEditar a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Mantiene el color del texto del contenedor (sin cambio de color de enlace) */
+}
+
+#linkEditar a:hover {
+    color: inherit; /* Mantiene el mismo color en hover */
+    text-decoration: none; /* Asegura que no haya subrayado en hover */
+}
+
+#linkEliminar{
+    color: #F44336;
+    size: 8px;
+}
+
+#linkEliminar a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Mantiene el color del texto del contenedor (sin cambio de color de enlace) */
+}
+
+#linkEliminar a:hover {
+    color: inherit; /* Mantiene el mismo color en hover */
+    text-decoration: none; /* Asegura que no haya subrayado en hover */
+}

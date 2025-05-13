@@ -20,17 +20,13 @@
         <th>Edad</th>
         <th>Top global</th>
         <th>Genero</th>
-        <th class="btnOpciones">Editar</th>
-        <th class="btnOpciones">Eliminar</th>
       </tr>
-      <tr th:each="persona : ${personas}" th:onclick="|window.location='/persona/persona?id=${persona.id}'|">
+      <tr th:each="persona : ${personas}" th:onclick="|window.location='/persona/persona?id=${persona.id}'|" style="cursor: pointer;">
         <td th:text="${persona.nombre}"></td>
         <td th:text="${persona.apellidos}"></td>
         <td th:text="${persona.edad}"></td>
         <td th:text="${persona.salirTop} ? '✅' : '❌'"></td>
         <td th:text="${persona.genero}"></td>
-        <td><a th:href="|/anadir/persona?id=${persona.id}|" id="btnEditar">Editar</a></td>
-        <td><a th:href="|/persona/eliminar?id=${persona.id}|" id="btnEliminar">Eliminar</a></td>
       </tr>
     </table>
   </div>
