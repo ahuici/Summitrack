@@ -1,6 +1,8 @@
 package com.example.masanz.aimar.actividades.model.service;
 
+import com.example.masanz.aimar.actividades.ActividadesApplication;
 import com.example.masanz.aimar.actividades.model.DAO.IPersonaDAO;
+import com.example.masanz.aimar.actividades.model.entity.Ascension;
 import com.example.masanz.aimar.actividades.model.entity.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class PersonaService {
 
     @Autowired
     private IPersonaDAO personaDAO;
+
+    @Autowired
+    private AscensionService ascensionService;
 
     public List<Persona> getAll(){
         return personaDAO.findAll();
@@ -39,6 +44,10 @@ public class PersonaService {
     }
 
     public void delete(Persona persona){
+        List<Ascension> ascensiones = ascensionService.getAscensionesPersona(persona);
+        for (Ascension ascension : ascensiones){
+            if (ascension.getCompleta().size() == 1 && ascension.getCompleta().get(0).getPersona().equals(persona)) ascensionService.delete(ascension);
+        }
         personaDAO.delete(persona);
     }
 

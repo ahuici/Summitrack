@@ -5,6 +5,7 @@ import com.example.masanz.aimar.actividades.model.entity.*;
 import com.google.cloud.firestore.DocumentReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ import java.util.concurrent.ExecutionException;
 public class AscensionService {
 
     @Autowired
+    @Lazy
     private PersonaService personaService;
 
     @Autowired
@@ -105,7 +107,9 @@ public class AscensionService {
         return ascensions;
     }
 
-
+    /*
+    * Devuelve una lista con las personas que han participado en el ascenso dado su ID
+     */
     public List<Persona> getPersonasAscension(Integer id) {
         Ascension ascension = findByID(id);
         List<Persona> personas = new ArrayList<>();
@@ -115,6 +119,19 @@ public class AscensionService {
         }
 
         return personas;
+    }
+
+    /*
+    * Devuelve una lista con todas las ascensiones realizadas de una persona dado su ID
+     */
+    public List<Ascension> getAscensionesPersona(Persona persona){
+        List<Ascension> ascensiones = new ArrayList<>();
+        for (Ascension ascension : getAll()){
+            for (Completa completa : ascension.getCompleta()){
+                if (completa.getPersona().equals(persona)) ascensiones.add(ascension);
+            }
+        }
+        return ascensiones;
     }
 }
 

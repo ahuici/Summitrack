@@ -32,6 +32,7 @@ public class MonteController {
     @GetMapping("/monte/ascension")
     public String verAscension(@RequestParam(name ="id") Integer id, Model model) {
         model.addAttribute("ascensiones", ascensionService.getAllById(id));
+        model.addAttribute("volver", "/monte/monte?id=" + id + "&volver=/ver/monte");
 
         return "monte/allAscensiones";
     }

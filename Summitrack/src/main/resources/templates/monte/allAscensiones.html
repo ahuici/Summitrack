@@ -12,7 +12,8 @@
 
   <div th:insert="fragments/header :: header"></div>
 
-  <a href="/ver/monte" class="atras">← Atras</a>
+  <a th:href="@{(${volver})}" class="atras">← Atras</a>
+
   <table>
     <tr>
       <th>Distancia</th>
