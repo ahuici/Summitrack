@@ -35,6 +35,9 @@
         <th>Altura</th>
         <th>Num ascensiones</th>
       </tr>
+      <tr th:if="${montes.isEmpty()}">
+        <td colspan="3" style="text-align:center;">Ningún monte ascendido</td>
+      </tr>
       <tr th:each="entrada : ${montes}" th:onclick="|window.location='/monte/monte?id=${entrada.key.id}&volver=/persona/persona?id=${persona.id}'|" style="cursor: pointer;">
         <td th:text="${entrada.key.nombre}">Monte</td>
         <td th:text="${entrada.key.altura} + ' m'">Altura</td>

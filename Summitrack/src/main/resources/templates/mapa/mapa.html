@@ -19,7 +19,7 @@
       var montes = /*[[${montes}]]*/ [];
       /*]]>*/
 
-      var map = L.map('map').setView([42.854865, -1.663550], 9);
+      var map = L.map('map').setView([42.854865, -1.663550], 8);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -75,17 +75,17 @@
   </div>
 
   <div id="explicacion">
-    <p><b>Un click: </b> Seleccionar punto del mapa &nbsp;</p>
-    <p><b>Dos clicks: </b> Agregar monte &nbsp;</p>
+    <p><b>Un click: </b> &nbsp;Seleccionar punto del mapa &nbsp;</p>
+    <p><b>Dos clicks: </b> &nbsp;Agregar monte &nbsp;</p>
     <p>
       <b>Habilitar búsqueda de ubicación:</b>
-      <input type="checkbox" id="ubicacionCheckbox">
+      <input type="checkbox" id="ubicacionCheckbox">&nbsp;&nbsp;
       <span class="tooltip-container">
         <span class="tooltip-icon" title="Si activas esta opción, se sacara el nombre de la ubicacion seleccionada. Si lo dejas desactivo la creacion del monte sera mas rapido.">?</span>
       </span>
     </p>
     <p>
-      <b>Crear ruta: &nbsp; </b><button class="btnCrearRuta" id="crearRuta">Crear</button>
+      <b>Crear ruta: &nbsp; </b><button class="btnCrearRuta" id="crearRuta">Crear</button> &nbsp;&nbsp;
       <span class="tooltip-container">
         <span class="tooltip-icon" title="Crea una ruta entre dos puntos.">?</span>
       </span>

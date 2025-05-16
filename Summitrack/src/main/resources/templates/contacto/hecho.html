@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Summitrack</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+</head>
+<body>
+<div class="background-container"></div>
+<main>
+  <h1>Correo enviado correctamente</h1>
+</main>
+
+<script>
+
+  function showPosition() {
+      setTimeout(function() {
+          window.location.href = '/contacto';
+      }, 1420);
+  }
+
+  window.addEventListener('load', showPosition);
+</script>
+</body>
+</html>

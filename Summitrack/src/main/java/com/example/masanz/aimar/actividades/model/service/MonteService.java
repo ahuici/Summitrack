@@ -38,7 +38,7 @@ public class MonteService {
 
     public String save(Monte monte){
         if (monte == null) return "Ha habido un error al guardar el monte";
-        else if (monte.getNombre().length() < 5) return "El nombre del monte debe tener al menos 5 caracteres";
+        else if (monte.getNombre().length() < 3) return "El nombre del monte debe tener al menos 3 caracteres";
         else if (monte.getNombre().matches("\\d+")) return "El nombre debe estar compuesto por letras";
         else if (monte.getAltura() < 250) return "La altura del monte debe de ser de al menos 250m";
         else if (monte.getUbicacion().length() < 5) return "La ubicación del monte debe tener al menos 5 caracteres";

@@ -27,13 +27,20 @@
 
   <div id="map"></div>
 
+  <div id="explicacion">
+    <p><b>Punto A: </b> Ubicacion actual</p>
+    <p><b>Punto B: </b> Destino final</p>
+    <p id="aviso"><b>AVISO: </b> La ruta puede tardar unos segundos en cargar</p>
+    <p><b>Descargar: </b><button class="btnCrearRuta" id="descargar">Descargar ruta</button>
+  </div>
+
   <script th:inline="javascript">
     /*<![CDATA[*/
     var inicio = {
       latitud: [[${inicio.latitud}]],
       longitud: [[${inicio.longitud}]],
       nombre: [[${inicio.nombre}]]
-    };  // El monte destino
+    };
 
     var final = {
       latitud: [[${final.latitud}]],
@@ -41,8 +48,10 @@
       nombre: [[${final.nombre}]]
     };
 
+    var rutaActual = null;
+
     if (inicio.latitud && inicio.longitud && final.latitud && final.longitud) {
-      var map = L.map('map').setView([inicio.latitud, inicio.longitud], 11); // centrado más ajustado al destino
+      var map = L.map('map').setView([inicio.latitud, inicio.longitud], 11);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -70,13 +79,13 @@
         .addTo(map)
         .bindPopup(inicio.nombre);
 
-      L.Routing.control({
+      var control = L.Routing.control({
         waypoints: [
           L.latLng(final.latitud, final.longitud),
           L.latLng(inicio.latitud, inicio.longitud)
         ],
         routeWhileDragging: true,
-        createMarker: function() { return null; },
+        createMarker: function () { return null; },
         router: L.Routing.osrmv1({
           serviceUrl: 'https://corsproxy.io/?https://router.project-osrm.org/route/v1'
         }),
@@ -85,6 +94,11 @@
         }
       }).addTo(map);
 
+      control.on('routesfound', function (e) {
+        rutaActual = e.routes[0];
+        console.log("Ruta guardada:", rutaActual);
+      });
+
       map.fitBounds([
         [final.latitud, final.longitud],
         [inicio.latitud, inicio.longitud]
@@ -92,14 +106,44 @@
     } else {
       console.error("Error: Las ubicaciones 'inicio' o 'final' no están definidas correctamente.");
     }
+
+    // Botón para descargar la ruta
+    document.getElementById('descargar').addEventListener('click', function () {
+      if (!rutaActual) {
+        alert("La ruta debe cargarse primero antes de poder descargarla.");
+        return;
+      }
+
+      const gpxData = rutaToGPX(rutaActual);
+      const blob = new Blob([gpxData], { type: "application/gpx+xml" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Summitrack.gpx";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    function rutaToGPX(route) {
+      const points = route.coordinates;
+      const gpxHeader = `<?xml version="1.0" encoding="UTF-8"?>
+  <gpx version="1.1" creator="Summitrack" xmlns="http://www.topografix.com/GPX/1/1">
+    <trk>
+      <name>Ruta creada</name>
+      <trkseg>`;
+      const gpxFooter = `</trkseg>
+    </trk>
+  </gpx>`;
+      const gpxPoints = points.map(pt =>
+        `<trkpt lat="${pt.lat}" lon="${pt.lng}"></trkpt>`
+      ).join("\n");
+
+      return `${gpxHeader}\n${gpxPoints}\n${gpxFooter}`;
+    }
     /*]]>*/
   </script>
-
-  <div id="explicacion">
-    <p><b>Punto A: </b> Ubicacion actual</p>
-    <p><b>Punto B: </b> Destino final</p>
-    <p><b>Linea verde: </b> Ruta sugerida para llegar al monte</p>
-    <p id="aviso"><b>AVISO: </b> La ruta puede tardar unos segundos en cargar</p>
-  </div>
 </body>
 </html>

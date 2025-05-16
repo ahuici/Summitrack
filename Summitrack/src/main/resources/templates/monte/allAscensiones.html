@@ -21,6 +21,9 @@
       <th>Fecha</th>
       <th>Tiempo</th>
     </tr>
+    <tr th:if="${ascensiones.isEmpty()}">
+      <td colspan="4" style="text-align:center;">Ninguna ascension hasta el momento</td>
+    </tr>
     <tr th:each="ascension : ${ascensiones}">
       <td th:text="${ascension.distancia} + ' km'"></td>
       <td th:text="${ascension.desnivel} + ' m'"></td>

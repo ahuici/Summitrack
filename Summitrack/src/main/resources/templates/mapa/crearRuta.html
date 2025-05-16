@@ -24,6 +24,7 @@
 
 <div id="mapRuta">
     <script th:inline="javascript">
+
         document.addEventListener('DOMContentLoaded', function () {
             var map = L.map('mapRuta').setView([42.854865, -1.663550], 9);
             var rutaActual = null;
@@ -102,10 +103,12 @@
                 rutaActual = null;
             }
 
+            // Event listener para el botón de limpiar ruta
             document.getElementById('limpiar').addEventListener('click', function () {
                 limpiarRuta();
             });
 
+            // Event listener para el botón de descargar
             document.getElementById('descargar').addEventListener('click', function () {
                 if (!rutaActual) {
                     alert("La ruta debe generarse antes para poder descargarse.");

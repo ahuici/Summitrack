@@ -60,6 +60,8 @@ public class MapaController {
 
     @GetMapping("/mapa/crearRuta")
     public String crearRuta(Model model){
+        model.addAttribute("montes", monteService.pasarMonteAMonteDTO());
+
         return "mapa/crearRuta";
     }
 }

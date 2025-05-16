@@ -60,11 +60,15 @@ body {
 
 /* Sección del pronóstico del tiempo */
 .tiempo {
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
-    padding: 20px;
+    color: #333333; /* Texto oscuro */
+    padding: 40px 50px;
+    padding-bottom: 10px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    text-align: center; /* Centra el texto */
+    max-width: 950px; /* Establece un ancho máximo para el contenedor */
+    width: 100%;
 }
 
 /* Estilo de los encabezados del pronóstico del tiempo */

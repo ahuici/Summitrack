@@ -1,0 +1,60 @@
+* [33m310104c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Pequeños fix
+* [33mb97874b[m Retoques esteticos
+* [33m5818240[m Borrar ascensiones al eliminar personas
+* [33mfae9624[m Persona individual
+* [33m02ee3ba[m Restricciones añadir
+* [33me66ae4f[m Cambios entrega
+* [33m33abf09[m Drawio
+* [33md2e1b92[m Simplificar header
+* [33mf461eb6[m Pasar metodos de controller a service
+* [33m11a81a9[m Restricciones
+* [33m3e5dccc[m Refactorizar ruta a ascension
+* [33m69981af[m Ruta individual
+* [33mb4560ec[m Refactorizar redirecciones
+* [33mc75a939[m Limpiar mapa al crear ruta personalizada
+* [33mb722104[m Crear y descargar ruta entre dos puntos
+* [33m637ae8f[m Retoques varios
+* [33m3909d42[m Agrupar y reorganizar pagina web
+* [33m59bc852[m Retoques css en todo lo relacionado al mapa
+* [33mae76655[m Ruta personalizada monte
+* [33m4a64899[m Calcular ruta desde ubicacion actual
+* [33mea8724d[m Sacar ubicacion actual
+* [33m6af1ebe[m Pequeños arreglos + funcionalidad monte individual desde mapa
+* [33m6e76f38[m Agregar funcionalidad tiempo API
+* [33m1881d21[m Listar montes en mapa
+* [33m0b67d58[m Optimizar detector ubicacion
+* [33ma19cbe6[m Sacar nombre de ubicaciones
+* [33m11daf0e[m Estetica guardar monte mapa
+* [33m197040e[m Mapa funcional
+* [33m8ebc124[m Arreglar cabecera
+* [33m4c737b4[m Reorganizacion estetica top
+* [33m5431c58[m Create README.md
+* [33m3433419[m Privacidad personas online
+* [33m3170ea1[m Metodos TopService sacar datos firebase
+* [33m001b092[m Crear / Eliminar ruta Firebase
+* [33m741789c[m Top local
+* [33m4129c2f[m Script datos demo
+* [33m11527e4[m Quitar favorito en favoritos
+* [33m75a15f0[m Agregar montes a favoritos
+* [33m0a19780[m Guardar foto local
+* [33mdf6c785[m Guardar fotos en local
+* [33m3c0a619[m Cambios cabecera y favicon
+* [33mfd8bf7f[m Empezar implementar personas
+* [33m3871e81[m Filtrar montes mendiklopedia
+* [33mcc2d97e[m Conexion Java API
+* [33m270dbf8[m Eliminar calendarios pasados
+* [33mabcb836[m Relacion calendario monte
+* [33m3ad5861[m Cambios calendario varios
+* [33mbae96c3[m Calendario
+* [33mb1d1b92[m Apuntes rutas
+* [33mf51b112[m CSS actualizado y cabecera
+* [33m55109f5[m Intento agregar fotos
+* [33m08750e2[m Prueba ver ruta individual
+* [33m5fd17ef[m Controladores
+* [33m41aedff[m DAOs y Servicios
+* [33m17b41dc[m Entidades y relaciones
+* [33m1159879[m Diagrama Clases
+* [33mec70774[m API funcional
+* [33ma659302[m añador provincias json
+* [33ma6cf8dc[m inicio
+* [33m31182b7[m Initial commit

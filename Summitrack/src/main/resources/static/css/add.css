@@ -193,3 +193,21 @@ input[type="checkbox"]:checked::before {
 }
 
 /* TODO FIN CHECKBOX*/
+
+/* Estilo para el input tipo email */
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    color: #333;
+    background-color: white;
+}
+
+/* Estilo cuando el input de email está en foco */
+input[type="email"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}

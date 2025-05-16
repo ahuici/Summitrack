@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Summitrack</title>
+  <link rel="stylesheet" href="/css/add.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="icon" type="image/png" th:href="@{/images/IconoSummitrack.png}">
+</head>
+<body>
+  <!-- Contenido principal -->
+  <div th:insert="fragments/header :: header"></div>
+
+  <div class="contenedorAdd">
+
+    <h1>Contacto</h1>
+
+    <form action="#" th:action="@{/contacto}" th:object="${correo}" method="post">
+
+      <p>Asunto: <input type="text" th:field="*{asunto}" required/></p>
+
+      <p>Cuerpo: <input type="text" th:field="*{cuerpo}" required/></p>
+
+      <p>Nombre: <input type="text" th:field="*{nombre}" required/></p>
+
+      <p>Correo: <input type="email" th:field="*{remitente}" required/></p>
+
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+</body>
+</html>
